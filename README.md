@@ -1,11 +1,17 @@
 #2DGraphics TermProject
 
 + 2012180004 권창현
++ Project 주간 B반
++ [프로젝트 업로드 주소](http://www.daehyunlee.com/dustinlee_new/doku.php?id=studentaccess:2015:02:2dgp:project_b)
++ [강의계획서](http://www.daehyunlee.com/dustinlee_new/lib/exe/fetch.php?media=lecture:2015:02:2dgameprogramming:2015_fall_2dgp_syllabus.pdf)
 
 ============
+###Youtube 업로드 영상 & PPT 자료
 
++ [1차 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/master/ProjectPPT/2012180004_KwonChangHyun.pptx) / [1차 발표 영상](https://www.youtube.com/watch?v=wmc25937s1s)
+
+============
 ###프로젝트 일정.
-
 ============
 
 + 1주차 (09/23) 전체적인 맵 틀 및 게임 스토리 구성
