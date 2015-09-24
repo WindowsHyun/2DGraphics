@@ -1,5 +1,4 @@
-# 2DGraphics
-##2DGraphics TermProject
+#2DGraphics TermProject
 
 + 2012180004 권창현
 
