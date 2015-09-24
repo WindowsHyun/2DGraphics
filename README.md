@@ -7,13 +7,10 @@
 
 ============
 ###Youtube 업로드 영상 & PPT 자료
-
 + [1차 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/master/ProjectPPT/2012180004_KwonChangHyun.pptx) / [1차 발표 영상](https://www.youtube.com/watch?v=wmc25937s1s)
 
 ============
 ###프로젝트 일정.
-============
-
 + 1주차 (09/23) 전체적인 맵 틀 및 게임 스토리 구성
 + 2주차 (09/30) 리소스 및 사운드 와 알고리즘 계산 
 + 3주차 (10/07) 난이도 조절 관련 메뉴 및 시작 페이지 구성 
