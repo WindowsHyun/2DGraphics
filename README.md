@@ -1,4 +1,4 @@
-#2DGraphics TermProject
+#2DGraphics TermProject [Cragene Rabbit]
 
 + 2012180004 권창현
 + Project 주간 B반
