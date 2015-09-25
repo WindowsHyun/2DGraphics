@@ -6,7 +6,7 @@
 + [강의계획서](http://www.daehyunlee.com/dustinlee_new/lib/exe/fetch.php?media=lecture:2015:02:2dgameprogramming:2015_fall_2dgp_syllabus.pdf)
 
 ============
-###GitHub Clone in Desktop 사용방법
+###GitHub Clone in Desktop
 
 + [GitHub Desktop 설치 & 사용방법](https://www.youtube.com/watch?v=fJqGGQIf4dk)
 
