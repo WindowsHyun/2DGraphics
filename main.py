@@ -8,3 +8,4 @@ from pico2d import *
 open_canvas()
 print("import Pico2D And Open Canvas")
 
+delay(3)
