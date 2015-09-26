@@ -12,7 +12,7 @@
 
 ============
 ###Youtube 업로드 영상 & PPT 자료
-+ [1차 발표 PPT](http://www.daehyunlee.com/dustinlee_new/lib/exe/fetch.php?media=studentaccess:2015:02:2dgp:2012180004_%EA%B6%8C%EC%B0%BD%ED%98%84.pptx) / [1차 발표 영상](https://www.youtube.com/watch?v=wmc25937s1s)
++ [1차 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/master/ProjectPPT/KwonChangHyun_1%EC%B0%A8%EB%B0%9C%ED%91%9C.pptx?raw=true) / [1차 발표 영상](https://www.youtube.com/watch?v=wmc25937s1s)
 
 ============
 ###프로젝트 일정.
