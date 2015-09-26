@@ -25,6 +25,7 @@
   > 1. 게임 스코어를 어떻게 저장하고 기록할지 구상
   > 1. 게임 난이도에 대한 구상
   > 1. 추석 연휴 조금만 하자..!
+  > 1. [1주차 구상한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/TermProjectConcept/ConceptDATA.txt)
 + 2주차 (09/30) 리소스 및 사운드 와 알고리즘 계산 
 + 3주차 (10/07) 난이도 조절 관련 메뉴 및 시작 페이지 구성 
 + 4주차 (10/14) 캐릭터 애니메이션 구현 
