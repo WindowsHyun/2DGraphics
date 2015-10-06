@@ -30,6 +30,36 @@ class cDrawPlanet:
         self.image.draw(415, 723)
     pass
 
+class cDrawMenu:
+    def dDraw(self, WHatMenu, x, y):
+        if WHatMenu == "Title":
+            self.image = load_image('GeneralImage\\Mtitle.png')
+            self.image.draw(x, y)
+        if WHatMenu == "Start":
+            self.image = load_image('GeneralImage\\Mplay.png')
+            self.image.draw(x, y)
+        if WHatMenu == "Score":
+            self.image = load_image('GeneralImage\\Mscore.png')
+            self.image.draw(x, y)
+        if WHatMenu == "Exits":
+            self.image = load_image('GeneralImage\\Mexits.png')
+            self.image.draw(x, y)
+        if WHatMenu == "Easy":
+            self.image = load_image('GeneralImage\\Measy.png')
+            self.image.draw(x, y)
+        if WHatMenu == "Middle":
+            self.image = load_image('GeneralImage\\Mmedium.png')
+            self.image.draw(x, y)
+        if WHatMenu == "Hard":
+            self.image = load_image('GeneralImage\\Mhard.png')
+            self.image.draw(x, y)
+        if WHatMenu == "Back":
+            self.image = load_image('GeneralImage\\Mback.png')
+            self.image.draw(x, y)
+            pass
+
+    pass
+
 """
 class cDrawRabbit:
     def dDraw(self, frame, LR):
