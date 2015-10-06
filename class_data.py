@@ -40,6 +40,16 @@ class cDrawRabbit:
 
         self.image.clip_draw(frame * 85, 0, 85, 113, 100, 100)
     pass
+
+class cDrawRabbitJet:
+    def dDraw(self, frame, LR):
+        if LR == True:
+            self.image = load_image('CharacterImage\\Rabbit-Up.png')
+        elif LR == False:
+            self.image = load_image('CharacterImage\\Rabbit-UpHand.png')
+
+        self.image.clip_draw(frame * 56, 0, 56, 113, 100, 100)
+    pass
 """
 
 class cAutoBackGround:

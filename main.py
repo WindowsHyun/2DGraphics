@@ -57,6 +57,7 @@ def main():
 
     """
     lRabbit = class_data.cDrawRabbit()
+    lRabbit = class_data.cDrawRabbitJet()
     """
 
     while (gRunning):
@@ -76,6 +77,7 @@ def main():
         # 배경 그려주고 난뒤 행성 그려주기.
 
         """
+        lRabbit.dDraw(gFrame, gLeftTRightF)
         lRabbit.dDraw(gFrame, gLeftTRightF)
         """
 
