@@ -35,12 +35,14 @@ def handle_events():
             gBackGround = 1
         if event.type == SDL_KEYDOWN and event.key == SDLK_KP_2:
             gBackGround = 2
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_4:
+        """
+        if event.type == SDL_KEYDOWN and event.key == SDLK_UP:
             gFrame = (gFrame + 1) % 3
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
             gLeftTRightF = True
         if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
             gLeftTRightF = False
+        """
     pass
 
 def main():
