@@ -44,6 +44,8 @@ def main():
     # cBackGround라는 클래스를 BackGround로 가져오기
     lAuto = class_data.cAutoBackGround()
     # 클래스 함수를 만들어서 배경화면 내려오게 만들기
+    lPlanet = class_data.cDrawPlanet()
+    # 클래스 함수를 만들어서 행성이 보이게 만들기
 
     while (gRunning):
         clear_canvas()
@@ -61,6 +63,9 @@ def main():
         lBackGround.draw()
         lBackGround.drawTwo()
         # 해당 클래스에서 이미지 그려주기.
+        lPlanet.__init__()
+        # 배경 그려주고 난뒤 행성 그려주기.
+
         update_canvas()
         delay(0.05)
         handle_events()
