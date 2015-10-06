@@ -23,7 +23,7 @@ class cBackGround:
 class cDrawPlanet:
     def __init__(self):
         self.image = load_image('GeneralImage\\planet.png')
-        self.image.draw(414, 723)
+        self.image.draw(415, 723)
     pass
 
 class cAutoBackGround:
