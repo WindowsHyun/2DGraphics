@@ -1,8 +1,6 @@
 __author__ = 'Administrator'
 
-from pico2d import *
-
-import main
+from main import *
 
 class cBackGround:
     def __init__(self):
@@ -10,10 +8,10 @@ class cBackGround:
         #print("Import Backgroung Data")
     def draw(self, gWhatDraw):
         if gWhatDraw == 0:
-            self.image.draw_to_origin(0, main.gY, main.gCanvasWidth, main.gCanvasHeight)
+            self.image.draw_to_origin(0, gY, gCanvasWidth, gCanvasHeight)
             # draw_to_origin을 사용하면 원본이미지를 그대로 사용 가능하면서 사이즈 크기를 자신이 원하는만큼 조절이 가능하다.
         else:
-            self.image.draw_to_origin(0, main.gY2, main.gCanvasWidth, main.gCanvasHeight)
+            self.image.draw_to_origin(0, gY2, gCanvasWidth, gCanvasHeight)
             #drawTwo를 만든이유는 이미지가 내려오는데 중간에 끊겨보이면 안되니깐 자연스럽게 이어지게 만들기 위하여.
     def dChangeBackground(self, gNum):
         if gNum == 0:
@@ -82,13 +80,29 @@ class cDrawRabbitJet:
     pass
 """
 
-class cAutoBackGround:
-    def __init__(self):
-        global gY, gY2
-        main.gY -= 3
-        main.gY2 -= 3
+def dAutoSlideBG():
+    global gY, gY2
+    gY -= 3
+    gY2 -= 3
 
-        if main.gY2 <= 0:
-            main.gY = 0
-            main.gY2 = 800
+    if gY2 <= 0:
+        gY = 0
+        gY2 = 800
+    pass
+
+def dMenuClick(WHatMenu, x, y):
+    global gWhatScenes, gRunning
+    if x >= 131 and x <= 349 and y >= 363 and y <= 437 and WHatMenu == "Main":
+            WHatMenu = "GameSelect"
+            print("Start")
+    if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "Main":
+            print("Score")
+    if x >= 131 and x <= 349 and y >= 63 and y <= 137 and WHatMenu == "Main":
+            WHatMenu = False
+            print("Exits")
+    if x >= 4 and x <= 42 and y >= 4 and y <= 42:
+        if WHatMenu == "GameSelect":
+            WHatMenu = "Main"
+        print("Back")
+    return WHatMenu
     pass

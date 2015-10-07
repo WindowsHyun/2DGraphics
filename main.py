@@ -1,6 +1,6 @@
 __author__ = 'WindowsHyun'
 
-import class_data
+from class_data import *
 print("import Class Data py")
 
 import os
@@ -40,14 +40,13 @@ def handle_events():
 
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, gCanvasHeight - event.y
-            if x >= 131 and x <= 349 and y >= 363 and y <= 437 and gWhatScenes == "Main":
-                gWhatScenes = "GameSelect"
-                print("Start")
-            if x >= 131 and x <= 349 and y >= 213 and y <= 287 and gWhatScenes == "Main":
-                print("Score")
-            if x >= 131 and x <= 349 and y >= 63 and y <= 137 and gWhatScenes == "Main":
+            gWhatScenes = dMenuClick(gWhatScenes, x, y)
+            ##################################################
+            # 종료할경우 gRunning를 죽인다.
+            if gWhatScenes == False:
                 gRunning = False
-                print("EXIT")
+            ##################################################
+            pass
         """
         if event.type == SDL_KEYDOWN and event.key == SDLK_UP:
             gFrame = (gFrame + 1) % 3
@@ -61,13 +60,11 @@ def handle_events():
 def main():
     global gY, gY2, gFrame, gLeftTRightF, gWhatScenes
     open_canvas(gCanvasWidth, gCanvasHeight)
-    lBackGround = class_data.cBackGround()
+    lBackGround = cBackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
-    lAuto = class_data.cAutoBackGround()
-    # 클래스 함수를 만들어서 배경화면 내려오게 만들기
-    lPlanet = class_data.cDrawPlanet()
+    lPlanet = cDrawPlanet()
     # 클래스 함수를 만들어서 행성이 보이게 만들기
-    lMenu = class_data.cDrawMenu()
+    lMenu = cDrawMenu()
     # 클래스 함수를 만들어서 메뉴 만들기
 
     """
@@ -78,7 +75,7 @@ def main():
     while (gRunning):
         clear_canvas()
 
-        lAuto.__init__()                            # 이미지 내려주는 함수
+        dAutoSlideBG()                              # 이미지 내려주는 함수
         lBackGround.dChangeBackground(gBackGround)  # 이미지 바꿔주는 함수
         lBackGround.draw(0)                         # 배경 그려주는 함수
         lBackGround.draw(1)                         # 배경 그려주는 함수
@@ -96,6 +93,7 @@ def main():
             lMenu.dDraw("Easy",240,400)                  # Easy
             lMenu.dDraw("Middle",240,250)                  # Middle
             lMenu.dDraw("Hard",240,100)                  # Hard
+            lMenu.dDraw("Back",22,22)                  # Back
 
 
 
