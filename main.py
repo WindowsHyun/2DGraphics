@@ -16,6 +16,7 @@ gCanvasHeight = 800
 gY = 0
 gY2 = 800
 gFrame = 0
+gType = 0
 gRunning = True
 gLeftTRightF = True
 gWhatScenes = "Main"
@@ -24,19 +25,21 @@ gBackGround = 0
 print("Create Local -> Global function")
 
 def handle_events():
-    global gRunning, gBackGround, gFrame, gLeftTRightF, gWhatScenes
+    global gRunning, gBackGround, gFrame, gLeftTRightF, gWhatScenes, gType
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
             gRunning = False
             print("Bye Bye~!!!")
+        """
         if event.type == SDL_KEYDOWN and event.key == SDLK_KP_0:
             gBackGround = 0
         if event.type == SDL_KEYDOWN and event.key == SDLK_KP_1:
             gBackGround = 1
         if event.type == SDL_KEYDOWN and event.key == SDLK_KP_2:
             gBackGround = 2
+        """
 
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, gCanvasHeight - event.y
@@ -48,6 +51,10 @@ def handle_events():
             ##################################################
             pass
         """
+        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_5:
+            gType += 1
+            if gType == 12:
+                gType = 0
         if event.type == SDL_KEYDOWN and event.key == SDLK_UP:
             gFrame = (gFrame + 1) % 3
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
@@ -64,41 +71,49 @@ def main():
     # cBackGround라는 클래스를 BackGround로 가져오기
     lPlanet = DrawPlanet()
     # 클래스 함수를 만들어서 행성이 보이게 만들기
-    lMenu = DrawMenu()
+    lMenu = [DrawMenu() for i in range(11)]
     # 클래스 함수를 만들어서 메뉴 만들기
 
     """
+    lFootres = DrawFootrest()
     lRabbit = class_data.cDrawRabbit()
     lRabbit = class_data.cDrawRabbitJet()
     """
+    lMenu[0].dLoad("Title")
+    lMenu[1].dLoad("Start")
+    lMenu[2].dLoad("Score")
+    lMenu[3].dLoad("Exits")
+    lMenu[4].dLoad("Easy")
+    lMenu[5].dLoad("Middle")
+    lMenu[6].dLoad("Hard")
+    lMenu[7].dLoad("Back")
 
     while (gRunning):
         clear_canvas()
 
         dAutoSlideBG()                              # 이미지 내려주는 함수
-        lBackGround.dChangeBackground(gBackGround)  # 이미지 바꿔주는 함수
         lBackGround.draw(0)                         # 배경 그려주는 함수
         lBackGround.draw(1)                         # 배경 그려주는 함수
-        lPlanet.__init__()                          # 행성 그려주는 함수
+        lPlanet.dDraw()                          # 행성 그려주는 함수
 
         if gWhatScenes == "Main":
-            lMenu.dDraw("Title",240,550)                  # Start
-            lMenu.dDraw("Start",240,400)                  # Start
-            lMenu.dDraw("Score",240,250)                  # Score
-            lMenu.dDraw("Exits",240,100)                  # Exits
+            lMenu[0].dDraw(240,550)                   # Title
+            lMenu[1].dDraw(240,400)                   # Start
+            lMenu[2].dDraw(240,250)                   # Score
+            lMenu[3].dDraw(240,100)                   # Exits
 
         if gWhatScenes == "GameSelect":
-            lMenu.dDraw("Title",240,550)                  # Start
-            lMenu.dDraw("Easy",240,400)                  # Easy
-            lMenu.dDraw("Middle",240,250)                  # Middle
-            lMenu.dDraw("Hard",240,100)                  # Hard
-            lMenu.dDraw("Back",22,22)                  # Back
+            lMenu[0].dDraw(240,550)                   # Title
+            lMenu[4].dDraw(240,400)                   # Start
+            lMenu[5].dDraw(240,250)                   # Score
+            lMenu[6].dDraw(240,100)                   # Exits
+            lMenu[7].dDraw(22,22)                     # Back
 
         if gWhatScenes == "Score":
-            lMenu.dDraw("Back",22,22)                  # Back
-
+            lMenu[7].dDraw(22,22)                     # Back
 
         """
+        lFootres.dDraw(gType,220,650)
         lRabbit.dDraw(gFrame, gLeftTRightF)
         lRabbit.dDraw(gFrame, gLeftTRightF)
         """
