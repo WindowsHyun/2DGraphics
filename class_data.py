@@ -56,40 +56,6 @@ class DrawMenu:
         self.image.clip_draw(WhatMenu * 222, 0, 222, 80, x, y)
     pass
 
-
-
-"""
-class DrawMenu:
-    def dLoad(self, WHatMenu):
-        if WHatMenu == "Title":
-            self.image = load_image('GeneralImage\\Mtitle.png')
-            print("Title = ",self.image)
-        if WHatMenu == "Start":
-            self.image = load_image('GeneralImage\\Mplay.png')
-            print("Start = ",self.image)
-        if WHatMenu == "Score":
-            self.image = load_image('GeneralImage\\Mscore.png')
-            print("Score = ",self.image)
-        if WHatMenu == "Exits":
-            self.image = load_image('GeneralImage\\Mexits.png')
-            print("Exits = ",self.image)
-        if WHatMenu == "Easy":
-            self.image = load_image('GeneralImage\\Measy.png')
-            print("Easy = ",self.image)
-        if WHatMenu == "Middle":
-            self.image = load_image('GeneralImage\\Mmedium.png')
-            print("Middle = ",self.image)
-        if WHatMenu == "Hard":
-            self.image = load_image('GeneralImage\\Mhard.png')
-            print("Hard = ",self.image)
-        if WHatMenu == "Back":
-            self.image = load_image('GeneralImage\\Mback.png')
-            print("Back = ",self.image)
-            pass
-    def dDraw(self, x, y):
-        self.image.draw(x, y)
-    pass
-"""
 """
 class cDrawRabbit:
     def dDraw(self, frame, LR):
