@@ -71,22 +71,18 @@ def main():
     # cBackGround라는 클래스를 BackGround로 가져오기
     lPlanet = DrawPlanet()
     # 클래스 함수를 만들어서 행성이 보이게 만들기
-    lMenu = [DrawMenu() for i in range(11)]
+    lMenu = DrawMenu()
     # 클래스 함수를 만들어서 메뉴 만들기
+    lTitle = DrawTitle()
+    # 클래스 함수를 만들어서 타이틀 만들기
+    lBack = DrawBack()
+    # 클래스 함수를 만들어서 뒤로가기 만들기
 
     """
     lFootres = DrawFootrest()
     lRabbit = class_data.cDrawRabbit()
     lRabbit = class_data.cDrawRabbitJet()
     """
-    lMenu[0].dLoad("Title")
-    lMenu[1].dLoad("Start")
-    lMenu[2].dLoad("Score")
-    lMenu[3].dLoad("Exits")
-    lMenu[4].dLoad("Easy")
-    lMenu[5].dLoad("Middle")
-    lMenu[6].dLoad("Hard")
-    lMenu[7].dLoad("Back")
 
     while (gRunning):
         clear_canvas()
@@ -94,23 +90,23 @@ def main():
         dAutoSlideBG()                              # 이미지 내려주는 함수
         lBackGround.draw(0)                         # 배경 그려주는 함수
         lBackGround.draw(1)                         # 배경 그려주는 함수
-        lPlanet.dDraw()                          # 행성 그려주는 함수
+        lPlanet.dDraw()                             # 행성 그려주는 함수
 
         if gWhatScenes == "Main":
-            lMenu[0].dDraw(240,550)                   # Title
-            lMenu[1].dDraw(240,400)                   # Start
-            lMenu[2].dDraw(240,250)                   # Score
-            lMenu[3].dDraw(240,100)                   # Exits
+            lTitle.dDraw(240,550)                   # Title
+            lMenu.dDraw(0,240,400)                  # Start
+            lMenu.dDraw(1,240,250)                  # Score
+            lMenu.dDraw(2,240,100)                  # Exits
 
         if gWhatScenes == "GameSelect":
-            lMenu[0].dDraw(240,550)                   # Title
-            lMenu[4].dDraw(240,400)                   # Start
-            lMenu[5].dDraw(240,250)                   # Score
-            lMenu[6].dDraw(240,100)                   # Exits
-            lMenu[7].dDraw(22,22)                     # Back
+            lTitle.dDraw(240,550)                   # Title
+            lMenu.dDraw(3,240,400)                  # Easy
+            lMenu.dDraw(4,240,250)                  # Middle
+            lMenu.dDraw(5,240,100)                  # Hard
+            lBack.dDraw(22,22)                      # Back
 
         if gWhatScenes == "Score":
-            lMenu[7].dDraw(22,22)                     # Back
+            lBack.dDraw(22,22)                      # Back
 
         """
         lFootres.dDraw(gType,220,650)

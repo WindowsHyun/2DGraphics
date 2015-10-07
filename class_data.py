@@ -32,6 +32,33 @@ class DrawPlanet:
         self.image.draw(415, 723)
     pass
 
+class DrawTitle:
+    def __init__(self):
+        self.image = load_image('GeneralImage\\Mtitle.png')
+        print("Title = ",self.image)
+    def dDraw(self, x, y):
+        self.image.draw(x, y)
+    pass
+
+class DrawBack:
+    def __init__(self):
+        self.image = load_image('GeneralImage\\Mback.png')
+        print("Back = ",self.image)
+    def dDraw(self, x, y):
+        self.image.draw(x, y)
+    pass
+
+class DrawMenu:
+    def __init__(self):
+        self.image = load_image('GeneralImage\\AllMenu.png')
+        print("AllMenu = ",self.image)
+    def dDraw(self, WhatMenu, x, y):
+        self.image.clip_draw(WhatMenu * 222, 0, 222, 80, x, y)
+    pass
+
+
+
+"""
 class DrawMenu:
     def dLoad(self, WHatMenu):
         if WHatMenu == "Title":
@@ -62,7 +89,7 @@ class DrawMenu:
     def dDraw(self, x, y):
         self.image.draw(x, y)
     pass
-
+"""
 """
 class cDrawRabbit:
     def dDraw(self, frame, LR):
