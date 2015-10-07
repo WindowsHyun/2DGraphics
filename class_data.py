@@ -2,7 +2,7 @@ __author__ = 'Administrator'
 
 from main import *
 
-class cBackGround:
+class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
         #print("Import Backgroung Data")
@@ -22,13 +22,13 @@ class cBackGround:
             self.image = load_image('BackgroundImage\\DBT.png')
     pass
 
-class cDrawPlanet:
+class DrawPlanet:
     def __init__(self):
         self.image = load_image('GeneralImage\\planet.png')
         self.image.draw(415, 723)
     pass
 
-class cDrawMenu:
+class DrawMenu:
     def dDraw(self, WHatMenu, x, y):
         if WHatMenu == "Title":
             self.image = load_image('GeneralImage\\Mtitle.png')
@@ -96,12 +96,13 @@ def dMenuClick(WHatMenu, x, y):
             WHatMenu = "GameSelect"
             print("Start")
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "Main":
+            WHatMenu = "Score"
             print("Score")
     if x >= 131 and x <= 349 and y >= 63 and y <= 137 and WHatMenu == "Main":
             WHatMenu = False
             print("Exits")
     if x >= 4 and x <= 42 and y >= 4 and y <= 42:
-        if WHatMenu == "GameSelect":
+        if WHatMenu == "GameSelect" or WHatMenu == "Score":
             WHatMenu = "Main"
         print("Back")
     return WHatMenu

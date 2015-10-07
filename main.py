@@ -60,11 +60,11 @@ def handle_events():
 def main():
     global gY, gY2, gFrame, gLeftTRightF, gWhatScenes
     open_canvas(gCanvasWidth, gCanvasHeight)
-    lBackGround = cBackGround()
+    lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
-    lPlanet = cDrawPlanet()
+    lPlanet = DrawPlanet()
     # 클래스 함수를 만들어서 행성이 보이게 만들기
-    lMenu = cDrawMenu()
+    lMenu = DrawMenu()
     # 클래스 함수를 만들어서 메뉴 만들기
 
     """
@@ -86,7 +86,6 @@ def main():
             lMenu.dDraw("Start",240,400)                  # Start
             lMenu.dDraw("Score",240,250)                  # Score
             lMenu.dDraw("Exits",240,100)                  # Exits
-            lMenu.dDraw("Back",22,22)                  # Back
 
         if gWhatScenes == "GameSelect":
             lMenu.dDraw("Title",240,550)                  # Start
@@ -95,6 +94,8 @@ def main():
             lMenu.dDraw("Hard",240,100)                  # Hard
             lMenu.dDraw("Back",22,22)                  # Back
 
+        if gWhatScenes == "Score":
+            lMenu.dDraw("Back",22,22)                  # Back
 
 
         """
