@@ -30,7 +30,7 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
-            dExits()
+            gRunning = dExits()
         """
         if event.type == SDL_KEYDOWN and event.key == SDLK_KP_0:
             gBackGround = 0
@@ -46,7 +46,7 @@ def handle_events():
             ##################################################
             # 종료할경우 gRunning를 죽인다.
             if gWhatScenes == False:
-                dExits()
+                gRunning = dExits()
             ##################################################
             pass
         """
@@ -118,12 +118,6 @@ def main():
         delay(0.015)
 
     close_canvas()
-
-def dExits():
-    global gRunning
-    gRunning = False
-    print("ByeBye~!!")
-    pass
 
 if __name__ == '__main__':
     main()

@@ -2,6 +2,8 @@ __author__ = 'Administrator'
 
 from main import *
 
+import ctypes  # An included library with Python install.
+
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
@@ -109,7 +111,8 @@ def dMenuClick(WHatMenu, x, y):
             WHatMenu = "GameSelect"
             print("Start")
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "Main":
-            WHatMenu = "Score"
+            dMsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
+            #WHatMenu = "Score"
             print("Score")
     if x >= 131 and x <= 349 and y >= 63 and y <= 137 and WHatMenu == "Main":
             WHatMenu = False
@@ -120,4 +123,22 @@ def dMenuClick(WHatMenu, x, y):
             WHatMenu = "Main"
         print("Back")
     return WHatMenu
+    pass
+
+def dMsgBox(title, text, style):
+    ctypes.windll.user32.MessageBoxA(0, text.encode('euc-kr'), title.encode('euc-kr'), style)
+"""
+Styles:
+0 : OK
+1 : OK | Cancel
+2 : Abort | Retry | Ignore
+3 : Yes | No | Cancel
+4 : Yes | No
+5 : Retry | No
+6 : Cancel | Try Again | Continue
+"""
+
+def dExits():
+    print("ByeBye~!!")
+    return False
     pass
