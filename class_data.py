@@ -2,13 +2,21 @@ __author__ = 'Administrator'
 
 from main import *
 
+import os
+os.chdir('C:\\2DGraphics\\2DGraphics\\ResourceData')
+print("- Module OS And Dir Settings -")
+
+from pico2d import *
+print("- import Pico2D -")
+
 import ctypes  # An included library with Python install.
+print("- Module ctypes -")
 
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
         print("BackGround = ",self.image)
-    def draw(self, gWhatDraw):
+    def draw(self,gY, gY2, gCanvasWidth, gCanvasHeight, gWhatDraw):
         if gWhatDraw == 0:
             self.image.draw_to_origin(0, gY, gCanvasWidth, gCanvasHeight)
             # draw_to_origin을 사용하면 원본이미지를 그대로 사용 가능하면서 사이즈 크기를 자신이 원하는만큼 조절이 가능하다.
@@ -88,16 +96,6 @@ class DrawFootrest:
     pass
 """
 
-def dAutoSlideBG():
-    global gY, gY2
-    gY -= 3
-    gY2 -= 3
-
-    if gY2 <= 0:
-        gY = 0
-        gY2 = 800
-    pass
-
 def dMenuClick(WHatMenu, x, y):
     global gWhatScenes, gRunning
     if x >= 131 and x <= 349 and y >= 363 and y <= 437 and WHatMenu == "GameSelect":
@@ -123,6 +121,15 @@ def dMenuClick(WHatMenu, x, y):
             WHatMenu = "Main"
         print("Back")
     return WHatMenu
+    pass
+
+def dAutoSlideBG(gY, gY2):
+    gY -= 3
+    gY2 -= 3
+    if gY2 <= 0:
+        gY = 0
+        gY2 = 800
+    return gY, gY2
     pass
 
 def dMsgBox(title, text, style):
