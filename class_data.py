@@ -47,6 +47,19 @@ class DrawMiscPictures:
         print("Title = ",self.title)
         self.back = load_image('GeneralImage\\Mback.png')
         print("Back = ",self.back)
+        self.easy = load_image('GeneralImage\\Measy.png')
+        print("Easy = ",self.easy)
+        self.exit = load_image('GeneralImage\\Mexits.png')
+        print("Exit = ",self.exit)
+        self.hard = load_image('GeneralImage\\Mhard.png')
+        print("Hard = ",self.hard)
+        self.medium = load_image('GeneralImage\\Mmedium.png')
+        print("Medium = ",self.medium)
+        self.start = load_image('GeneralImage\\Mstart.png')
+        print("Start = ",self.start)
+        self.score = load_image('GeneralImage\\Mscore.png')
+        print("Score = ",self.score)
+
     def dDraw(self, WhatDraw, x, y):
         if WhatDraw == "planet":
             self.planet.draw(x,y)
@@ -54,14 +67,18 @@ class DrawMiscPictures:
             self.title.draw(x,y)
         if WhatDraw == "back":
             self.back.draw(x,y)
-    pass
-
-class DrawMenu:
-    def __init__(self):
-        self.image = load_image('GeneralImage\\AllMenu.png')
-        print("AllMenu = ",self.image)
-    def dDraw(self, WhatMenu, x, y):
-        self.image.clip_draw(WhatMenu * 222, 0, 222, 80, x, y)
+        if WhatDraw == "Easy":
+            self.easy.draw(x,y)
+        if WhatDraw == "Exit":
+            self.exit.draw(x,y)
+        if WhatDraw == "Hard":
+            self.hard.draw(x,y)
+        if WhatDraw == "Medium":
+            self.medium.draw(x,y)
+        if WhatDraw == "Start":
+            self.start.draw(x,y)
+        if WhatDraw == "Score":
+            self.score.draw(x,y)
     pass
 
 """

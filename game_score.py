@@ -39,7 +39,7 @@ def handle_events():
     pass
 
 def enter():
-    global lBackGround, lMiscPictures, lMenu, gWhatScenes
+    global lBackGround, lMiscPictures, gWhatScenes
     dMsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
     gWhatScenes = "Score"
     print("game_score.py Hello~!!!")
@@ -47,8 +47,6 @@ def enter():
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
-    lMenu = DrawMenu()
-    # 클래스 함수를 만들어서 메뉴 만들기
     pass
 
 

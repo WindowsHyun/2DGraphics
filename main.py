@@ -63,15 +63,13 @@ def handle_events():
     pass
 
 def enter():
-    global lBackGround, lMiscPictures, lMenu, gWhatScenes
+    global lBackGround, lMiscPictures, gWhatScenes
     gWhatScenes = "Main"
     print("main.py Hello~!!!")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
-    lMenu = DrawMenu()
-    # 클래스 함수를 만들어서 메뉴 만들기
     pass
 
 
@@ -81,7 +79,7 @@ def update():
     pass
 
 def draw():
-    global lBackGround, lPlanet, lMenu, lTitle, lBack
+    global lBackGround, lPlanet, lTitle, lBack
     global gCanvasWidth, gCanvasHeight
     clear_canvas()
 
@@ -89,18 +87,17 @@ def draw():
     lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 1)                         # 배경 그려주는 함수
     lMiscPictures.dDraw("planet", 415, 723)
     lMiscPictures.dDraw("title", 240, 550)
-    lMenu.dDraw(0,240,400)                  # Start
-    lMenu.dDraw(1,240,250)                  # Score
-    lMenu.dDraw(2,240,100)                  # Exits
+    lMiscPictures.dDraw("Start", 240, 400)
+    lMiscPictures.dDraw("Score", 240, 250)
+    lMiscPictures.dDraw("Exit", 240, 100)
 
     update_canvas()
     delay(0.015)
     pass
 
 def exit():
-    global lBackGround, lMenu, lMiscPictures
+    global lBackGround, lMiscPictures
     del(lBackGround)
-    del(lMenu)
     del(lMiscPictures)
     print("main.py Bye~!!!")
     pass
