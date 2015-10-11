@@ -12,6 +12,11 @@ print("- import Pico2D -")
 import ctypes  # An included library with Python install.
 print("- Module ctypes -")
 
+gCanvasWidth = 480
+gCanvasHeight = 800
+
+open_canvas(gCanvasWidth, gCanvasHeight)
+
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
@@ -109,8 +114,7 @@ def dMenuClick(WHatMenu, x, y):
             WHatMenu = "GameSelect"
             print("Start")
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "Main":
-            dMsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
-            #WHatMenu = "Score"
+            WHatMenu = "Score"
             print("Score")
     if x >= 131 and x <= 349 and y >= 63 and y <= 137 and WHatMenu == "Main":
             WHatMenu = False
@@ -144,8 +148,3 @@ Styles:
 5 : Retry | No
 6 : Cancel | Try Again | Continue
 """
-
-def dExits():
-    print("ByeBye~!!")
-    return False
-    pass

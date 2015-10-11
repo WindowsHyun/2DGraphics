@@ -4,6 +4,8 @@ from class_data import *
 print("- import Class Data -")
 import game_framework
 print("- Module game_framework -")
+import main
+print("- Module main -")
 
 gCanvasWidth = 480
 gCanvasHeight = 800
@@ -13,9 +15,6 @@ gFrame = 0
 gType = 0
 gRunning = True
 gLeftTRightF = True
-gWhatScenes = "Main"
-# Main, Score, GameSelect, Game 이렇게 4개의 장면을 만들예정.
-# gameframework 작업으로 해당 WhatScenes 는 사라질 예정...
 gBackGround = 0
 print("Create Local -> Global function")
 
@@ -41,6 +40,8 @@ def handle_events():
             # 종료할경우 gRunning를 죽인다.
             if gWhatScenes == False:
                 game_framework.quit()
+            if gWhatScenes == "Main":
+                game_framework.change_state(main)
             ##################################################
             pass
         """
@@ -58,8 +59,9 @@ def handle_events():
     pass
 
 def enter():
-    global lBackGround, lPlanet, lMenu, lTitle, lBack
-    open_canvas(gCanvasWidth, gCanvasHeight)
+    global lBackGround, lPlanet, lMenu, lTitle, lBack, gWhatScenes
+    gWhatScenes = "GameSelect"
+    print("game_select.py Hello~!!!")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lPlanet = DrawPlanet()
@@ -104,5 +106,5 @@ def exit():
     del(lMenu)
     del(lTitle)
     del(lBack)
-    print("Main.py ByeBye~!!!")
+    print("game_select.py Bye~!!!")
     pass

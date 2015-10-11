@@ -1,13 +1,11 @@
-__author__ = 'WindowsHyun'
+__author__ = 'Administrator'
 
 from class_data import *
 print("- import Class Data -")
 import game_framework
 print("- Module game_framework -")
-import game_select
-print("- Module game_select -")
-import game_score
-print("- Module game_score -")
+import main
+print("- Module main -")
 
 gCanvasWidth = 480
 gCanvasHeight = 800
@@ -27,14 +25,6 @@ def handle_events():
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
             game_framework.quit()
-        """
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_0:
-            gBackGround = 0
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_1:
-            gBackGround = 1
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_2:
-            gBackGround = 2
-        """
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, gCanvasHeight - event.y
             gWhatScenes = dMenuClick(gWhatScenes, x, y)
@@ -42,30 +32,17 @@ def handle_events():
             # 종료할경우 gRunning를 죽인다.
             if gWhatScenes == False:
                 game_framework.quit()
-            if gWhatScenes == "GameSelect":
-                game_framework.change_state(game_select)
-            if gWhatScenes == "Score":
-                game_framework.change_state(game_score)
+            if gWhatScenes == "Main":
+                game_framework.change_state(main)
             ##################################################
             pass
-        """
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_5:
-            gType += 1
-            if gType == 12:
-                gType = 0
-        if event.type == SDL_KEYDOWN and event.key == SDLK_UP:
-            gFrame = (gFrame + 1) % 3
-        if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
-            gLeftTRightF = True
-        if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
-            gLeftTRightF = False
-        """
     pass
 
 def enter():
     global lBackGround, lPlanet, lMenu, lTitle, lBack, gWhatScenes
-    gWhatScenes = "Main"
-    print("main.py Hello~!!!")
+    dMsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
+    gWhatScenes = "Score"
+    print("game_score.py Hello~!!!")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lPlanet = DrawPlanet()
@@ -85,28 +62,23 @@ def update():
     pass
 
 def draw():
-    global lBackGround, lPlanet, lMenu, lTitle, lBack
+    global lBackGround, lPlanet, lBack
     global gCanvasWidth, gCanvasHeight
     clear_canvas()
     lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 0)                         # 배경 그려주는 함수
     lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 1)                         # 배경 그려주는 함수
     lPlanet.dDraw()                                                                   # 행성 그려주는 함수
 
-    lTitle.dDraw(240,550)                   # Title
-    lMenu.dDraw(0,240,400)                  # Start
-    lMenu.dDraw(1,240,250)                  # Score
-    lMenu.dDraw(2,240,100)                  # Exits
+    lBack.dDraw(22,22)                      # Back
 
     update_canvas()
     delay(0.015)
     pass
 
 def exit():
-    global lBackGround, lPlanet, lMenu, lTitle, lBack
+    global lBackGround, lPlanet, lBack
     del(lBackGround)
     del(lPlanet)
-    del(lMenu)
-    del(lTitle)
     del(lBack)
-    print("main.py Bye~!!!")
+    print("game_score.py Bye~!!!")
     pass
