@@ -91,6 +91,8 @@ def draw():
     lMiscPictures.dDraw("Score", 240, 250)
     lMiscPictures.dDraw("Exit", 240, 100)
 
+    dFontDraw(3,10, "Ver 1.0.1", 255, 255, 255)
+    dFontDraw(200,10, "한글 Korea Print -____-", 255, 255, 255)
     update_canvas()
     delay(0.015)
     pass

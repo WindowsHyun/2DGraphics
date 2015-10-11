@@ -149,6 +149,12 @@ def dAutoSlideBG(gY, gY2):
 
 def dMsgBox(title, text, style):
     ctypes.windll.user32.MessageBoxA(0, text.encode('euc-kr'), title.encode('euc-kr'), style)
+
+def dFontDraw(x, y, text, r, g, b):
+    font = Font("훈솜사탕R.ttf")
+    font.draw(x, y, text, (r,g,b))
+
+
 """
 Styles:
 0 : OK
