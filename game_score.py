@@ -1,11 +1,11 @@
 __author__ = 'Administrator'
 
 from class_data import *
-print("- import Class Data -")
+#print("- import Class Data -")
 import game_framework
-print("- Module game_framework -")
+#print("- Module game_framework -")
 import main
-print("- Module main -")
+#print("- Module main -")
 
 gCanvasWidth = 480
 gCanvasHeight = 800
@@ -16,7 +16,7 @@ gType = 0
 gRunning = True
 gLeftTRightF = True
 gBackGround = 0
-print("Create Local -> Global function")
+print("gmae_score.py : Create Local -> Global function")
 
 def handle_events():
     global gRunning, gBackGround, gFrame, gLeftTRightF, gWhatScenes, gType
@@ -42,7 +42,7 @@ def enter():
     global lBackGround, lMiscPictures, gWhatScenes
     dMsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
     gWhatScenes = "Score"
-    print("game_score.py Hello~!!!")
+    print("Open : game_score.py Code")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
@@ -73,5 +73,5 @@ def exit():
     global lBackGround, lMiscPictures
     del(lBackGround)
     del(lMiscPictures)
-    print("game_score.py Bye~!!!")
+    print("Unload : game_score.py Code")
     pass

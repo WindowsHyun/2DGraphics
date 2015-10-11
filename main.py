@@ -1,13 +1,13 @@
 __author__ = 'WindowsHyun'
 
 from class_data import *
-print("- import Class Data -")
+#print("- import Class Data -")
 import game_framework
-print("- Module game_framework -")
+#print("- Module game_framework -")
 import game_select
-print("- Module game_select -")
+#print("- Module game_select -")
 import game_score
-print("- Module game_score -")
+#print("- Module game_score -")
 
 gCanvasWidth = 480
 gCanvasHeight = 800
@@ -18,7 +18,7 @@ gType = 0
 gRunning = True
 gLeftTRightF = True
 gBackGround = 0
-print("Create Local -> Global function")
+print("main.py : Create Local -> Global function")
 
 def handle_events():
     global gRunning, gBackGround, gFrame, gLeftTRightF, gWhatScenes, gType
@@ -65,7 +65,7 @@ def handle_events():
 def enter():
     global lBackGround, lMiscPictures, gWhatScenes
     gWhatScenes = "Main"
-    print("main.py Hello~!!!")
+    print("Open : main.py Code")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
@@ -99,5 +99,5 @@ def exit():
     global lBackGround, lMiscPictures
     del(lBackGround)
     del(lMiscPictures)
-    print("main.py Bye~!!!")
+    print("Unload : main.py Code")
     pass

@@ -4,13 +4,13 @@ from main import *
 
 import os
 os.chdir('C:\\2DGraphics\\2DGraphics\\ResourceData')
-print("- Module OS And Dir Settings -")
+#print("- Module OS And Dir Settings -")
 
 from pico2d import *
-print("- import Pico2D -")
+#print("- import Pico2D -")
 
 import ctypes  # An included library with Python install.
-print("- Module ctypes -")
+#print("- Module ctypes -")
 
 gCanvasWidth = 480
 gCanvasHeight = 800
@@ -20,7 +20,7 @@ open_canvas(gCanvasWidth, gCanvasHeight)
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
-        print("BackGround = ",self.image)
+        #print("BackGround = ",self.image)
     def draw(self,gY, gY2, gCanvasWidth, gCanvasHeight, gWhatDraw):
         if gWhatDraw == 0:
             self.image.draw_to_origin(0, gY, gCanvasWidth, gCanvasHeight)
@@ -42,24 +42,25 @@ class BackGround:
 class DrawMiscPictures:
     def __init__(self):
         self.planet = load_image('GeneralImage\\planet.png')
-        print("Planet = ",self.planet)
         self.title = load_image('GeneralImage\\Mtitle.png')
-        print("Title = ",self.title)
         self.back = load_image('GeneralImage\\Mback.png')
-        print("Back = ",self.back)
         self.easy = load_image('GeneralImage\\Measy.png')
-        print("Easy = ",self.easy)
         self.exit = load_image('GeneralImage\\Mexits.png')
-        print("Exit = ",self.exit)
         self.hard = load_image('GeneralImage\\Mhard.png')
-        print("Hard = ",self.hard)
         self.medium = load_image('GeneralImage\\Mmedium.png')
-        print("Medium = ",self.medium)
         self.start = load_image('GeneralImage\\Mstart.png')
-        print("Start = ",self.start)
         self.score = load_image('GeneralImage\\Mscore.png')
+        """
+        print("Planet = ",self.planet)
+        print("Title = ",self.title)
+        print("Back = ",self.back)
+        print("Easy = ",self.easy)
+        print("Exit = ",self.exit)
+        print("Hard = ",self.hard)
+        print("Medium = ",self.medium)
+        print("Start = ",self.start)
         print("Score = ",self.score)
-
+        """
     def dDraw(self, WhatDraw, x, y):
         if WhatDraw == "planet":
             self.planet.draw(x,y)
