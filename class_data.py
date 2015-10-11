@@ -39,28 +39,21 @@ class BackGround:
     """
     pass
 
-class DrawPlanet:
+class DrawMiscPictures:
     def __init__(self):
-        self.image = load_image('GeneralImage\\planet.png')
-        print("Planet = ",self.image)
-    def dDraw(self):
-        self.image.draw(415, 723)
-    pass
-
-class DrawTitle:
-    def __init__(self):
-        self.image = load_image('GeneralImage\\Mtitle.png')
-        print("Title = ",self.image)
-    def dDraw(self, x, y):
-        self.image.draw(x, y)
-    pass
-
-class DrawBack:
-    def __init__(self):
-        self.image = load_image('GeneralImage\\Mback.png')
-        print("Back = ",self.image)
-    def dDraw(self, x, y):
-        self.image.draw(x, y)
+        self.planet = load_image('GeneralImage\\planet.png')
+        print("Planet = ",self.planet)
+        self.title = load_image('GeneralImage\\Mtitle.png')
+        print("Title = ",self.title)
+        self.back = load_image('GeneralImage\\Mback.png')
+        print("Back = ",self.back)
+    def dDraw(self, WhatDraw, x, y):
+        if WhatDraw == "planet":
+            self.planet.draw(x,y)
+        if WhatDraw == "title":
+            self.title.draw(x,y)
+        if WhatDraw == "back":
+            self.back.draw(x,y)
     pass
 
 class DrawMenu:

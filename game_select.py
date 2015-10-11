@@ -59,19 +59,15 @@ def handle_events():
     pass
 
 def enter():
-    global lBackGround, lPlanet, lMenu, lTitle, lBack, gWhatScenes
+    global lBackGround, lMiscPictures, lMenu, gWhatScenes
     gWhatScenes = "GameSelect"
     print("game_select.py Hello~!!!")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
-    lPlanet = DrawPlanet()
-    # 클래스 함수를 만들어서 행성이 보이게 만들기
+    lMiscPictures = DrawMiscPictures()
+    # 클래스 함수를 만들어서 여러가지 이미지 불러오기
     lMenu = DrawMenu()
     # 클래스 함수를 만들어서 메뉴 만들기
-    lTitle = DrawTitle()
-    # 클래스 함수를 만들어서 타이틀 만들기
-    lBack = DrawBack()
-    # 클래스 함수를 만들어서 뒤로가기 만들기
     pass
 
 
@@ -84,27 +80,24 @@ def draw():
     global lBackGround, lPlanet, lMenu, lTitle, lBack
     global gCanvasWidth, gCanvasHeight
     clear_canvas()
+
     lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 0)                         # 배경 그려주는 함수
     lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 1)                         # 배경 그려주는 함수
-    lPlanet.dDraw()                                                                   # 행성 그려주는 함수
-
-
-    lTitle.dDraw(240,550)                   # Title
+    lMiscPictures.dDraw("planet", 415, 723)
+    lMiscPictures.dDraw("title", 240, 550)
     lMenu.dDraw(3,240,400)                  # Easy
     lMenu.dDraw(4,240,250)                  # Middle
     lMenu.dDraw(5,240,100)                  # Hards
-    lBack.dDraw(22,22)                      # Back
+    lMiscPictures.dDraw("back", 22, 22)
 
     update_canvas()
     delay(0.015)
     pass
 
 def exit():
-    global lBackGround, lPlanet, lMenu, lTitle, lBack
+    global lBackGround, lMenu, lMiscPictures
     del(lBackGround)
-    del(lPlanet)
+    del(lMiscPictures)
     del(lMenu)
-    del(lTitle)
-    del(lBack)
     print("game_select.py Bye~!!!")
     pass
