@@ -49,7 +49,7 @@
   > > + [2주차 질문에 대한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/TermProjectConcept/ConceptDATA_2%EC%A3%BC%EC%B0%A8.txt)
 + 3주차 (10/07) 난이도 조절 관련 메뉴 및 시작 페이지 구성
 
-  > 1. Gameframework 적용하여 시작 페이지 구성(부분 완성)
+  > 1. Gameframework 적용하여 시작 페이지 구성
   > 1. class_data.py global 함수등으로 불러오지 말고 return 하는 방식으로 클래스 구현
   > 1. 1번이 완료시 py 파일 이름을 조금더 직관적이에 수정하자
 + 4주차 (10/14) 캐릭터 애니메이션 구현 
