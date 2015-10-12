@@ -12,11 +12,6 @@ from pico2d import *
 import ctypes  # An included library with Python install.
 #print("- Module ctypes -")
 
-gCanvasWidth = 480
-gCanvasHeight = 800
-
-open_canvas(gCanvasWidth, gCanvasHeight)
-
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
