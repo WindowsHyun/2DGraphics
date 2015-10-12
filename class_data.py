@@ -109,20 +109,20 @@ class DrawFootrest:
 
 def dMenuClick(WHatMenu, x, y):
     global gWhatScenes, gRunning
-    if x >= 131 and x <= 349 and y >= 363 and y <= 437 and WHatMenu == "GameSelect":
+    if x >= 131 and x <= 349 and y >= 313 and y <= 387 and WHatMenu == "GameSelect":
             print("Easy")
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "GameSelect":
             print("Middle")
-    if x >= 131 and x <= 349 and y >= 63 and y <= 137 and WHatMenu == "GameSelect":
+    if x >= 131 and x <= 349 and y >= 113 and y <= 187 and WHatMenu == "GameSelect":
             print("Hard")
-
-    if x >= 131 and x <= 349 and y >= 363 and y <= 437 and WHatMenu == "Main":
+#400 - 350
+    if x >= 131 and x <= 349 and y >= 313 and y <= 387 and WHatMenu == "Main":
             WHatMenu = "GameSelect"
             print("Start")
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "Main":
             WHatMenu = "Score"
             print("Score")
-    if x >= 131 and x <= 349 and y >= 63 and y <= 137 and WHatMenu == "Main":
+    if x >= 131 and x <= 349 and y >= 113 and y <= 187 and WHatMenu == "Main":
             WHatMenu = False
             print("Exits")
 

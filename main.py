@@ -87,9 +87,9 @@ def draw():
     lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 1)                         # 배경 그려주는 함수
     lMiscPictures.dDraw("planet", 415, 723)
     lMiscPictures.dDraw("title", 240, 550)
-    lMiscPictures.dDraw("Start", 240, 400)
+    lMiscPictures.dDraw("Start", 240, 350)
     lMiscPictures.dDraw("Score", 240, 250)
-    lMiscPictures.dDraw("Exit", 240, 100)
+    lMiscPictures.dDraw("Exit", 240, 150)
 
     #dFontDraw(3,10, "Ver 1.0.1", 255, 255, 255)
     #dFontDraw(200,10, "한글 Korea Print -____-", 255, 255, 255)

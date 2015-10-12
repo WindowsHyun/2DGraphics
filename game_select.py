@@ -63,9 +63,9 @@ def draw():
     lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 1)                         # 배경 그려주는 함수
     lMiscPictures.dDraw("planet", 415, 723)
     lMiscPictures.dDraw("title", 240, 550)
-    lMiscPictures.dDraw("Easy", 240, 400)
+    lMiscPictures.dDraw("Easy", 240, 350)
     lMiscPictures.dDraw("Medium", 240, 250)
-    lMiscPictures.dDraw("Hard", 240, 100)
+    lMiscPictures.dDraw("Hard", 240, 150)
     lMiscPictures.dDraw("back", 22, 22)
 
     update_canvas()
