@@ -154,7 +154,6 @@ def dFontDraw(x, y, text, r, g, b):
     font = Font("훈솜사탕R.ttf")
     font.draw(x, y, text, (r,g,b))
 
-
 """
 Styles:
 0 : OK
