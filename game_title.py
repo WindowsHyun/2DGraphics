@@ -19,11 +19,14 @@ gexitY = -150
 gCount = 0
 totalCount = 0
 
+dSpeed = 0.12
+
 
 
 def enter():
     global image, title, gCanvasWidth, gCanvasHeight, font, background, planet, start, score, eexit
     open_canvas(gCanvasWidth, gCanvasHeight)
+    print("Open : game_title.py Code")
     font = Font("훈솜사탕R.ttf",40)
     image = load_image('GeneralImage\\start_title.png')
     title = load_image('GeneralImage\\Mtitle.png')
@@ -50,10 +53,10 @@ def exit():
 
 
 def update():
-    global logo_time, gtitleY, gCount, totalCount, gbackY, gplanetX, gplayY, gscoreX, gexitY
+    global logo_time, gtitleY, gCount, totalCount, gbackY, gplanetX, gplayY, gscoreX, gexitY, dSpeed
     if (logo_time > 9000):
         logo_time = 0
-        game_framework.push_state(main)
+        game_framework.change_state(main)
     #####################################################################
     # 타이틀이 내려온다.
     if totalCount == 0:
@@ -63,7 +66,7 @@ def update():
             totalCount = 1
         else:
             gtitleY -= gCount
-            gCount += 0.12
+            gCount += dSpeed
     # 배경화면이 내려온다.
     elif totalCount == 1:
         if gbackY <= 0:
@@ -72,7 +75,7 @@ def update():
             gCount = 0
         else:
             gbackY -= gCount
-            gCount += 0.12
+            gCount += dSpeed
 
     elif totalCount == 2:
         if gplanetX >= 415:
@@ -81,7 +84,7 @@ def update():
             gCount = 0
         else:
             gplanetX += gCount
-            gCount += 0.12
+            gCount += dSpeed
 
     elif totalCount == 3:
         if gplayY <= 400:
@@ -90,7 +93,7 @@ def update():
             gCount = 0
         else:
             gplayY -= gCount
-            gCount += 0.12
+            gCount += dSpeed
 
     elif totalCount == 4:
         if gscoreX >= 240:
@@ -99,7 +102,7 @@ def update():
             gCount = 0
         else:
             gscoreX += gCount
-            gCount += 0.12
+            gCount += dSpeed
 
     elif totalCount == 5:
         if gexitY >= 100:
@@ -108,7 +111,7 @@ def update():
             gCount = 0
         else:
             gexitY += gCount
-            gCount += 0.12
+            gCount += dSpeed
 
     #####################################################################
     delay(0.01)
