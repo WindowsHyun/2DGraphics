@@ -105,11 +105,14 @@ def draw():
     pass
 
 def handle_events():
+    global logo_time
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
             game_framework.quit()
+        if event.type == SDL_MOUSEBUTTONDOWN:
+            logo_time = 9001
     pass
 
 def pause(): pass

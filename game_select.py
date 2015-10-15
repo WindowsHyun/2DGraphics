@@ -6,6 +6,8 @@ import game_framework
 #print("- Module game_framework -")
 import main
 #print("- Module main -")
+import game_ing
+#print("- Module game_ing -")
 
 gCanvasWidth = 480
 gCanvasHeight = 800
@@ -32,6 +34,8 @@ def handle_events():
             # 종료할경우 gRunning를 죽인다.
             if gWhatScenes == False:
                 game_framework.quit()
+            if gWhatScenes == "Easy":
+                game_framework.change_state(game_ing)
             if gWhatScenes == "Main":
                 game_framework.change_state(main)
             ##################################################

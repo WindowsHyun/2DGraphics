@@ -77,15 +77,15 @@ class DrawMiscPictures:
             self.score.draw(x,y)
     pass
 
-"""
+
 class cDrawRabbit:
-    def dDraw(self, frame, LR):
+    def dDraw(self, frame, LR, x, y):
         if LR == True:
             self.image = load_image('CharacterImage\\Rabbit-Left.png')
         elif LR == False:
             self.image = load_image('CharacterImage\\Rabbit-Right.png')
 
-        self.image.clip_draw(frame * 85, 0, 85, 113, 100, 100)
+        self.image.clip_draw(frame * 85, 0, 85, 113, x, y)
     pass
 
 class cDrawRabbitJet:
@@ -105,15 +105,18 @@ class DrawFootrest:
     def dDraw(self,WhatNum, x, y):
         self.image.clip_draw(WhatNum * 120, 0, 120, 65, x, y)
     pass
-"""
+
 
 def dMenuClick(WHatMenu, x, y):
     global gWhatScenes, gRunning
     if x >= 131 and x <= 349 and y >= 313 and y <= 387 and WHatMenu == "GameSelect":
+            WHatMenu = "Easy"
             print("Easy")
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "GameSelect":
+            WHatMenu = "Middle"
             print("Middle")
     if x >= 131 and x <= 349 and y >= 113 and y <= 187 and WHatMenu == "GameSelect":
+            WHatMenu = "Hard"
             print("Hard")
 #400 - 350
     if x >= 131 and x <= 349 and y >= 313 and y <= 387 and WHatMenu == "Main":
@@ -129,7 +132,7 @@ def dMenuClick(WHatMenu, x, y):
     if x >= 4 and x <= 42 and y >= 4 and y <= 42:
         if WHatMenu == "GameSelect" or WHatMenu == "Score":
             WHatMenu = "Main"
-        print("Back")
+            print("Back")
     return WHatMenu
     pass
 
