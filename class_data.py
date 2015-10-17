@@ -88,6 +88,51 @@ class cDrawRabbit:
             self.leftimage.clip_draw(frame * 85, 0, 85, 113, x, y)
         elif LR == False:
             self.rightimage.clip_draw(frame * 85, 0, 85, 113, x, y)
+
+    # gRabbitYD = 올라가거나 내려가거나를 체크하는 부분
+    # gFrame = 캐릭터의 이미지 동작
+    # gRabbitY = 캐릭터가 맵화면에 올라가는 좌표
+    # gRabbitR = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
+    def dUpdateRabbitUpDown(self, gFrame, gRabbitYD, gRabbitY, gRabbitR):
+        if gRabbitYD == 0:
+            gFrame = 2
+            gRabbitY += 12
+            gRabbitR += 1
+        else:
+            gFrame = 1
+            gRabbitY -= 12
+            gRabbitR -= 1
+        return gFrame, gRabbitY, gRabbitR
+
+    # 실제 캐릭터가 올라간 횟수 최대 10번 올라가면 다시 내리게 하는 부분
+    def dLimitJump(self, gFrame, gRabbitR, gRabbitYD, gtest):
+        if gRabbitR >= 10 and gRabbitYD == 0:
+            gFrame = 1
+            gRabbitYD = 1
+        elif gRabbitR <= 0 and gRabbitYD == 1:
+            gFrame = 1
+            gtest = (gtest + 1) % 12
+            gRabbitYD = 0
+            gRabbitR = 0
+        return gFrame, gRabbitR, gRabbitYD, gtest
+
+    # 실제 캐릭터가 왼쪽으로 가는지 오른쪽으로 가는지 판단해서 움직여 준다.
+    def dRabbitMove(self, gLeftTRightF, gRabbitX):
+        if gLeftTRightF == False:
+            gRabbitX += 7
+        elif gLeftTRightF == True:
+            gRabbitX -= 7
+        return gRabbitX
+
+    # 실제 캐릭터가 벽을 넘어갔을 경우 반대편으로 다시 나오게 한다.
+    def dRabbitPass(self, gRabbitX, gLeftTRightF, gCanvasWidth):
+        if gRabbitX >= gCanvasWidth:
+            gLeftTRightF = False
+            gRabbitX = 0
+        elif gRabbitX <= 0:
+            gLeftTRightF = True
+            gRabbitX = gCanvasWidth
+        return gRabbitX, gLeftTRightF
     pass
 
 class cDrawRabbitJet:

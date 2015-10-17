@@ -11,6 +11,7 @@ gY = 0
 gY2 = 800
 gFrame = 0
 gType = 0
+lRabbit = None
 gRunning = True
 gLeftTRightF = True
 gRabbitY = 100
@@ -56,45 +57,12 @@ def enter():
 
 
 def update():
-    global gY, gY2, gFrame, gRabbitY, gRabbitX, gRabbitYD, gRabbitR, gLeftTRightF, gtest
-#####################################################################################
-    # gRabbitYD = 올라가거나 내려가거나를 체크하는 부분
-    # gFrame = 캐릭터의 이미지 동작
-    # gRabbitY = 캐릭터가 맵화면에 올라가는 좌표
-    # gRabbitR = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
-    if gRabbitYD == 0:
-        gFrame = 2
-        gRabbitY += 12
-        gRabbitR += 1
-    else:
-        gFrame = 1
-        gRabbitY -= 12
-        gRabbitR -= 1
-#####################################################################################
-    # 실제 캐릭터가 올라간 횟수 최대 10번 올라가면 다시 내리게 하는 부분
-    if gRabbitR >= 10 and gRabbitYD == 0:
-        gFrame = 1
-        gRabbitYD = 1
-    elif gRabbitR <= 0 and gRabbitYD == 1:
-        gFrame = 1
-        gtest = (gtest + 1) % 12
-        gRabbitYD = 0
-        gRabbitR = 0
-#####################################################################################
-    if gLeftTRightF == False:
-        gRabbitX += 7
-    elif gLeftTRightF == True:
-        gRabbitX -= 7
-        pass
-#####################################################################################
-    if gRabbitX >= gCanvasWidth:
-        gLeftTRightF = False
-        gRabbitX = 0
-    elif gRabbitX <= 0:
-        gLeftTRightF = True
-        gRabbitX = gCanvasWidth
-#####################################################################################
+    global lRabbit, gFrame, gRabbitYD, gRabbitY, gRabbitR, gtest, gRabbitX, gLeftTRightF, gCanvasWidth
 
+    gFrame, gRabbitY, gRabbitR = lRabbit.dUpdateRabbitUpDown(gFrame, gRabbitYD, gRabbitY, gRabbitR)
+    gFrame, gRabbitR, gRabbitYD, gtest = lRabbit.dLimitJump(gFrame, gRabbitR, gRabbitYD, gtest)
+    gRabbitX = lRabbit.dRabbitMove(gLeftTRightF, gRabbitX)
+    gRabbitX, gLeftTRightF = lRabbit.dRabbitPass(gRabbitX, gLeftTRightF, gCanvasWidth)
     delay(0.05)
     pass
 
@@ -121,8 +89,10 @@ def draw():
     pass
 
 def exit():
-    global lBackGround, lMiscPictures
+    global lBackGround, lMiscPictures, lRabbit, lFootrest
     del(lBackGround)
     del(lMiscPictures)
+    del(lRabbit)
+    del(lFootrest)
     print("Unload : game_ing.py Code")
     pass
