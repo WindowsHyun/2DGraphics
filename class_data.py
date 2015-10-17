@@ -79,29 +79,33 @@ class DrawMiscPictures:
 
 
 class cDrawRabbit:
+    def __init__(self):
+        self.leftimage = load_image('CharacterImage\\Rabbit-Left.png')
+        self.rightimage = load_image('CharacterImage\\Rabbit-Right.png')
+
     def dDraw(self, frame, LR, x, y):
         if LR == True:
-            self.image = load_image('CharacterImage\\Rabbit-Left.png')
+            self.leftimage.clip_draw(frame * 85, 0, 85, 113, x, y)
         elif LR == False:
-            self.image = load_image('CharacterImage\\Rabbit-Right.png')
-
-        self.image.clip_draw(frame * 85, 0, 85, 113, x, y)
+            self.rightimage.clip_draw(frame * 85, 0, 85, 113, x, y)
     pass
 
 class cDrawRabbitJet:
+    def __init__(self):
+        self.upimage = load_image('CharacterImage\\Rabbit-Up.png')
+        self.uphandimage = load_image('CharacterImage\\Rabbit-UpHand.png')
+
     def dDraw(self, frame, LR):
         if LR == True:
-            self.image = load_image('CharacterImage\\Rabbit-Up.png')
+            self.upimage.clip_draw(frame * 56, 0, 56, 113, 100, 100)
         elif LR == False:
-            self.image = load_image('CharacterImage\\Rabbit-UpHand.png')
-
-        self.image.clip_draw(frame * 56, 0, 56, 113, 100, 100)
+            self.uphandimage.clip_draw(frame * 56, 0, 56, 113, 100, 100)
     pass
 
 class DrawFootrest:
     def __init__(self):
         self.image = load_image('GeneralImage\\newscaffolding.png')
-        print("Footrst = ", self.image)
+        #print("Footrst = ", self.image)
     def dDraw(self,WhatNum, x, y):
         self.image.clip_draw(WhatNum * 120, 0, 120, 65, x, y)
     pass
