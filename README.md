@@ -13,6 +13,7 @@
 ============
 ###Youtube 업로드 영상 & PPT 자료
 + [1차 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/master/ProjectPPT/KwonChangHyun_1%EC%B0%A8%EB%B0%9C%ED%91%9C.pptx?raw=true) / [1차 발표 영상](https://www.youtube.com/watch?v=wmc25937s1s)
++ [2차 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/master/ProjectPPT/KwonChangHyun_2%EC%B0%A8%EB%B0%9C%ED%91%9C_%EC%99%84%EB%A3%8C.pptx?raw=true) / [2차 발표 영상](https://youtu.be/9CV9dXPFsC0)
 
 ============
 ###프로젝트 일정.
