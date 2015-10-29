@@ -16,6 +16,7 @@ gType = 0
 gRunning = True
 gLeftTRightF = True
 gBackGround = 0
+nowRMenu = None
 print("gmae_score.py : Create Local -> Global function")
 
 def handle_events():
@@ -32,7 +33,8 @@ def handle_events():
             # 종료할경우 gRunning를 죽인다.
             if gWhatScenes == False:
                 game_framework.quit()
-            if gWhatScenes == "Main":
+            if gWhatScenes == "Game_Main":
+                dUpdateMenu(gWhatScenes)
                 game_framework.change_state(main)
             ##################################################
             pass
@@ -41,12 +43,13 @@ def handle_events():
 def enter():
     global lBackGround, lMiscPictures, gWhatScenes
     dMsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
-    gWhatScenes = "Score"
+    gWhatScenes = "Game_Score"
     print("Open : game_score.py Code")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
+    dUpdateMenu(gWhatScenes)
     pass
 
 
@@ -64,6 +67,8 @@ def draw():
     lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 1)                         # 배경 그려주는 함수
     lMiscPictures.dDraw("planet", 415, 723)
     lMiscPictures.dDraw("back", 22, 22)
+
+    dFontDraw(3,10, gWhatScenes, 255, 255, 255)
 
     update_canvas()
     delay(0.015)
