@@ -18,6 +18,7 @@ gType = 0
 gRunning = True
 gLeftTRightF = True
 gBackGround = 0
+nowRMenu = None
 print("main.py : Create Local -> Global function")
 
 def handle_events():
@@ -27,14 +28,6 @@ def handle_events():
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
             game_framework.quit()
-        """
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_0:
-            gBackGround = 0
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_1:
-            gBackGround = 1
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_2:
-            gBackGround = 2
-        """
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, gCanvasHeight - event.y
             gWhatScenes = dMenuClick(gWhatScenes, x, y)
@@ -43,33 +36,24 @@ def handle_events():
             if gWhatScenes == False:
                 game_framework.quit()
             if gWhatScenes == "GameSelect":
+                dUpdateMenu("Game_Select")
                 game_framework.change_state(game_select)
-            if gWhatScenes == "Score":
+            if gWhatScenes == "Game_Score":
+                dUpdateMenu("Game_Score")
                 game_framework.change_state(game_score)
             ##################################################
             pass
-        """
-        if event.type == SDL_KEYDOWN and event.key == SDLK_KP_5:
-            gType += 1
-            if gType == 12:
-                gType = 0
-        if event.type == SDL_KEYDOWN and event.key == SDLK_UP:
-            gFrame = (gFrame + 1) % 3
-        if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
-            gLeftTRightF = True
-        if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
-            gLeftTRightF = False
-        """
     pass
 
 def enter():
     global lBackGround, lMiscPictures, gWhatScenes
-    gWhatScenes = "Main"
+    gWhatScenes = "Game_Main"
     print("Open : main.py Code")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
+    dUpdateMenu(gWhatScenes)
     pass
 
 
@@ -91,7 +75,7 @@ def draw():
     lMiscPictures.dDraw("Score", 240, 250)
     lMiscPictures.dDraw("Exit", 240, 150)
 
-    #dFontDraw(3,10, "Ver 1.0.1", 255, 255, 255)
+    dFontDraw(3,10, gWhatScenes, 255, 255, 255)
     #dFontDraw(200,10, "한글 Korea Print -____-", 255, 255, 255)
 
     update_canvas()
@@ -99,7 +83,7 @@ def draw():
     pass
 
 def exit():
-    global lBackGround, lMiscPictures
+    global lBackGround, lMiscPictures, gWhatScenes
     del(lBackGround)
     del(lMiscPictures)
     print("Unload : main.py Code")
