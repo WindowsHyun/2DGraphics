@@ -18,6 +18,7 @@ gType = 0
 gRunning = True
 gLeftTRightF = True
 gBackGround = 0
+nowRMenu = None
 print("game_select.py : Create Local -> Global function")
 
 def handle_events():
@@ -34,9 +35,17 @@ def handle_events():
             # 종료할경우 gRunning를 죽인다.
             if gWhatScenes == False:
                 game_framework.quit()
-            if gWhatScenes == "Easy":
+            if gWhatScenes == "Game_Easy":
+                dUpdateMenu(gWhatScenes)
                 game_framework.change_state(game_ing)
-            if gWhatScenes == "Main":
+            if gWhatScenes == "Game_Middle":
+                dUpdateMenu(gWhatScenes)
+                game_framework.change_state(game_ing)
+            if gWhatScenes == "Game_Hard":
+                dUpdateMenu(gWhatScenes)
+                game_framework.change_state(game_ing)
+            if gWhatScenes == "Game_Main":
+                dUpdateMenu(gWhatScenes)
                 game_framework.change_state(main)
             ##################################################
             pass
@@ -44,12 +53,13 @@ def handle_events():
 
 def enter():
     global lBackGround, lMiscPictures, gWhatScenes
-    gWhatScenes = "GameSelect"
+    gWhatScenes = "Game_Select"
     print("Open : game_select.py Code")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
+    dUpdateMenu(gWhatScenes)
     pass
 
 
@@ -71,6 +81,8 @@ def draw():
     lMiscPictures.dDraw("Medium", 240, 250)
     lMiscPictures.dDraw("Hard", 240, 150)
     lMiscPictures.dDraw("back", 22, 22)
+
+    dFontDraw(3,10, gWhatScenes, 255, 255, 255)
 
     update_canvas()
     delay(0.015)
