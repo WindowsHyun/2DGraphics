@@ -176,8 +176,11 @@ def dCreateFootrest(gRow, gRandLine, gGameMapCheck, gGameMap, gWhatScenes, gRabb
         gWhatFootrest = random.randint(1, 12)
         if ( gWhatFootrest == 2 or gWhatFootrest == 3  or gWhatFootrest == 6 or gWhatFootrest == 7 or gWhatFootrest == 8 or gWhatFootrest == 9 or gWhatFootrest == 10 or gWhatFootrest == 11 ):
             gWhatFootrest = 0
-        if ( gWhatFootrest == 12 and random.randint(1, 5) == 2):
-            gWhatFootrest = 0
+        if ( gWhatFootrest == 12 and random.randint(1, 50) == 2):
+            gWhatFootrest = 12
+        else:
+            if ( gWhatFootrest == 12 ):
+                gWhatFootrest = 0
         #print("라인 : ", gRandLine, " 몇개 만들지 : ", gLimitLine, " 어디에 만들지 : ", gRandOne)
         if ( gGameMapCheck[gRandLine] == False):
             if (gLimitLine == 2):
