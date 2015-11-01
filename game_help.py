@@ -77,12 +77,12 @@ def enter():
     lRabbitJet = cDrawRabbitJet()
     lFootrest = DrawFootrest()
 
-    gGameMap[24][3] = 0
-    gGameMap[20][3] = 1
-    gGameMap[16][3] = 4
-    gGameMap[12][3] = 5
-    gGameMap[8][3] = 12
-    gGameMap[4][3] = 9
+    gGameMap[24][4] = 0
+    gGameMap[20][4] = 1
+    gGameMap[16][4] = 4
+    gGameMap[12][4] = 5
+    gGameMap[8][4] = 12
+    gGameMap[4][4] = 9
 
     #토끼, 발판 이미지 불러오기
     dUpdateMenu(gWhatScenes)
