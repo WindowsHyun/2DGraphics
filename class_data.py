@@ -50,6 +50,7 @@ class DrawMiscPictures:
         self.medium = load_image('GeneralImage\\Mmedium.png')
         self.start = load_image('GeneralImage\\Mstart.png')
         self.score = load_image('GeneralImage\\Mscore.png')
+        self.help = load_image('GeneralImage\\Mhelp.png')
         """
         print("Planet = ",self.planet)
         print("Title = ",self.title)
@@ -80,6 +81,8 @@ class DrawMiscPictures:
             self.start.draw(x,y)
         if WhatDraw == "Score":
             self.score.draw(x,y)
+        if WhatDraw == "Help":
+            self.help.draw(x,y)
     pass
 
 
@@ -294,9 +297,12 @@ def dMenuClick(WHatMenu, x, y):
     if x >= 131 and x <= 349 and y >= 113 and y <= 187 and WHatMenu == "Game_Main":
             WHatMenu = False
             print("Exits")
+    if x >= 380 and x <= 480 and y >= 0 and y <= 36 and WHatMenu == "Game_Main":
+            WHatMenu = "Game_Help"
+            print("Help")
 
     if x >= 4 and x <= 42 and y >= 4 and y <= 42:
-        if WHatMenu == "Game_Select" or WHatMenu == "Game_Score":
+        if WHatMenu == "Game_Select" or WHatMenu == "Game_Score" or WHatMenu == "Game_Help":
             WHatMenu = "Game_Main"
             print("Back")
     return WHatMenu
