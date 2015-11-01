@@ -32,7 +32,6 @@ def handle_events():
             game_framework.quit()
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, gCanvasHeight - event.y
-            print(x,",", y)
             gWhatScenes = dMenuClick(gWhatScenes, x, y)
             ##################################################
             # 종료할경우 gRunning를 죽인다.
