@@ -8,6 +8,8 @@ import game_select
 #print("- Module game_select -")
 import game_score
 #print("- Module game_score -")
+import game_help
+#print("- Module game_score -")
 
 gCanvasWidth = 480
 gCanvasHeight = 800
@@ -30,6 +32,7 @@ def handle_events():
             game_framework.quit()
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, gCanvasHeight - event.y
+            print(x,",", y)
             gWhatScenes = dMenuClick(gWhatScenes, x, y)
             ##################################################
             # 종료할경우 gRunning를 죽인다.
@@ -41,6 +44,9 @@ def handle_events():
             if gWhatScenes == "Game_Score":
                 dUpdateMenu("Game_Score")
                 game_framework.change_state(game_score)
+            if gWhatScenes == "Game_Help":
+                dUpdateMenu("Game_Help")
+                game_framework.change_state(game_help)
             ##################################################
             pass
     pass
@@ -63,7 +69,7 @@ def update():
     pass
 
 def draw():
-    global lBackGround, lPlanet, lTitle, lBack
+    global lBackGround
     global gCanvasWidth, gCanvasHeight
     clear_canvas()
 
@@ -74,6 +80,7 @@ def draw():
     lMiscPictures.dDraw("Start", 240, 350)
     lMiscPictures.dDraw("Score", 240, 250)
     lMiscPictures.dDraw("Exit", 240, 150)
+    lMiscPictures.dDraw("Help", 428, 20)
 
     dFontDraw(3,10, gWhatScenes, 255, 255, 255)
     #dFontDraw(200,10, "한글 Korea Print -____-", 255, 255, 255)
