@@ -122,6 +122,13 @@ def draw():
         for j in range(gRow):
             lFootrest.dDraw(gGameMap[j][i],(gCol) * i, gRow * j)
 
+    lMiscPictures.dDraw("Help01", 285, 720)
+    lMiscPictures.dDraw("Help02", 285, 605)
+    lMiscPictures.dDraw("Help03", 285, 483)
+    lMiscPictures.dDraw("Help04", 285, 360)
+    lMiscPictures.dDraw("Help05", 285, 245)
+    #lMiscPictures.dDraw("Help01", 285, 125)
+
     dFontDraw(3,10, gWhatScenes, 255, 255, 255)
 
     update_canvas()

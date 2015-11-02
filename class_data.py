@@ -51,6 +51,12 @@ class DrawMiscPictures:
         self.start = load_image('GeneralImage\\Mstart.png')
         self.score = load_image('GeneralImage\\Mscore.png')
         self.help = load_image('GeneralImage\\Mhelp.png')
+        self.help01 = load_image('GeneralImage\\MfootrestHelp01.png')
+        self.help02 = load_image('GeneralImage\\MfootrestHelp02.png')
+        self.help03 = load_image('GeneralImage\\MfootrestHelp03.png')
+        self.help04 = load_image('GeneralImage\\MfootrestHelp04.png')
+        self.help05 = load_image('GeneralImage\\MfootrestHelp05.png')
+
         """
         print("Planet = ",self.planet)
         print("Title = ",self.title)
@@ -83,6 +89,16 @@ class DrawMiscPictures:
             self.score.draw(x,y)
         if WhatDraw == "Help":
             self.help.draw(x,y)
+        if WhatDraw == "Help01":
+            self.help01.draw(x,y)
+        if WhatDraw == "Help02":
+            self.help02.draw(x,y)
+        if WhatDraw == "Help03":
+            self.help03.draw(x,y)
+        if WhatDraw == "Help04":
+            self.help04.draw(x,y)
+        if WhatDraw == "Help05":
+            self.help05.draw(x,y)
     pass
 
 
