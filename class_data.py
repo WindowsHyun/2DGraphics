@@ -15,18 +15,18 @@ import ctypes  # An included library with Python install.
 import random
 #print("- Module random -")
 
-gNowMenu = "Game_Main"
+GAME_CurrentMenu = "Game_Main"
 
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
         #print("BackGround = ",self.image)
-    def draw(self,gY, gY2, gCanvasWidth, gCanvasHeight, gWhatDraw):
+    def draw(self,Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, gWhatDraw):
         if gWhatDraw == 0:
-            self.image.draw_to_origin(0, gY, gCanvasWidth, gCanvasHeight)
+            self.image.draw_to_origin(0, Background_Y, Canvas_Width, Canvas_Height)
             # draw_to_origin을 사용하면 원본이미지를 그대로 사용 가능하면서 사이즈 크기를 자신이 원하는만큼 조절이 가능하다.
         else:
-            self.image.draw_to_origin(0, gY2, gCanvasWidth, gCanvasHeight)
+            self.image.draw_to_origin(0, BackgroundSub_Y, Canvas_Width, Canvas_Height)
             #drawTwo를 만든이유는 이미지가 내려오는데 중간에 끊겨보이면 안되니깐 자연스럽게 이어지게 만들기 위하여.
     """
     def dChangeBackground(self, gNum):
@@ -113,52 +113,52 @@ class cDrawRabbit:
         elif LR == False:
             self.rightimage.clip_draw(frame * 85, 0, 85, 113, x, y)
 
-    # gRabbitYD = 올라가거나 내려가거나를 체크하는 부분
-    # gFrame = 캐릭터의 이미지 동작
-    # gRabbitY = 캐릭터가 맵화면에 올라가는 좌표
-    # gRabbitR = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
-    def dUpdateRabbitUpDown(self, gFrame, gRabbitYD, gRabbitY, gRabbitR):
-        if gRabbitYD == 0:
-            gFrame = 2
-            gRabbitY += 12
-            gRabbitR += 1
-        elif gRabbitYD == 1:
-            gFrame = 1
-            gRabbitY -= 12
-            gRabbitR -= 1
-        elif gRabbitYD == 2:
-            gFrame = 2
-            gRabbitR += 1
-        return gFrame, gRabbitY, gRabbitR
+    # Rabbit_UpDownDirection = 올라가거나 내려가거나를 체크하는 부분
+    # Rabbit_Frame = 캐릭터의 이미지 동작
+    # Rabbit_Y = 캐릭터가 맵화면에 올라가는 좌표
+    # RabbitJump_LimitCount = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
+    def dUpdateRabbitUpDown(self, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount):
+        if Rabbit_UpDownDirection == 0:
+            Rabbit_Frame = 2
+            Rabbit_Y += 12
+            RabbitJump_LimitCount += 1
+        elif Rabbit_UpDownDirection == 1:
+            Rabbit_Frame = 1
+            Rabbit_Y -= 12
+            RabbitJump_LimitCount -= 1
+        elif Rabbit_UpDownDirection == 2:
+            Rabbit_Frame = 2
+            RabbitJump_LimitCount += 1
+        return Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount
 
     # 실제 캐릭터가 올라간 횟수 최대 10번 올라가면 다시 내리게 하는 부분
-    def dLimitJump(self, gFrame, gRabbitR, gRabbitYD, gRabbitLimitJump):
-        if gRabbitR >= gRabbitLimitJump and gRabbitYD == 0:
-            gFrame = 1
-            gRabbitYD = 1
-        elif gRabbitR <= 0 and gRabbitYD == 1:
-            gFrame = 1
-            #gRabbitYD = 0
-            gRabbitR = 0
-        return gFrame, gRabbitR, gRabbitYD
+    def dLimitJump(self, Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump):
+        if RabbitJump_LimitCount >= RabbitMaximum_Jump and Rabbit_UpDownDirection == 0:
+            Rabbit_Frame = 1
+            Rabbit_UpDownDirection = 1
+        elif RabbitJump_LimitCount <= 0 and Rabbit_UpDownDirection == 1:
+            Rabbit_Frame = 1
+            #Rabbit_UpDownDirection = 0
+            RabbitJump_LimitCount = 0
+        return Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection
 
     # 실제 캐릭터가 왼쪽으로 가는지 오른쪽으로 가는지 판단해서 움직여 준다.
-    def dRabbitMove(self, gLeftTRightF, gRabbitX):
-        if gLeftTRightF == False:
-            gRabbitX += 7
-        elif gLeftTRightF == True:
-            gRabbitX -= 7
-        return gRabbitX
+    def dRabbitMove(self, Rabbit_Direction, Rabbit_X):
+        if Rabbit_Direction == False:
+            Rabbit_X += 7
+        elif Rabbit_Direction == True:
+            Rabbit_X -= 7
+        return Rabbit_X
 
     # 실제 캐릭터가 벽을 넘어갔을 경우 반대편으로 다시 나오게 한다.
-    def dRabbitPass(self, gRabbitX, gLeftTRightF, gCanvasWidth):
-        if gRabbitX >= gCanvasWidth:
-            gLeftTRightF = False
-            gRabbitX = 0
-        elif gRabbitX <= 0:
-            gLeftTRightF = True
-            gRabbitX = gCanvasWidth
-        return gRabbitX, gLeftTRightF
+    def dRabbitPass(self, Rabbit_X, Rabbit_Direction, Canvas_Width):
+        if Rabbit_X >= Canvas_Width:
+            Rabbit_Direction = False
+            Rabbit_X = 0
+        elif Rabbit_X <= 0:
+            Rabbit_Direction = True
+            Rabbit_X = Canvas_Width
+        return Rabbit_X, Rabbit_Direction
     pass
 
 class cDrawRabbitJet:
@@ -185,166 +185,166 @@ class DrawFootrest:
         self.line.draw(x, y)
     pass
 
-def dCreateFootrest(gRow, gRandLine, gGameMapCheck, gGameMap, gWhatScenes, gRabbitLimitJump):
-    global gLimitLine, gRandOne, gRandTwo, gWhatFootrest
-    if ( gRow - 1 <= gRandLine):
+def dCreateFootrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump):
+    global GameLine_SomeMake, GameMap_ColLocation, gRandTwo, GameMap_Footrest
+    if ( GameMap_Row - 1 <= GameCreated_Line):
         pass
     else:
-        gLimitLine = random.randint(1, 5)
-        gRandOne = random.randint(3, 19)
-        gWhatFootrest = random.randint(1, 12)
-        if ( gWhatFootrest == 2 or gWhatFootrest == 3  or gWhatFootrest == 6 or gWhatFootrest == 7 or gWhatFootrest == 8 or gWhatFootrest == 9 or gWhatFootrest == 10 or gWhatFootrest == 11 ):
-            gWhatFootrest = 0
-        if ( gWhatFootrest == 12 and random.randint(1, 50) == 2):
-            gWhatFootrest = 12
+        GameLine_SomeMake = random.randint(1, 5)
+        GameMap_ColLocation = random.randint(3, 19)
+        GameMap_Footrest = random.randint(1, 12)
+        if ( GameMap_Footrest == 2 or GameMap_Footrest == 3  or GameMap_Footrest == 6 or GameMap_Footrest == 7 or GameMap_Footrest == 8 or GameMap_Footrest == 9 or GameMap_Footrest == 10 or GameMap_Footrest == 11 ):
+            GameMap_Footrest = 0
+        if ( GameMap_Footrest == 12 and random.randint(1, 50) == 2):
+            GameMap_Footrest = 12
         else:
-            if ( gWhatFootrest == 12 ):
-                gWhatFootrest = 0
-        #print("라인 : ", gRandLine, " 몇개 만들지 : ", gLimitLine, " 어디에 만들지 : ", gRandOne)
-        if ( gGameMapCheck[gRandLine] == False):
-            if (gLimitLine == 2):
-                if( gRandOne <= 19):
-                    gGameMap[gRandLine][gRandOne] = gWhatFootrest
-                    gGameMap[gRandLine][gRandOne - 5] = gWhatFootrest
-                elif(gRandOne >= 3):
-                    gGameMap[gRandLine][gRandOne] = gWhatFootrest
-                    gGameMap[gRandLine][gRandOne + 5] = gWhatFootrest
-                gGameMapCheck[gRandLine] = True
+            if ( GameMap_Footrest == 12 ):
+                GameMap_Footrest = 0
+        #print("라인 : ", GameCreated_Line, " 몇개 만들지 : ", GameLine_SomeMake, " 어디에 만들지 : ", GameMap_ColLocation)
+        if ( Game_MapCheck[GameCreated_Line] == False):
+            if (GameLine_SomeMake == 2):
+                if( GameMap_ColLocation <= 19):
+                    Game_Map[GameCreated_Line][GameMap_ColLocation] = GameMap_Footrest
+                    Game_Map[GameCreated_Line][GameMap_ColLocation - 5] = GameMap_Footrest
+                elif(GameMap_ColLocation >= 3):
+                    Game_Map[GameCreated_Line][GameMap_ColLocation] = GameMap_Footrest
+                    Game_Map[GameCreated_Line][GameMap_ColLocation + 5] = GameMap_Footrest
+                Game_MapCheck[GameCreated_Line] = True
                 #2개 였을경우
             else:
-                gGameMap[gRandLine][gRandOne] = gWhatFootrest
-                gGameMapCheck[gRandLine] = True
+                Game_Map[GameCreated_Line][GameMap_ColLocation] = GameMap_Footrest
+                Game_MapCheck[GameCreated_Line] = True
                 #1개 였을경우
             pass
-            if ( gWhatScenes == "Game_Easy"):
-                gRandLine += 1
-                gRabbitLimitJump = 10
-            elif ( gWhatScenes == "Game_Middle"):
-                gRandLine += 2
-                gRabbitLimitJump = 13
-            elif ( gWhatScenes == "Game_Hard"):
-                gRandLine += 3
-                gRabbitLimitJump = 15
-    return gRandLine, gGameMapCheck, gGameMap, gRabbitLimitJump
+            if ( GAME_Scenes == "Game_Easy"):
+                GameCreated_Line += 1
+                RabbitMaximum_Jump = 10
+            elif ( GAME_Scenes == "Game_Middle"):
+                GameCreated_Line += 2
+                RabbitMaximum_Jump = 13
+            elif ( GAME_Scenes == "Game_Hard"):
+                GameCreated_Line += 3
+                RabbitMaximum_Jump = 15
+    return GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump
     pass
 
-def dFootrestCheck(gCol, gRow, gRabbitX, gRabbitY, gRabbitYD, gRabbitR, gGameMap, gRabbitJet ):
-    for i in range(gCol):   # 가로
-        for j in range(gRow):   # 세로
-                if(gGameMap[j][i] != -1 ):
-                    if( gRabbitX >= ((i - 3)*20) + 25 and gRabbitX <= ((i - 2)*20) + 110):
-                        if( gRabbitY >= ((j - 2)*30) + 46 +30 and gRabbitY <= ((j-1)*30) + 46 + 30 and gRabbitYD == 1):
-                            #print("토끼 x 좌표 : ",gRabbitX, "범위 : ", ((i - 3)*20) + 25, "~", ((i - 2)*20) + 110)
-                            #print("토끼 y 좌표 : ",gRabbitY, "범위 : ", ((j -2)*30) + 46 + 30, "~", ((j-1)*30) + 46 + 30)
-                            gGameMap = dFootRestFade(i, j, gGameMap)
-                            if(gGameMap[j][i] == 0 or gGameMap[j][i] == 2 or gGameMap[j][i] == 4 or gGameMap[j][i] == 1 or gGameMap[j][i] == 12 ):
-                                gRabbitYD = 0
-                                gRabbitR = 0
-                            gGameMap = dFootRestHide(i, j, gGameMap)
-                            gRabbitJet = dSuperRabbit(i, j, gGameMap, gRabbitJet)
-                            gCol, gRow, gGameMap = dFootRestMove(gCol, gRow, gGameMap)
-    return gRabbitYD, gRabbitR, gRabbitJet, gGameMap
+def dFootrestCheck(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet ):
+    for i in range(GameMap_Col):   # 가로
+        for j in range(GameMap_Row):   # 세로
+                if(Game_Map[j][i] != -1 ):
+                    if( Rabbit_X >= ((i - 3)*20) + 25 and Rabbit_X <= ((i - 2)*20) + 110):
+                        if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == 1):
+                            #print("토끼 x 좌표 : ",Rabbit_X, "범위 : ", ((i - 3)*20) + 25, "~", ((i - 2)*20) + 110)
+                            #print("토끼 y 좌표 : ",Rabbit_Y, "범위 : ", ((j -2)*30) + 46 + 30, "~", ((j-1)*30) + 46 + 30)
+                            Game_Map = dFootRestFade(i, j, Game_Map)
+                            if(Game_Map[j][i] == 0 or Game_Map[j][i] == 2 or Game_Map[j][i] == 4 or Game_Map[j][i] == 1 or Game_Map[j][i] == 12 ):
+                                Rabbit_UpDownDirection = 0
+                                RabbitJump_LimitCount = 0
+                            Game_Map = dFootRestHide(i, j, Game_Map)
+                            Rabbit_Jet = dSuperRabbit(i, j, Game_Map, Rabbit_Jet)
+                            GameMap_Col, GameMap_Row, Game_Map = dFootRestMove(GameMap_Col, GameMap_Row, Game_Map)
+    return Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map
     pass
 
-def dSuperRabbit(i, j, gGameMap, gRabbitJet):
-    if ( gGameMap[j][i] == 12 ):
-        gRabbitJet = True
-    return gRabbitJet
+def dSuperRabbit(i, j, Game_Map, Rabbit_Jet):
+    if ( Game_Map[j][i] == 12 ):
+        Rabbit_Jet = True
+    return Rabbit_Jet
     pass
 
-def dFootRestHide(i, j, gGameMap):
-    if ( gGameMap[j][i] == 1 ):
-        gGameMap[j][i] = -1
-    return gGameMap
+def dFootRestHide(i, j, Game_Map):
+    if ( Game_Map[j][i] == 1 ):
+        Game_Map[j][i] = -1
+    return Game_Map
     pass
 
-def dFootRestFade(i, j, gGameMap):
-    if ( gGameMap[j][i] == 5 ):
-        gGameMap[j][i] = 6
-    return gGameMap
+def dFootRestFade(i, j, Game_Map):
+    if ( Game_Map[j][i] == 5 ):
+        Game_Map[j][i] = 6
+    return Game_Map
     pass
 
-def dFootRestMove(gCol, gRow, gGameMap):
-    for i in range(gCol):
-        for j in range(gRow):
-            if ( gGameMap[j][i] == 4 ):
+def dFootRestMove(GameMap_Col, GameMap_Row, Game_Map):
+    for i in range(GameMap_Col):
+        for j in range(GameMap_Row):
+            if ( Game_Map[j][i] == 4 ):
                 if( i >= 3):
-                    gGameMap[j][i-1] = gGameMap[j][i]
-                    gGameMap[j][i] = -1
+                    Game_Map[j][i-1] = Game_Map[j][i]
+                    Game_Map[j][i] = -1
                 else:
-                    gGameMap[j][i] = 13
-            if ( gGameMap[j][i] == 13 ):
+                    Game_Map[j][i] = 13
+            if ( Game_Map[j][i] == 13 ):
                 if( i <= 19):
-                    gGameMap[j][i+1] = gGameMap[j][i]
-                    gGameMap[j][i] = -1
+                    Game_Map[j][i+1] = Game_Map[j][i]
+                    Game_Map[j][i] = -1
                 else:
-                    gGameMap[j][i] = 4
-    return gCol, gRow, gGameMap
+                    Game_Map[j][i] = 4
+    return GameMap_Col, GameMap_Row, Game_Map
     pass
 
-def dResetMap(gCol, gRow, gGameMap, gGameMapCheck ):
-    global gRandLine
-    for i in range(gCol):   # 가로
-        for j in range(gRow):   # 세로
-            gGameMap[j][i] = -1
-            gGameMapCheck[j] = False
-            gRandLine = 2
-    return gGameMap, gGameMapCheck, gRandLine
+def dResetMap(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck ):
+    global GameCreated_Line
+    for i in range(GameMap_Col):   # 가로
+        for j in range(GameMap_Row):   # 세로
+            Game_Map[j][i] = -1
+            Game_MapCheck[j] = False
+            GameCreated_Line = 2
+    return Game_Map, Game_MapCheck, GameCreated_Line
     pass
 
-def dMenuClick(WHatMenu, x, y):
-    global gRunning
-    if x >= 131 and x <= 349 and y >= 313 and y <= 387 and WHatMenu == "Game_Select":
-            WHatMenu = "Game_Easy"
+def dMenuClick(GAME_Menu, x, y):
+    global Game_Running
+    if x >= 131 and x <= 349 and y >= 313 and y <= 387 and GAME_Menu == "Game_Select":
+            GAME_Menu = "Game_Easy"
             print("Easy")
-    if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "Game_Select":
-            WHatMenu = "Game_Middle"
+    if x >= 131 and x <= 349 and y >= 213 and y <= 287 and GAME_Menu == "Game_Select":
+            GAME_Menu = "Game_Middle"
             print("Middle")
-    if x >= 131 and x <= 349 and y >= 113 and y <= 187 and WHatMenu == "Game_Select":
-            WHatMenu = "Game_Hard"
+    if x >= 131 and x <= 349 and y >= 113 and y <= 187 and GAME_Menu == "Game_Select":
+            GAME_Menu = "Game_Hard"
             print("Hard")
 #400 - 350
-    if x >= 131 and x <= 349 and y >= 313 and y <= 387 and WHatMenu == "Game_Main":
-            WHatMenu = "GameSelect"
+    if x >= 131 and x <= 349 and y >= 313 and y <= 387 and GAME_Menu == "Game_Main":
+            GAME_Menu = "GameSelect"
             print("Start")
-    if x >= 131 and x <= 349 and y >= 213 and y <= 287 and WHatMenu == "Game_Main":
-            WHatMenu = "Game_Score"
+    if x >= 131 and x <= 349 and y >= 213 and y <= 287 and GAME_Menu == "Game_Main":
+            GAME_Menu = "Game_Score"
             print("Score")
-    if x >= 131 and x <= 349 and y >= 113 and y <= 187 and WHatMenu == "Game_Main":
-            WHatMenu = False
+    if x >= 131 and x <= 349 and y >= 113 and y <= 187 and GAME_Menu == "Game_Main":
+            GAME_Menu = False
             print("Exits")
-    if x >= 380 and x <= 480 and y >= 0 and y <= 36 and WHatMenu == "Game_Main":
-            WHatMenu = "Game_Help"
+    if x >= 380 and x <= 480 and y >= 0 and y <= 36 and GAME_Menu == "Game_Main":
+            GAME_Menu = "Game_Help"
             print("Help")
 
     if x >= 4 and x <= 42 and y >= 4 and y <= 42:
-        if WHatMenu == "Game_Select" or WHatMenu == "Game_Score" or WHatMenu == "Game_Help":
-            WHatMenu = "Game_Main"
+        if GAME_Menu == "Game_Select" or GAME_Menu == "Game_Score" or GAME_Menu == "Game_Help":
+            GAME_Menu = "Game_Main"
             print("Back")
-    return WHatMenu
+    return GAME_Menu
     pass
 
-def dAutoSlideBG(gY, gY2):
-    gY -= 3
-    gY2 -= 3
-    if gY2 <= 0:
-        gY = 0
-        gY2 = 800
-    return gY, gY2
+def dAutoSlideBG(Background_Y, BackgroundSub_Y):
+    Background_Y -= 3
+    BackgroundSub_Y -= 3
+    if BackgroundSub_Y <= 0:
+        Background_Y = 0
+        BackgroundSub_Y = 800
+    return Background_Y, BackgroundSub_Y
     pass
 
 
 
-def dMapAllDown(gGameMap, gGameMapCheck, gCol, gRow, gRandLine):
-    for i in range(gCol):
-        for j in range(gRow):
-            if( i <= gCol and j <= gRow-2):
-                gGameMap[j][i] = gGameMap[j+1][i]
-                gGameMapCheck[j] = gGameMapCheck[j +1]
+def dMapAllDown(Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreated_Line):
+    for i in range(GameMap_Col):
+        for j in range(GameMap_Row):
+            if( i <= GameMap_Col and j <= GameMap_Row-2):
+                Game_Map[j][i] = Game_Map[j+1][i]
+                Game_MapCheck[j] = Game_MapCheck[j +1]
             pass
-    gGameMapCheck[gRow-1] = False
-    gRandLine -= 1
-    return gGameMap, gGameMapCheck, gRandLine
+    Game_MapCheck[GameMap_Row-1] = False
+    GameCreated_Line -= 1
+    return Game_Map, Game_MapCheck, GameCreated_Line
     pass
 
 def dMsgBox(title, text, style):
@@ -356,12 +356,12 @@ def dFontDraw(x, y, text, r, g, b):
         font.draw(x, y, text, (r,g,b))
 
 def dShowMenu():
-    global gNowMenu
-    return gNowMenu
+    global GAME_CurrentMenu
+    return GAME_CurrentMenu
 
 def dUpdateMenu(menu):
-    global gNowMenu
-    gNowMenu = menu
+    global GAME_CurrentMenu
+    GAME_CurrentMenu = menu
 
 """
 Styles:

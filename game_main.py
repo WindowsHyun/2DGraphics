@@ -8,67 +8,67 @@ import game_framework
 import game_select
 #print("- Module main -")
 
-gCanvasWidth = 480
-gCanvasHeight = 800
-gY = 0
-gY2 = 800
-gFrame = 0
-gType = 0
+Canvas_Width = 480
+Canvas_Height = 800
+Background_Y = 0
+BackgroundSub_Y = 800
+Rabbit_Frame = 0
+
 lRabbit = None
-gRunning = True
-gLeftTRightF = True
-gRabbitY = 100
-gRabbitX = 100
-gRabbitYD = 0
-gRabbitR = 0
-gRabbitJet = False
-gRabbitJetStart = False
-gJetFrame = 0
-gRabbitLimitJump = 10
+Game_Running = True
+Rabbit_Direction = True
+Rabbit_Y = 100
+Rabbit_X = 100
+Rabbit_UpDownDirection = 0
+RabbitJump_LimitCount = 0
+Rabbit_Jet = False
+RabbitJet_Status = False
+RabbitJet_Frame = 0
+RabbitMaximum_Jump = 10
 
-gCol = 22
-gRow = 30
-gGameMap = [[0 for col in range(gCol)] for row in range(gRow)]
-for i in range(gRow): #gCol==> gRow
-    for j in range(gCol):  #gRow==> gCol
-        gGameMap[i][j] = -1
-gGameMapCheck = [0 for row in range(gRow)]
-gRandLine = 2
+GameMap_Col = 22
+GameMap_Row = 30
+Game_Map = [[0 for col in range(GameMap_Col)] for row in range(GameMap_Row)]
+for i in range(GameMap_Row): #GameMap_Col==> GameMap_Row
+    for j in range(GameMap_Col):  #GameMap_Row==> GameMap_Col
+        Game_Map[i][j] = -1
+Game_MapCheck = [0 for row in range(GameMap_Row)]
+GameCreated_Line = 2
 
-nowRMenu = None
+
 print("gmae-ing.py : Create Local -> Global function")
 
 def handle_events():
-    global gRunning, gBackGround, gFrame, gLeftTRightF, gWhatScenes, gType
-    global gGameMap, gGameMapCheck, gCol, gRow, gRandLine, gRabbitY, gRabbitX, gRabbitYD, gRabbitR, gRabbitJet
+    global Game_Running, Rabbit_Frame, Rabbit_Direction, GAME_Scenes
+    global Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreated_Line, Rabbit_Y, Rabbit_X, Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
             dUpdateMenu("Game_Select")
-            gRabbitY ,gRabbitX, gRabbitYD, gRabbitR = 100, 100, 0, 0
-            gGameMap, gGameMapCheck, gRandLine = dResetMap(gCol, gRow, gGameMap, gGameMapCheck)
+            Rabbit_Y ,Rabbit_X, Rabbit_UpDownDirection, RabbitJump_LimitCount = 100, 100, 0, 0
+            Game_Map, Game_MapCheck, GameCreated_Line = dResetMap(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck)
             game_framework.change_state(game_select)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            x, y = event.x, gCanvasHeight - event.y
-            #gWhatScenes = dMenuClick(gWhatScenes, x, y)
+            x, y = event.x, Canvas_Height - event.y
+            #GAME_Scenes = dMenuClick(GAME_Scenes, x, y)
             print(x, "-", y)
             ##################################################
-            # 종료할경우 gRunning를 죽인다.
-            if gWhatScenes == False:
+            # 종료할경우 Game_Running를 죽인다.
+            if GAME_Scenes == False:
                 game_framework.quit()
             ##################################################
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
-            gLeftTRightF = True
+            Rabbit_Direction = True
         if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
-            gLeftTRightF = False
+            Rabbit_Direction = False
         if event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
-            gRabbitJet = True
+            Rabbit_Jet = True
     pass
 
 def enter():
-    global lBackGround, lMiscPictures, gWhatScenes, lRabbit, lFootrest, lRabbitJet
-    gWhatScenes = dShowMenu()
+    global lBackGround, lMiscPictures, GAME_Scenes, lRabbit, lFootrest, lRabbitJet
+    GAME_Scenes = dShowMenu()
     print("Open : game_main.py Code")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
@@ -77,22 +77,22 @@ def enter():
     lRabbit = cDrawRabbit()
     lRabbitJet = cDrawRabbitJet()
     lFootrest = DrawFootrest()
-    gGameMap[1][3] = 0
-    gGameMap[1][8] = 0
-    gGameMap[1][13] = 0
-    gGameMap[1][18] = 0
+    Game_Map[1][3] = 0
+    Game_Map[1][8] = 0
+    Game_Map[1][13] = 0
+    Game_Map[1][18] = 0
     pass
 
 
 def update():
-    global lRabbit, lRabbitJet, gFrame, gRabbitYD, gRabbitY, gRabbitR, gRabbitX, gLeftTRightF, gCanvasWidth, gRabbitLimitJump, gRabbitJet
-    global gGameMapCheck, gGameMap, gRow, gRandLine, gWhatScenes
-    gFrame, gRabbitY, gRabbitR = lRabbit.dUpdateRabbitUpDown(gFrame, gRabbitYD, gRabbitY, gRabbitR)
-    gFrame, gRabbitR, gRabbitYD = lRabbit.dLimitJump(gFrame, gRabbitR, gRabbitYD, gRabbitLimitJump)
-    gRabbitX = lRabbit.dRabbitMove(gLeftTRightF, gRabbitX)
-    gRabbitX, gLeftTRightF = lRabbit.dRabbitPass(gRabbitX, gLeftTRightF, gCanvasWidth)
-    gRandLine, gGameMapCheck, gGameMap, gRabbitLimitJump = dCreateFootrest(gRow, gRandLine, gGameMapCheck, gGameMap, gWhatScenes, gRabbitLimitJump)
-    gRabbitYD, gRabbitR, gRabbitJet, gGameMap = dFootrestCheck(gCol, gRow, gRabbitX, gRabbitY, gRabbitYD, gRabbitR, gGameMap, gRabbitJet)
+    global lRabbit, lRabbitJet, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Rabbit_X, Rabbit_Direction, Canvas_Width, RabbitMaximum_Jump, Rabbit_Jet
+    global Game_MapCheck, Game_Map, GameMap_Row, GameCreated_Line, GAME_Scenes
+    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = lRabbit.dUpdateRabbitUpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
+    Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = lRabbit.dLimitJump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
+    Rabbit_X = lRabbit.dRabbitMove(Rabbit_Direction, Rabbit_X)
+    Rabbit_X, Rabbit_Direction = lRabbit.dRabbitPass(Rabbit_X, Rabbit_Direction, Canvas_Width)
+    GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump = dCreateFootrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump)
+    Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map = dFootrestCheck(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet)
     dMapDown()
     dHideFootRest()
 
@@ -101,73 +101,73 @@ def update():
     pass
 
 def draw():
-    global lBackGround, lMiscPictures, lRabbit, lFootrest, gRabbitJet, gJetFrame
-    global gCanvasWidth, gCanvasHeight, gLeftTRightF, gFrame, gRabbitX, gRabbitY, gtest, gRabbitYD
-    global gCol, gRow, gGameMap
+    global lBackGround, lMiscPictures, lRabbit, lFootrest, Rabbit_Jet, RabbitJet_Frame
+    global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_Frame, Rabbit_X, Rabbit_Y, gtest, Rabbit_UpDownDirection
+    global GameMap_Col, GameMap_Row, Game_Map
     clear_canvas()
 
-    lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 0)                         # 배경 그려주는 함수
-    lBackGround.draw(gY, gY2, gCanvasWidth, gCanvasHeight, 1)                         # 배경 그려주는 함수
+    lBackGround.draw(Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, 0)                         # 배경 그려주는 함수
+    lBackGround.draw(Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, 1)                         # 배경 그려주는 함수
     lMiscPictures.dDraw("planet", 415, 723)
 
-    if ( gRabbitJet == False ):
-        lRabbit.dDraw(gFrame, gLeftTRightF, gRabbitX, gRabbitY)
+    if ( Rabbit_Jet == False ):
+        lRabbit.dDraw(Rabbit_Frame, Rabbit_Direction, Rabbit_X, Rabbit_Y)
     else:
-        lRabbitJet.dDraw(2, 0, gRabbitX, gRabbitY)
+        lRabbitJet.dDraw(2, 0, Rabbit_X, Rabbit_Y)
         dRabbitJet()
 
-    for i in range(gCol):
-        for j in range(gRow):
-            lFootrest.dDraw(gGameMap[j][i],(gCol) * i, gRow * j)
+    for i in range(GameMap_Col):
+        for j in range(GameMap_Row):
+            lFootrest.dDraw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
 
-    dFontDraw(3,10, gWhatScenes, 255, 255, 255)
+    dFontDraw(3,10, GAME_Scenes, 255, 255, 255)
 
     update_canvas()
     delay(0.015)
     pass
 
 def dMapDown():
-    global gY, gY2, gRabbitY, gCanvasHeight, gRabbitYD
-    global gGameMap, gGameMapCheck, gRandLine
-    if( gRabbitY >= gCanvasHeight-300):
+    global Background_Y, BackgroundSub_Y, Rabbit_Y, Canvas_Height, Rabbit_UpDownDirection
+    global Game_Map, Game_MapCheck, GameCreated_Line
+    if( Rabbit_Y >= Canvas_Height-300):
         for i in range(10):
-            gY, gY2 = dAutoSlideBG(gY, gY2)
-        gRabbitYD = 2
-        gGameMap, gGameMapCheck, gRandLine = dMapAllDown(gGameMap, gGameMapCheck, gCol, gRow, gRandLine)
-    if gRabbitR >= gRabbitLimitJump:
-        gRabbitYD = 1
+            Background_Y, BackgroundSub_Y = dAutoSlideBG(Background_Y, BackgroundSub_Y)
+        Rabbit_UpDownDirection = 2
+        Game_Map, Game_MapCheck, GameCreated_Line = dMapAllDown(Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreated_Line)
+    if RabbitJump_LimitCount >= RabbitMaximum_Jump:
+        Rabbit_UpDownDirection = 1
         pass
     pass
 
 def dHideFootRest():
-    for i in range(gCol):
-        for j in range(gRow):
-            if ( gGameMap[j][i] == 8 ):
-                gGameMap[j][i] = -1
-            if ( gGameMap[j][i] == 7 ):
-                gGameMap[j][i] = 8
-            if ( gGameMap[j][i] == 6 ):
-                gGameMap[j][i] = 7
+    for i in range(GameMap_Col):
+        for j in range(GameMap_Row):
+            if ( Game_Map[j][i] == 8 ):
+                Game_Map[j][i] = -1
+            if ( Game_Map[j][i] == 7 ):
+                Game_Map[j][i] = 8
+            if ( Game_Map[j][i] == 6 ):
+                Game_Map[j][i] = 7
     pass
 
 def dRabbitJet():
-    global gRabbitJet, gRabbitJetStart, gJetFrame, gRabbitY, gRabbitYD, gFrame, gRabbitR
-    if ( gRabbitJet == True and gRabbitJetStart == False ):
-        gRabbitJetStart = True
-    elif ( gRabbitJet == True and gRabbitJetStart == True ):
-        gJetFrame += 1
-        if( gRabbitY <= gCanvasHeight-300):
-            gRabbitY += 12
+    global Rabbit_Jet, RabbitJet_Status, RabbitJet_Frame, Rabbit_Y, Rabbit_UpDownDirection, Rabbit_Frame, RabbitJump_LimitCount
+    if ( Rabbit_Jet == True and RabbitJet_Status == False ):
+        RabbitJet_Status = True
+    elif ( Rabbit_Jet == True and RabbitJet_Status == True ):
+        RabbitJet_Frame += 1
+        if( Rabbit_Y <= Canvas_Height-300):
+            Rabbit_Y += 12
         else:
-            gRabbitY = gCanvasHeight-300
-        gRabbitYD = 0
-        if ( gJetFrame >= 100 ):
-            gRabbitYD = 1
-            gJetFrame = 0
-            gRabbitR = 0
-            gFrame = 1
-            gRabbitJetStart = False
-            gRabbitJet = False
+            Rabbit_Y = Canvas_Height-300
+        Rabbit_UpDownDirection = 0
+        if ( RabbitJet_Frame >= 100 ):
+            Rabbit_UpDownDirection = 1
+            RabbitJet_Frame = 0
+            RabbitJump_LimitCount = 0
+            Rabbit_Frame = 1
+            RabbitJet_Status = False
+            Rabbit_Jet = False
         pass
     pass
 

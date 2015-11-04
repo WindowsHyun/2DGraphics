@@ -5,22 +5,21 @@ from pico2d import *
 
 import main
 
-name = "StartState"
 image = None
 logo_time = 0.0
-gCanvasWidth = 480
-gCanvasHeight = 800
-gplayX = 600
-gtitleY = 800
-gscoreX = -150
-gexitY = -150
-gCount = 0
+Canvas_Width = 480
+Canvas_Height = 800
+GameMenu_PlayX = 600
+GameMenu_TitleY = 800
+GameMenu_ScoreX = -150
+GameMenu_ExitY = -150
+GameMenu_AppearsCount = 0
 totalCount = 0
-dSpeed = 0.12
+GameMenu_AppearsSpeed = 0.12
 
 def enter():
-    global title, gCanvasWidth, gCanvasHeight, font, background, planet, start, score, eexit
-    open_canvas(gCanvasWidth, gCanvasHeight)
+    global title, Canvas_Width, Canvas_Height, font, background, planet, start, score, eexit
+    open_canvas(Canvas_Width, Canvas_Height)
     print("Open : game_title.py Code")
     font = Font("훈솜사탕R.ttf",40)
     title = load_image('GeneralImage\\Mtitle.png')
@@ -44,47 +43,47 @@ def exit():
     pass
 
 def update():
-    global logo_time, gtitleY, gCount, totalCount, gplayX, gscoreX, gexitY, dSpeed
+    global logo_time, GameMenu_TitleY, GameMenu_AppearsCount, totalCount, GameMenu_PlayX, GameMenu_ScoreX, GameMenu_ExitY, GameMenu_AppearsSpeed
     if (logo_time > 9000):
         logo_time = 0
         game_framework.change_state(main)
     #####################################################################
     # 타이틀이 내려온다.
     if totalCount == 0:
-        if gtitleY <= 550:
-            gtitleY = 550
-            gCount = 0
+        if GameMenu_TitleY <= 550:
+            GameMenu_TitleY = 550
+            GameMenu_AppearsCount = 0
             totalCount = 1
         else:
-            gtitleY -= gCount
-            gCount += dSpeed
+            GameMenu_TitleY -= GameMenu_AppearsCount
+            GameMenu_AppearsCount += GameMenu_AppearsSpeed
 
     elif totalCount == 1:
-        if gplayX <= 240:
-            gplayX = 240
+        if GameMenu_PlayX <= 240:
+            GameMenu_PlayX = 240
             totalCount = 2
-            gCount = 0
+            GameMenu_AppearsCount = 0
         else:
-            gplayX -= gCount
-            gCount += dSpeed
+            GameMenu_PlayX -= GameMenu_AppearsCount
+            GameMenu_AppearsCount += GameMenu_AppearsSpeed
 
     elif totalCount == 2:
-        if gscoreX >= 240:
-            gscoreX = 240
+        if GameMenu_ScoreX >= 240:
+            GameMenu_ScoreX = 240
             totalCount = 3
-            gCount = 0
+            GameMenu_AppearsCount = 0
         else:
-            gscoreX += gCount
-            gCount += dSpeed
+            GameMenu_ScoreX += GameMenu_AppearsCount
+            GameMenu_AppearsCount += GameMenu_AppearsSpeed
 
     elif totalCount == 3:
-        if gexitY >= 150:
-            gexitY = 150
+        if GameMenu_ExitY >= 150:
+            GameMenu_ExitY = 150
             logo_time = 9001
-            gCount = 0
+            GameMenu_AppearsCount = 0
         else:
-            gexitY += gCount
-            gCount += dSpeed
+            GameMenu_ExitY += GameMenu_AppearsCount
+            GameMenu_AppearsCount += GameMenu_AppearsSpeed
 
     #####################################################################
     delay(0.01)
@@ -92,15 +91,15 @@ def update():
     pass
 
 def draw():
-    global start, eexit, gtitleY, gbackY, gplayX, gscoreX, gexitY
+    global start, eexit, GameMenu_TitleY, gbackY, GameMenu_PlayX, GameMenu_ScoreX, GameMenu_ExitY
     clear_canvas()
-    background.draw_to_origin(0, 0, gCanvasWidth, gCanvasHeight)
+    background.draw_to_origin(0, 0, Canvas_Width, Canvas_Height)
     planet.draw(415, 723)
 
-    title.draw(240, gtitleY)
-    start.draw(gplayX, 350)
-    score.draw(gscoreX, 250)
-    eexit.draw(240, gexitY)
+    title.draw(240, GameMenu_TitleY)
+    start.draw(GameMenu_PlayX, 350)
+    score.draw(GameMenu_ScoreX, 250)
+    eexit.draw(240, GameMenu_ExitY)
     update_canvas()
     pass
 
