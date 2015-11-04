@@ -49,13 +49,13 @@ def handle_events():
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, Canvas_Height - event.y
             print(x, "-", y)
-            GAME_Scenes = dMenuClick(GAME_Scenes, x, y)
+            GAME_Scenes = GameMenu_Click(GAME_Scenes, x, y)
             ##################################################
             # 종료할경우 Game_Running를 죽인다.
             if GAME_Scenes == False:
                 game_framework.quit()
             if GAME_Scenes == "Game_Main":
-                dUpdateMenu(GAME_Scenes)
+                GameUpdate_Menu(GAME_Scenes)
                 game_framework.change_state(main)
             ##################################################
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
@@ -65,7 +65,7 @@ def handle_events():
     pass
 
 def enter():
-    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, lFootrest, Load_RabbitJet, Game_Map
+    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, Load_Footrest, Load_RabbitJet, Game_Map
     GAME_Scenes = "Game_Help"
     print("Open : game_help.py Code")
     GameLoad_BackGround = BackGround()
@@ -74,7 +74,7 @@ def enter():
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
     Load_Rabbit = Rabbit()
     Load_RabbitJet = RabbitJet()
-    lFootrest = DrawFootrest()
+    Load_Footrest = Footrest()
 
     Game_Map[24][4] = 0
     Game_Map[20][4] = 1
@@ -84,18 +84,18 @@ def enter():
     Game_Map[4][4] = 9
 
     #토끼, 발판 이미지 불러오기
-    dUpdateMenu(GAME_Scenes)
+    GameUpdate_Menu(GAME_Scenes)
     pass
 
 
 def update():
     global Background_Y, BackgroundSub_Y, Load_Rabbit, Load_RabbitJet
     global Rabbit_X, Rabbit_Direction, Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, GameMap_Col, GameMap_Row, Rabbit_Frame, Rabbit_Y, RabbitMaximum_Jump
-    Background_Y, BackgroundSub_Y = dAutoSlideBG(Background_Y, BackgroundSub_Y)                                                    # 이미지 내려주는 함수
+    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)                                                    # 이미지 내려주는 함수
     Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
-    Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map = dFootrestCheck(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet)
+    Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet)
     delay(0.015)
     pass
 
@@ -122,7 +122,7 @@ def draw():
 
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):
-            lFootrest.dDraw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
+            Load_Footrest.Draw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
 
     GameLoad_Menu._DrawHelp01(285, 720)
     GameLoad_Menu._DrawHelp02(285, 605)
@@ -131,7 +131,7 @@ def draw():
     GameLoad_Menu._DrawHelp05(285, 245)
     #GameLoad_Menu.dDraw("Help01", 285, 125)
 
-    dFontDraw(3,10, GAME_Scenes, 255, 255, 255)
+    GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
 
     update_canvas()
     delay(0.015)

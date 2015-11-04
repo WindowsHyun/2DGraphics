@@ -160,19 +160,15 @@ class RabbitJet:
         self.uphandimage.clip_draw(frame * 56, 0, 56, 113, x, y)
     pass
 
-class DrawFootrest:
+class Footrest:
     def __init__(self):
         self.image = load_image('GeneralImage\\newscaffolding.png')
-        self.line = load_image('GeneralImage\\Mback.png')
         #print("Footrst = ", self.image)
-    def dDraw(self,WhatNum, x, y):
-        self.image.clip_draw(WhatNum * 120, 0, 120, 65, x, y)
-
-    def dLine(self, x, y):
-        self.line.draw(x, y)
+    def Draw(self,Footrest_Frame, x, y):
+        self.image.clip_draw(Footrest_Frame * 120, 0, 120, 65, x, y)
     pass
 
-def dCreateFootrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump):
+def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump):
     global GameLine_SomeMake, GameMap_ColLocation, gRandTwo, GameMap_Footrest
     if ( GameMap_Row - 1 <= GameCreated_Line):
         pass
@@ -215,7 +211,7 @@ def dCreateFootrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
     return GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump
     pass
 
-def dFootrestCheck(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet ):
+def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet ):
     for i in range(GameMap_Col):   # 가로
         for j in range(GameMap_Row):   # 세로
                 if(Game_Map[j][i] != -1 ):
@@ -223,35 +219,35 @@ def dFootrestCheck(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDi
                         if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == "Down"):
                             #print("토끼 x 좌표 : ",Rabbit_X, "범위 : ", ((i - 3)*20) + 25, "~", ((i - 2)*20) + 110)
                             #print("토끼 y 좌표 : ",Rabbit_Y, "범위 : ", ((j -2)*30) + 46 + 30, "~", ((j-1)*30) + 46 + 30)
-                            Game_Map = dFootRestFade(i, j, Game_Map)
+                            Game_Map = Footrest_Fade(i, j, Game_Map)
                             if(Game_Map[j][i] == 0 or Game_Map[j][i] == 2 or Game_Map[j][i] == 4 or Game_Map[j][i] == 1 or Game_Map[j][i] == 12 ):
                                 Rabbit_UpDownDirection = "Up"
                                 RabbitJump_LimitCount = 0
-                            Game_Map = dFootRestHide(i, j, Game_Map)
-                            Rabbit_Jet = dSuperRabbit(i, j, Game_Map, Rabbit_Jet)
-                            GameMap_Col, GameMap_Row, Game_Map = dFootRestMove(GameMap_Col, GameMap_Row, Game_Map)
+                            Game_Map = Footrest_Hide(i, j, Game_Map)
+                            Rabbit_Jet = RabbitJet_Activate(i, j, Game_Map, Rabbit_Jet)
+                            GameMap_Col, GameMap_Row, Game_Map = Footrest_Move(GameMap_Col, GameMap_Row, Game_Map)
     return Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map
     pass
 
-def dSuperRabbit(i, j, Game_Map, Rabbit_Jet):
+def RabbitJet_Activate(i, j, Game_Map, Rabbit_Jet):
     if ( Game_Map[j][i] == 12 ):
         Rabbit_Jet = True
     return Rabbit_Jet
     pass
 
-def dFootRestHide(i, j, Game_Map):
+def Footrest_Hide(i, j, Game_Map):
     if ( Game_Map[j][i] == 1 ):
         Game_Map[j][i] = -1
     return Game_Map
     pass
 
-def dFootRestFade(i, j, Game_Map):
+def Footrest_Fade(i, j, Game_Map):
     if ( Game_Map[j][i] == 5 ):
         Game_Map[j][i] = 6
     return Game_Map
     pass
 
-def dFootRestMove(GameMap_Col, GameMap_Row, Game_Map):
+def Footrest_Move(GameMap_Col, GameMap_Row, Game_Map):
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):
             if ( Game_Map[j][i] == 4 ):
@@ -269,7 +265,7 @@ def dFootRestMove(GameMap_Col, GameMap_Row, Game_Map):
     return GameMap_Col, GameMap_Row, Game_Map
     pass
 
-def dResetMap(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck ):
+def GameMap_Reset(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck ):
     global GameCreated_Line
     for i in range(GameMap_Col):   # 가로
         for j in range(GameMap_Row):   # 세로
@@ -279,7 +275,7 @@ def dResetMap(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck ):
     return Game_Map, Game_MapCheck, GameCreated_Line
     pass
 
-def dMenuClick(GAME_Menu, x, y):
+def GameMenu_Click(GAME_Menu, x, y):
     global Game_Running
     if x >= 131 and x <= 349 and y >= 313 and y <= 387 and GAME_Menu == "Game_Select":
             GAME_Menu = "Game_Easy"
@@ -311,7 +307,7 @@ def dMenuClick(GAME_Menu, x, y):
     return GAME_Menu
     pass
 
-def dAutoSlideBG(Background_Y, BackgroundSub_Y):
+def GameMap_Slide(Background_Y, BackgroundSub_Y):
     Background_Y -= 3
     BackgroundSub_Y -= 3
     if BackgroundSub_Y <= 0:
@@ -322,7 +318,7 @@ def dAutoSlideBG(Background_Y, BackgroundSub_Y):
 
 
 
-def dMapAllDown(Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreated_Line):
+def GameMap_Renewal(Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreated_Line):
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):
             if( i <= GameMap_Col and j <= GameMap_Row-2):
@@ -334,19 +330,19 @@ def dMapAllDown(Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreated_L
     return Game_Map, Game_MapCheck, GameCreated_Line
     pass
 
-def dMsgBox(title, text, style):
+def Game_MsgBox(title, text, style):
     ctypes.windll.user32.MessageBoxA(0, text.encode('euc-kr'), title.encode('euc-kr'), style)
 
-def dFontDraw(x, y, text, r, g, b):
+def GameDraw_Font(x, y, text, r, g, b):
     font = Font("훈솜사탕R.ttf")
     if ( text != None):
         font.draw(x, y, text, (r,g,b))
 
-def dShowMenu():
+def GameShow_Menu():
     global GAME_CurrentMenu
     return GAME_CurrentMenu
 
-def dUpdateMenu(menu):
+def GameUpdate_Menu(menu):
     global GAME_CurrentMenu
     GAME_CurrentMenu = menu
 

@@ -32,19 +32,19 @@ def handle_events():
             game_framework.quit()
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, Canvas_Height - event.y
-            GAME_Scenes = dMenuClick(GAME_Scenes, x, y)
+            GAME_Scenes = GameMenu_Click(GAME_Scenes, x, y)
             ##################################################
             # 종료할경우 Game_Running를 죽인다.
             if GAME_Scenes == False:
                 game_framework.quit()
             if GAME_Scenes == "GameSelect":
-                dUpdateMenu("Game_Select")
+                GameUpdate_Menu("Game_Select")
                 game_framework.change_state(game_select)
             if GAME_Scenes == "Game_Score":
-                dUpdateMenu("Game_Score")
+                GameUpdate_Menu("Game_Score")
                 game_framework.change_state(game_score)
             if GAME_Scenes == "Game_Help":
-                dUpdateMenu("Game_Help")
+                GameUpdate_Menu("Game_Help")
                 game_framework.change_state(game_help)
             ##################################################
             pass
@@ -58,13 +58,13 @@ def enter():
     # cBackGround라는 클래스를 BackGround로 가져오기
     GameLoad_Menu = MenuPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
-    dUpdateMenu(GAME_Scenes)
+    GameUpdate_Menu(GAME_Scenes)
     pass
 
 
 def update():
     global Background_Y, BackgroundSub_Y
-    Background_Y, BackgroundSub_Y = dAutoSlideBG(Background_Y, BackgroundSub_Y)                                                    # 이미지 내려주는 함수
+    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)                                                    # 이미지 내려주는 함수
     pass
 
 def draw():
@@ -82,8 +82,8 @@ def draw():
     GameLoad_Menu._DrawExit(240, 150)
     GameLoad_Menu._DrawHelp(428, 20)
 
-    dFontDraw(3,10, GAME_Scenes, 255, 255, 255)
-    #dFontDraw(200,10, "한글 Korea Print -____-", 255, 255, 255)
+    GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
+    #GameDraw_Font(200,10, "한글 Korea Print -____-", 255, 255, 255)
 
     update_canvas()
     delay(0.015)
