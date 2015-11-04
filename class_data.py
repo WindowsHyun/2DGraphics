@@ -28,7 +28,7 @@ class BackGround:
         self.image.draw_to_origin(0, BackgroundSub_Y, Canvas_Width, Canvas_Height)
     pass
 
-class DrawMiscPictures:
+class DrawMenuPictures:
     def __init__(self):
         self.planet = load_image('GeneralImage\\planet.png')
         self.title = load_image('GeneralImage\\Mtitle.png')
@@ -46,48 +46,50 @@ class DrawMiscPictures:
         self.help04 = load_image('GeneralImage\\MfootrestHelp04.png')
         self.help05 = load_image('GeneralImage\\MfootrestHelp05.png')
 
-        """
-        print("Planet = ",self.planet)
-        print("Title = ",self.title)
-        print("Back = ",self.back)
-        print("Easy = ",self.easy)
-        print("Exit = ",self.exit)
-        print("Hard = ",self.hard)
-        print("Medium = ",self.medium)
-        print("Start = ",self.start)
-        print("Score = ",self.score)
-        """
-    def dDraw(self, WhatDraw, x, y):
-        if WhatDraw == "planet":
-            self.planet.draw(x,y)
-        if WhatDraw == "title":
-            self.title.draw(x,y)
-        if WhatDraw == "back":
-            self.back.draw(x,y)
-        if WhatDraw == "Easy":
-            self.easy.draw(x,y)
-        if WhatDraw == "Exit":
-            self.exit.draw(x,y)
-        if WhatDraw == "Hard":
-            self.hard.draw(x,y)
-        if WhatDraw == "Medium":
-            self.medium.draw(x,y)
-        if WhatDraw == "Start":
-            self.start.draw(x,y)
-        if WhatDraw == "Score":
-            self.score.draw(x,y)
-        if WhatDraw == "Help":
-            self.help.draw(x,y)
-        if WhatDraw == "Help01":
-            self.help01.draw(x,y)
-        if WhatDraw == "Help02":
-            self.help02.draw(x,y)
-        if WhatDraw == "Help03":
-            self.help03.draw(x,y)
-        if WhatDraw == "Help04":
-            self.help04.draw(x,y)
-        if WhatDraw == "Help05":
-            self.help05.draw(x,y)
+    def _DrawPlanet(self, x, y):
+        self.planet.draw(x,y)
+
+    def _DrawTitle(self, x, y):
+        self.title.draw(x,y)
+
+    def _DrawBack(self, x, y):
+        self.back.draw(x,y)
+
+    def _DrawEasy(self, x, y):
+        self.easy.draw(x,y)
+
+    def _DrawExit(self, x, y):
+        self.exit.draw(x,y)
+
+    def _DrawHard(self, x, y):
+        self.hard.draw(x,y)
+
+    def _DrawMedium(self, x, y):
+        self.medium.draw(x,y)
+
+    def _DrawStart(self, x, y):
+        self.start.draw(x,y)
+
+    def _DrawScore(self, x, y):
+        self.score.draw(x,y)
+
+    def _DrawHelp(self, x, y):
+        self.help.draw(x,y)
+
+    def _DrawHelp01(self, x, y):
+        self.help01.draw(x,y)
+
+    def _DrawHelp02(self, x, y):
+        self.help02.draw(x,y)
+
+    def _DrawHelp03(self, x, y):
+        self.help03.draw(x,y)
+
+    def _DrawHelp04(self, x, y):
+        self.help04.draw(x,y)
+
+    def _DrawHelp05(self, x, y):
+        self.help05.draw(x,y)
     pass
 
 

@@ -51,12 +51,12 @@ def handle_events():
     pass
 
 def enter():
-    global GameLoad_BackGround, lMiscPictures, GAME_Scenes
+    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes
     GAME_Scenes = "Game_Main"
     print("Open : main.py Code")
     GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
-    lMiscPictures = DrawMiscPictures()
+    GameLoad_Menu = DrawMenuPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
     dUpdateMenu(GAME_Scenes)
     pass
@@ -75,12 +75,12 @@ def draw():
     GameLoad_BackGround._mainDraw(Background_Y, Canvas_Width, Canvas_Height)
     GameLoad_BackGround._subDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
 
-    lMiscPictures.dDraw("planet", 415, 723)
-    lMiscPictures.dDraw("title", 240, 550)
-    lMiscPictures.dDraw("Start", 240, 350)
-    lMiscPictures.dDraw("Score", 240, 250)
-    lMiscPictures.dDraw("Exit", 240, 150)
-    lMiscPictures.dDraw("Help", 428, 20)
+    GameLoad_Menu._DrawPlanet(415, 723)
+    GameLoad_Menu._DrawTitle(240, 550)
+    GameLoad_Menu._DrawStart(240, 350)
+    GameLoad_Menu._DrawScore(240, 250)
+    GameLoad_Menu._DrawExit(240, 150)
+    GameLoad_Menu._DrawHelp(428, 20)
 
     dFontDraw(3,10, GAME_Scenes, 255, 255, 255)
     #dFontDraw(200,10, "한글 Korea Print -____-", 255, 255, 255)
@@ -90,8 +90,8 @@ def draw():
     pass
 
 def exit():
-    global GameLoad_BackGround, lMiscPictures, GAME_Scenes
+    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes
     del(GameLoad_BackGround)
-    del(lMiscPictures)
+    del(GameLoad_Menu)
     print("Unload : main.py Code")
     pass
