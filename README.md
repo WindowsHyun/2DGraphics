@@ -26,7 +26,7 @@
   > 1. 게임 스코어를 어떻게 저장하고 기록할지 구상
   > 1. 게임 난이도에 대한 구상
   > 1. 추석 연휴 조금만 하자..!
-  > 1. [1주차 구상한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/TermProjectConcept/ConceptDATA.txt)
+  > 1. [1주차 구상한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/TermProjectConcept/ConceptDATA.txt)
 + 2주차 (09/30) 리소스 및 사운드 와 알고리즘 계산
 
   > 1. 메인 이미지 (토끼 관련한 좌우 점프 이미지) 수집
@@ -47,7 +47,7 @@
   > > + 발판을 밟을시 일괄적으로 왼쪽으로 움직이는 방법은 어떻게 구현할 것인가?
   > > + 발판이 시간에 따라서 있다가 사라졌다가 하는 방법은 어떻게 구현할 것인가?
   > > + 발판이 한번만 밟으면 사라지고 없어지는 방법은 어떻게 구현할 것인가?
-  > > + [2주차 질문에 대한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/TermProjectConcept/ConceptDATA_2%EC%A3%BC%EC%B0%A8.txt)
+  > > + [2주차 질문에 대한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/TermProjectConcept/ConceptDATA_2%EC%A3%BC%EC%B0%A8.txt)
 + 3주차 (10/07) 난이도 조절 관련 메뉴 및 시작 페이지 구성
 
   > 1. Gameframework 적용하여 시작 페이지 구성
