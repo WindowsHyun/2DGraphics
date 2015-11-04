@@ -6,8 +6,8 @@ import game_framework
 #print("- Module game_framework -")
 import main
 #print("- Module main -")
-import game_ing
-#print("- Module game_ing -")
+import game_main
+#print("- Module game_main -")
 
 gCanvasWidth = 480
 gCanvasHeight = 800
@@ -37,13 +37,13 @@ def handle_events():
                 game_framework.quit()
             if gWhatScenes == "Game_Easy":
                 dUpdateMenu(gWhatScenes)
-                game_framework.change_state(game_ing)
+                game_framework.change_state(game_main)
             if gWhatScenes == "Game_Middle":
                 dUpdateMenu(gWhatScenes)
-                game_framework.change_state(game_ing)
+                game_framework.change_state(game_main)
             if gWhatScenes == "Game_Hard":
                 dUpdateMenu(gWhatScenes)
-                game_framework.change_state(game_ing)
+                game_framework.change_state(game_main)
             if gWhatScenes == "Game_Main":
                 dUpdateMenu(gWhatScenes)
                 game_framework.change_state(main)

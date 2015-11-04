@@ -69,7 +69,7 @@ def handle_events():
 def enter():
     global lBackGround, lMiscPictures, gWhatScenes, lRabbit, lFootrest, lRabbitJet
     gWhatScenes = dShowMenu()
-    print("Open : game_ing.py Code")
+    print("Open : game_main.py Code")
     lBackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
@@ -178,5 +178,5 @@ def exit():
     del(lMiscPictures)
     del(lRabbit)
     del(lFootrest)
-    print("Unload : game_ing.py Code")
+    print("Unload : game_main.py Code")
     pass
