@@ -17,10 +17,10 @@ Game_Running = True
 
 ######################################################
 # 토끼 불러오는 함수
-Rabbit_Direction = True
+Rabbit_Direction = "Left"
 Rabbit_Y = 237
 Rabbit_X = 417
-Rabbit_UpDownDirection = 0
+Rabbit_UpDownDirection = "Up"
 RabbitJump_LimitCount = 0
 Rabbit_Jet = False
 RabbitJet_Status = False
@@ -59,21 +59,21 @@ def handle_events():
                 game_framework.change_state(main)
             ##################################################
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
-            Rabbit_Direction = True
+            Rabbit_Direction = "Left"
         if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
-            Rabbit_Direction = False
+            Rabbit_Direction = "Right"
     pass
 
 def enter():
-    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, lRabbit, lFootrest, lRabbitJet, Game_Map
+    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, lFootrest, Load_RabbitJet, Game_Map
     GAME_Scenes = "Game_Help"
     print("Open : game_help.py Code")
     GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
-    GameLoad_Menu = DrawMenuPictures()
+    GameLoad_Menu = MenuPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
-    lRabbit = cDrawRabbit()
-    lRabbitJet = cDrawRabbitJet()
+    Load_Rabbit = Rabbit()
+    Load_RabbitJet = RabbitJet()
     lFootrest = DrawFootrest()
 
     Game_Map[24][4] = 0
@@ -89,12 +89,12 @@ def enter():
 
 
 def update():
-    global Background_Y, BackgroundSub_Y, lRabbit, lRabbitJet
+    global Background_Y, BackgroundSub_Y, Load_Rabbit, Load_RabbitJet
     global Rabbit_X, Rabbit_Direction, Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, GameMap_Col, GameMap_Row, Rabbit_Frame, Rabbit_Y, RabbitMaximum_Jump
     Background_Y, BackgroundSub_Y = dAutoSlideBG(Background_Y, BackgroundSub_Y)                                                    # 이미지 내려주는 함수
-    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = lRabbit.dUpdateRabbitUpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
-    Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = lRabbit.dLimitJump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
-    Rabbit_X, Rabbit_Direction = lRabbit.dRabbitPass(Rabbit_X, Rabbit_Direction, Canvas_Width)
+    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
+    Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
+    Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map = dFootrestCheck(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet)
     delay(0.015)
     pass
@@ -110,9 +110,12 @@ def draw():
     GameLoad_Menu._DrawBack(22, 22)
 
     if ( Rabbit_Jet == False ):
-        lRabbit.dDraw(Rabbit_Frame, Rabbit_Direction, Rabbit_X, Rabbit_Y)
+            if (Rabbit_Direction == "Left" ):
+                Load_Rabbit._DrawLeft(Rabbit_Frame, Rabbit_X, Rabbit_Y)
+            elif (Rabbit_Direction == "Right" ):
+                Load_Rabbit._DrawRight(Rabbit_Frame, Rabbit_X, Rabbit_Y)
     else:
-        lRabbitJet.dDraw(2, 0, Rabbit_X, Rabbit_Y)
+        Load_RabbitJet.Draw(2, Rabbit_X, Rabbit_Y)
         #dRabbitJet()
 
     Game_Map[4][19] = 0

@@ -14,12 +14,12 @@ Background_Y = 0
 BackgroundSub_Y = 800
 Rabbit_Frame = 0
 
-lRabbit = None
+Load_Rabbit = None
 Game_Running = True
-Rabbit_Direction = True
+Rabbit_Direction = "Left"
 Rabbit_Y = 100
 Rabbit_X = 100
-Rabbit_UpDownDirection = 0
+Rabbit_UpDownDirection = "Up"
 RabbitJump_LimitCount = 0
 Rabbit_Jet = False
 RabbitJet_Status = False
@@ -46,7 +46,7 @@ def handle_events():
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
             dUpdateMenu("Game_Select")
-            Rabbit_Y ,Rabbit_X, Rabbit_UpDownDirection, RabbitJump_LimitCount = 100, 100, 0, 0
+            Rabbit_Y ,Rabbit_X, Rabbit_UpDownDirection, RabbitJump_LimitCount = 100, 100, "Up", 0
             Game_Map, Game_MapCheck, GameCreated_Line = dResetMap(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck)
             game_framework.change_state(game_select)
         if event.type == SDL_MOUSEBUTTONDOWN:
@@ -59,23 +59,23 @@ def handle_events():
                 game_framework.quit()
             ##################################################
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
-            Rabbit_Direction = True
+            Rabbit_Direction = "Left"
         if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
-            Rabbit_Direction = False
+            Rabbit_Direction = "Right"
         if event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             Rabbit_Jet = True
     pass
 
 def enter():
-    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, lRabbit, lFootrest, lRabbitJet
+    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, lFootrest, Load_RabbitJet
     GAME_Scenes = dShowMenu()
     print("Open : game_main.py Code")
     GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
-    GameLoad_Menu = DrawMenuPictures()
+    GameLoad_Menu = MenuPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
-    lRabbit = cDrawRabbit()
-    lRabbitJet = cDrawRabbitJet()
+    Load_Rabbit = Rabbit()
+    Load_RabbitJet = RabbitJet()
     lFootrest = DrawFootrest()
     Game_Map[1][3] = 0
     Game_Map[1][8] = 0
@@ -85,12 +85,12 @@ def enter():
 
 
 def update():
-    global lRabbit, lRabbitJet, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Rabbit_X, Rabbit_Direction, Canvas_Width, RabbitMaximum_Jump, Rabbit_Jet
+    global Load_Rabbit, Load_RabbitJet, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Rabbit_X, Rabbit_Direction, Canvas_Width, RabbitMaximum_Jump, Rabbit_Jet
     global Game_MapCheck, Game_Map, GameMap_Row, GameCreated_Line, GAME_Scenes
-    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = lRabbit.dUpdateRabbitUpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
-    Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = lRabbit.dLimitJump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
-    Rabbit_X = lRabbit.dRabbitMove(Rabbit_Direction, Rabbit_X)
-    Rabbit_X, Rabbit_Direction = lRabbit.dRabbitPass(Rabbit_X, Rabbit_Direction, Canvas_Width)
+    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
+    Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
+    Rabbit_X = Load_Rabbit.Rabbit_LeftRightDirection(Rabbit_Direction, Rabbit_X)
+    Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
     GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump = dCreateFootrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump)
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map = dFootrestCheck(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet)
     dMapDown()
@@ -101,7 +101,7 @@ def update():
     pass
 
 def draw():
-    global GameLoad_BackGround, GameLoad_Menu, lRabbit, lFootrest, Rabbit_Jet, RabbitJet_Frame
+    global GameLoad_BackGround, GameLoad_Menu, Load_Rabbit, lFootrest, Rabbit_Jet, RabbitJet_Frame
     global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_Frame, Rabbit_X, Rabbit_Y, gtest, Rabbit_UpDownDirection
     global GameMap_Col, GameMap_Row, Game_Map
     clear_canvas()
@@ -111,9 +111,12 @@ def draw():
     GameLoad_Menu._DrawPlanet(415, 723)
 
     if ( Rabbit_Jet == False ):
-        lRabbit.dDraw(Rabbit_Frame, Rabbit_Direction, Rabbit_X, Rabbit_Y)
+        if (Rabbit_Direction == "Left" ):
+                Load_Rabbit._DrawLeft(Rabbit_Frame, Rabbit_X, Rabbit_Y)
+        elif (Rabbit_Direction == "Right" ):
+                Load_Rabbit._DrawRight(Rabbit_Frame, Rabbit_X, Rabbit_Y)
     else:
-        lRabbitJet.dDraw(2, 0, Rabbit_X, Rabbit_Y)
+        Load_RabbitJet.Draw(2,Rabbit_X, Rabbit_Y)
         dRabbitJet()
 
     for i in range(GameMap_Col):
@@ -132,10 +135,10 @@ def dMapDown():
     if( Rabbit_Y >= Canvas_Height-300):
         for i in range(10):
             Background_Y, BackgroundSub_Y = dAutoSlideBG(Background_Y, BackgroundSub_Y)
-        Rabbit_UpDownDirection = 2
+        Rabbit_UpDownDirection = "Jet"
         Game_Map, Game_MapCheck, GameCreated_Line = dMapAllDown(Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreated_Line)
     if RabbitJump_LimitCount >= RabbitMaximum_Jump:
-        Rabbit_UpDownDirection = 1
+        Rabbit_UpDownDirection = "Down"
         pass
     pass
 
@@ -160,9 +163,9 @@ def dRabbitJet():
             Rabbit_Y += 12
         else:
             Rabbit_Y = Canvas_Height-300
-        Rabbit_UpDownDirection = 0
+        Rabbit_UpDownDirection = "Up"
         if ( RabbitJet_Frame >= 100 ):
-            Rabbit_UpDownDirection = 1
+            Rabbit_UpDownDirection = "Down"
             RabbitJet_Frame = 0
             RabbitJump_LimitCount = 0
             Rabbit_Frame = 1
@@ -173,10 +176,10 @@ def dRabbitJet():
 
 
 def exit():
-    global GameLoad_BackGround, GameLoad_Menu, lRabbit, lFootrest
+    global GameLoad_BackGround, GameLoad_Menu, Load_Rabbit, lFootrest
     del(GameLoad_BackGround)
     del(GameLoad_Menu)
-    del(lRabbit)
+    del(Load_Rabbit)
     del(lFootrest)
     print("Unload : game_main.py Code")
     pass

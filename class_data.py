@@ -28,7 +28,7 @@ class BackGround:
         self.image.draw_to_origin(0, BackgroundSub_Y, Canvas_Width, Canvas_Height)
     pass
 
-class DrawMenuPictures:
+class MenuPictures:
     def __init__(self):
         self.planet = load_image('GeneralImage\\planet.png')
         self.title = load_image('GeneralImage\\Mtitle.png')
@@ -93,75 +93,71 @@ class DrawMenuPictures:
     pass
 
 
-class cDrawRabbit:
+class Rabbit:
     def __init__(self):
         self.leftimage = load_image('CharacterImage\\Rabbit-Left.png')
         self.rightimage = load_image('CharacterImage\\Rabbit-Right.png')
 
-    def dDraw(self, frame, LR, x, y):
-        if LR == True:
-            self.leftimage.clip_draw(frame * 85, 0, 85, 113, x, y)
-        elif LR == False:
-            self.rightimage.clip_draw(frame * 85, 0, 85, 113, x, y)
+    def _DrawLeft(self, frame, x, y):
+        self.leftimage.clip_draw(frame * 85, 0, 85, 113, x, y)
+
+    def _DrawRight(self, frame, x, y):
+        self.rightimage.clip_draw(frame * 85, 0, 85, 113, x, y)
 
     # Rabbit_UpDownDirection = 올라가거나 내려가거나를 체크하는 부분
     # Rabbit_Frame = 캐릭터의 이미지 동작
     # Rabbit_Y = 캐릭터가 맵화면에 올라가는 좌표
     # RabbitJump_LimitCount = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
-    def dUpdateRabbitUpDown(self, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount):
-        if Rabbit_UpDownDirection == 0:
+    def RabbitMove_UpDown(self, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount):
+        if Rabbit_UpDownDirection == "Up":
             Rabbit_Frame = 2
             Rabbit_Y += 12
             RabbitJump_LimitCount += 1
-        elif Rabbit_UpDownDirection == 1:
+        elif Rabbit_UpDownDirection == "Down":
             Rabbit_Frame = 1
             Rabbit_Y -= 12
             RabbitJump_LimitCount -= 1
-        elif Rabbit_UpDownDirection == 2:
+        elif Rabbit_UpDownDirection == "Jet":
             Rabbit_Frame = 2
             RabbitJump_LimitCount += 1
         return Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount
 
     # 실제 캐릭터가 올라간 횟수 최대 10번 올라가면 다시 내리게 하는 부분
-    def dLimitJump(self, Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump):
-        if RabbitJump_LimitCount >= RabbitMaximum_Jump and Rabbit_UpDownDirection == 0:
+    def RabbitMove_Jump(self, Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump):
+        if RabbitJump_LimitCount >= RabbitMaximum_Jump and Rabbit_UpDownDirection == "Up":
             Rabbit_Frame = 1
-            Rabbit_UpDownDirection = 1
-        elif RabbitJump_LimitCount <= 0 and Rabbit_UpDownDirection == 1:
+            Rabbit_UpDownDirection = "Down"
+        elif RabbitJump_LimitCount <= 0 and Rabbit_UpDownDirection == "Down":
             Rabbit_Frame = 1
-            #Rabbit_UpDownDirection = 0
+            #Rabbit_UpDownDirection = "Up"
             RabbitJump_LimitCount = 0
         return Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection
 
     # 실제 캐릭터가 왼쪽으로 가는지 오른쪽으로 가는지 판단해서 움직여 준다.
-    def dRabbitMove(self, Rabbit_Direction, Rabbit_X):
-        if Rabbit_Direction == False:
+    def Rabbit_LeftRightDirection(self, Rabbit_Direction, Rabbit_X):
+        if Rabbit_Direction == "Right":
             Rabbit_X += 7
-        elif Rabbit_Direction == True:
+        elif Rabbit_Direction == "Left":
             Rabbit_X -= 7
         return Rabbit_X
 
     # 실제 캐릭터가 벽을 넘어갔을 경우 반대편으로 다시 나오게 한다.
-    def dRabbitPass(self, Rabbit_X, Rabbit_Direction, Canvas_Width):
+    def RabbitWall_Pass(self, Rabbit_X, Rabbit_Direction, Canvas_Width):
         if Rabbit_X >= Canvas_Width:
-            Rabbit_Direction = False
+            Rabbit_Direction = "Right"
             Rabbit_X = 0
         elif Rabbit_X <= 0:
-            Rabbit_Direction = True
+            Rabbit_Direction = "Left"
             Rabbit_X = Canvas_Width
         return Rabbit_X, Rabbit_Direction
     pass
 
-class cDrawRabbitJet:
+class RabbitJet:
     def __init__(self):
-        self.upimage = load_image('CharacterImage\\Rabbit-Up.png')
         self.uphandimage = load_image('CharacterImage\\Rabbit-UpHand.png')
 
-    def dDraw(self, frame, LR, x, y):
-        if LR == True:
-            self.upimage.clip_draw(frame * 56, 0, 56, 113, x, y)
-        elif LR == False:
-            self.uphandimage.clip_draw(frame * 56, 0, 56, 113, x, y)
+    def Draw(self, frame, x, y):
+        self.uphandimage.clip_draw(frame * 56, 0, 56, 113, x, y)
     pass
 
 class DrawFootrest:
@@ -224,12 +220,12 @@ def dFootrestCheck(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDi
         for j in range(GameMap_Row):   # 세로
                 if(Game_Map[j][i] != -1 ):
                     if( Rabbit_X >= ((i - 3)*20) + 25 and Rabbit_X <= ((i - 2)*20) + 110):
-                        if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == 1):
+                        if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == "Down"):
                             #print("토끼 x 좌표 : ",Rabbit_X, "범위 : ", ((i - 3)*20) + 25, "~", ((i - 2)*20) + 110)
                             #print("토끼 y 좌표 : ",Rabbit_Y, "범위 : ", ((j -2)*30) + 46 + 30, "~", ((j-1)*30) + 46 + 30)
                             Game_Map = dFootRestFade(i, j, Game_Map)
                             if(Game_Map[j][i] == 0 or Game_Map[j][i] == 2 or Game_Map[j][i] == 4 or Game_Map[j][i] == 1 or Game_Map[j][i] == 12 ):
-                                Rabbit_UpDownDirection = 0
+                                Rabbit_UpDownDirection = "Up"
                                 RabbitJump_LimitCount = 0
                             Game_Map = dFootRestHide(i, j, Game_Map)
                             Rabbit_Jet = dSuperRabbit(i, j, Game_Map, Rabbit_Jet)

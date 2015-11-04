@@ -56,7 +56,7 @@ def enter():
     print("Open : main.py Code")
     GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
-    GameLoad_Menu = DrawMenuPictures()
+    GameLoad_Menu = MenuPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
     dUpdateMenu(GAME_Scenes)
     pass
