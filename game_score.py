@@ -40,11 +40,11 @@ def handle_events():
     pass
 
 def enter():
-    global lBackGround, lMiscPictures, GAME_Scenes
+    global GameLoad_BackGround, lMiscPictures, GAME_Scenes
     dMsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
     GAME_Scenes = "Game_Score"
     print("Open : game_score.py Code")
-    lBackGround = BackGround()
+    GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
@@ -58,12 +58,12 @@ def update():
     pass
 
 def draw():
-    global lBackGround, lMiscPictures
+    global GameLoad_BackGround, lMiscPictures
     global Canvas_Width, Canvas_Height
     clear_canvas()
 
-    lBackGround.draw(Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, 0)                         # 배경 그려주는 함수
-    lBackGround.draw(Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, 1)                         # 배경 그려주는 함수
+    GameLoad_BackGround._mainDraw(Background_Y, Canvas_Width, Canvas_Height)
+    GameLoad_BackGround._subDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     lMiscPictures.dDraw("planet", 415, 723)
     lMiscPictures.dDraw("back", 22, 22)
 
@@ -74,8 +74,8 @@ def draw():
     pass
 
 def exit():
-    global lBackGround, lMiscPictures
-    del(lBackGround)
+    global GameLoad_BackGround, lMiscPictures
+    del(GameLoad_BackGround)
     del(lMiscPictures)
     print("Unload : game_score.py Code")
     pass

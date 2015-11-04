@@ -94,6 +94,7 @@ def draw():
     global start, eexit, GameMenu_TitleY, gbackY, GameMenu_PlayX, GameMenu_ScoreX, GameMenu_ExitY
     clear_canvas()
     background.draw_to_origin(0, 0, Canvas_Width, Canvas_Height)
+
     planet.draw(415, 723)
 
     title.draw(240, GameMenu_TitleY)

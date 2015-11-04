@@ -67,10 +67,10 @@ def handle_events():
     pass
 
 def enter():
-    global lBackGround, lMiscPictures, GAME_Scenes, lRabbit, lFootrest, lRabbitJet
+    global GameLoad_BackGround, lMiscPictures, GAME_Scenes, lRabbit, lFootrest, lRabbitJet
     GAME_Scenes = dShowMenu()
     print("Open : game_main.py Code")
-    lBackGround = BackGround()
+    GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
@@ -101,13 +101,13 @@ def update():
     pass
 
 def draw():
-    global lBackGround, lMiscPictures, lRabbit, lFootrest, Rabbit_Jet, RabbitJet_Frame
+    global GameLoad_BackGround, lMiscPictures, lRabbit, lFootrest, Rabbit_Jet, RabbitJet_Frame
     global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_Frame, Rabbit_X, Rabbit_Y, gtest, Rabbit_UpDownDirection
     global GameMap_Col, GameMap_Row, Game_Map
     clear_canvas()
 
-    lBackGround.draw(Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, 0)                         # 배경 그려주는 함수
-    lBackGround.draw(Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, 1)                         # 배경 그려주는 함수
+    GameLoad_BackGround._mainDraw(Background_Y, Canvas_Width, Canvas_Height)
+    GameLoad_BackGround._subDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     lMiscPictures.dDraw("planet", 415, 723)
 
     if ( Rabbit_Jet == False ):
@@ -173,8 +173,8 @@ def dRabbitJet():
 
 
 def exit():
-    global lBackGround, lMiscPictures, lRabbit, lFootrest
-    del(lBackGround)
+    global GameLoad_BackGround, lMiscPictures, lRabbit, lFootrest
+    del(GameLoad_BackGround)
     del(lMiscPictures)
     del(lRabbit)
     del(lFootrest)

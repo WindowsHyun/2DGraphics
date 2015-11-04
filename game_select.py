@@ -51,10 +51,10 @@ def handle_events():
     pass
 
 def enter():
-    global lBackGround, lMiscPictures, GAME_Scenes
+    global GameLoad_BackGround, lMiscPictures, GAME_Scenes
     GAME_Scenes = "Game_Select"
     print("Open : game_select.py Code")
-    lBackGround = BackGround()
+    GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     lMiscPictures = DrawMiscPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
@@ -68,12 +68,12 @@ def update():
     pass
 
 def draw():
-    global lBackGround, lPlanet, lMenu, lTitle, lBack
+    global GameLoad_BackGround, lPlanet, lMenu, lTitle, lBack
     global Canvas_Width, Canvas_Height
     clear_canvas()
 
-    lBackGround.draw(Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, 0)                         # 배경 그려주는 함수
-    lBackGround.draw(Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, 1)                         # 배경 그려주는 함수
+    GameLoad_BackGround._mainDraw(Background_Y, Canvas_Width, Canvas_Height)
+    GameLoad_BackGround._subDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     lMiscPictures.dDraw("planet", 415, 723)
     lMiscPictures.dDraw("title", 240, 550)
     lMiscPictures.dDraw("Easy", 240, 350)
@@ -88,8 +88,8 @@ def draw():
     pass
 
 def exit():
-    global lBackGround, lMiscPictures
-    del(lBackGround)
+    global GameLoad_BackGround, lMiscPictures
+    del(GameLoad_BackGround)
     del(lMiscPictures)
     print("Unload : gmae_select.py Code")
     pass

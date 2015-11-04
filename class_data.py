@@ -20,23 +20,12 @@ GAME_CurrentMenu = "Game_Main"
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
-        #print("BackGround = ",self.image)
-    def draw(self,Background_Y, BackgroundSub_Y, Canvas_Width, Canvas_Height, gWhatDraw):
-        if gWhatDraw == 0:
-            self.image.draw_to_origin(0, Background_Y, Canvas_Width, Canvas_Height)
-            # draw_to_origin을 사용하면 원본이미지를 그대로 사용 가능하면서 사이즈 크기를 자신이 원하는만큼 조절이 가능하다.
-        else:
-            self.image.draw_to_origin(0, BackgroundSub_Y, Canvas_Width, Canvas_Height)
-            #drawTwo를 만든이유는 이미지가 내려오는데 중간에 끊겨보이면 안되니깐 자연스럽게 이어지게 만들기 위하여.
-    """
-    def dChangeBackground(self, gNum):
-        if gNum == 0:
-            self.image = load_image('BackgroundImage\\SBT.png')
-        if gNum == 1:
-            self.image = load_image('BackgroundImage\\BSBT.png')
-        if gNum == 2:
-            self.image = load_image('BackgroundImage\\DBT.png')
-    """
+
+    def _mainDraw(self, Background_Y, Canvas_Width, Canvas_Height):
+        self.image.draw_to_origin(0, Background_Y, Canvas_Width, Canvas_Height)
+
+    def _subDraw(self, BackgroundSub_Y, Canvas_Width, Canvas_Height):
+        self.image.draw_to_origin(0, BackgroundSub_Y, Canvas_Width, Canvas_Height)
     pass
 
 class DrawMiscPictures:
