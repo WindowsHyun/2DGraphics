@@ -15,6 +15,9 @@ import ctypes  # An included library with Python install.
 import random
 #print("- Module random -")
 
+import json
+#print("- Module json -")
+
 GAME_CurrentMenu = "Game_Main"
 ###########################################################################################################################################################################
 # 발판 정보들
@@ -22,16 +25,20 @@ Nomal_Footrest, Hide_Footrest, Pink_Footrest, Red_Footrest, Move_Footrest, Broke
 Broke3_Footrest, Broke4_Footrest, Black_Footrest, Black2_Footrest, Black3_Footrest, Jet_Footrest, Delete_Footrest = 7, 8, 9, 10, 11, 12, -1
 Delete2_Footrest = 13
 ###########################################################################################################################################################################
+# json 파일에서 메뉴 위치 불러오기
+LoadJson_MenuData = open('JsonData\\game_menulocation.json', 'r')
+LoadJson_MenuData = json.load(LoadJson_MenuData)
+###########################################################################################################################################################################
 
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
 
-    def _mainDraw(self, Background_Y, Canvas_Width, Canvas_Height):
-        self.image.draw_to_origin(0, Background_Y, Canvas_Width, Canvas_Height)
+    def _MainDraw(self, y, Canvas_Width, Canvas_Height):
+        self.image.draw_to_origin(0, y, Canvas_Width, Canvas_Height)
 
-    def _subDraw(self, BackgroundSub_Y, Canvas_Width, Canvas_Height):
-        self.image.draw_to_origin(0, BackgroundSub_Y, Canvas_Width, Canvas_Height)
+    def _SubDraw(self, y, Canvas_Width, Canvas_Height):
+        self.image.draw_to_origin(0, y, Canvas_Width, Canvas_Height)
     pass
 
 class MenuPictures:
@@ -46,58 +53,57 @@ class MenuPictures:
         self.start = load_image('GeneralImage\\Mstart.png')
         self.score = load_image('GeneralImage\\Mscore.png')
         self.help = load_image('GeneralImage\\Mhelp.png')
-        self.help01 = load_image('GeneralImage\\MfootrestHelp01.png')
-        self.help02 = load_image('GeneralImage\\MfootrestHelp02.png')
-        self.help03 = load_image('GeneralImage\\MfootrestHelp03.png')
-        self.help04 = load_image('GeneralImage\\MfootrestHelp04.png')
-        self.help05 = load_image('GeneralImage\\MfootrestHelp05.png')
+        self.footresthelp_nomal = load_image('GeneralImage\\MfootrestHelp01.png')
+        self.footresthelp_hide = load_image('GeneralImage\\MfootrestHelp02.png')
+        self.footresthelp_move = load_image('GeneralImage\\MfootrestHelp03.png')
+        self.footresthelp_broke = load_image('GeneralImage\\MfootrestHelp04.png')
+        self.footresthelp_jet = load_image('GeneralImage\\MfootrestHelp05.png')
 
-    def _DrawPlanet(self, x, y):
-        self.planet.draw(x,y)
+    def _DrawPlanet(self):
+        self.planet.draw(LoadJson_MenuData['Planet']['x'], LoadJson_MenuData['Planet']['y'])
 
-    def _DrawTitle(self, x, y):
-        self.title.draw(x,y)
+    def _DrawTitle(self):
+        self.title.draw(LoadJson_MenuData['Title']['x'], LoadJson_MenuData['Title']['y'])
 
-    def _DrawBack(self, x, y):
-        self.back.draw(x,y)
+    def _DrawBack(self):
+        self.back.draw(LoadJson_MenuData['Back']['x'], LoadJson_MenuData['Back']['y'])
 
-    def _DrawEasy(self, x, y):
-        self.easy.draw(x,y)
+    def _DrawEasy(self):
+        self.easy.draw(LoadJson_MenuData['Easy']['x'], LoadJson_MenuData['Easy']['y'])
 
-    def _DrawExit(self, x, y):
-        self.exit.draw(x,y)
+    def _DrawExit(self):
+        self.exit.draw(LoadJson_MenuData['Exit']['x'], LoadJson_MenuData['Exit']['y'])
 
-    def _DrawHard(self, x, y):
-        self.hard.draw(x,y)
+    def _DrawHard(self):
+        self.hard.draw(LoadJson_MenuData['Hard']['x'], LoadJson_MenuData['Hard']['y'])
 
-    def _DrawMedium(self, x, y):
-        self.medium.draw(x,y)
+    def _DrawMedium(self):
+        self.medium.draw(LoadJson_MenuData['Medium']['x'], LoadJson_MenuData['Medium']['y'])
 
-    def _DrawStart(self, x, y):
-        self.start.draw(x,y)
+    def _DrawStart(self):
+        self.start.draw(LoadJson_MenuData['Start']['x'], LoadJson_MenuData['Start']['y'])
 
-    def _DrawScore(self, x, y):
-        self.score.draw(x,y)
+    def _DrawScore(self):
+        self.score.draw(LoadJson_MenuData['Score']['x'], LoadJson_MenuData['Score']['y'])
 
-    def _DrawHelp(self, x, y):
-        self.help.draw(x,y)
+    def _DrawHelp(self):
+        self.help.draw(LoadJson_MenuData['Help']['x'], LoadJson_MenuData['Help']['y'])
 
-    def _DrawHelp01(self, x, y):
-        self.help01.draw(x,y)
+    def _DrawFootrestHelpNomal(self):
+        self.footresthelp_nomal.draw(LoadJson_MenuData['FootrestHelp_Nomal']['x'], LoadJson_MenuData['FootrestHelp_Nomal']['y'])
 
-    def _DrawHelp02(self, x, y):
-        self.help02.draw(x,y)
+    def _DrawFootrestHelpHide(self):
+        self.footresthelp_hide.draw(LoadJson_MenuData['FootrestHelp_Hide']['x'], LoadJson_MenuData['FootrestHelp_Hide']['y'])
 
-    def _DrawHelp03(self, x, y):
-        self.help03.draw(x,y)
+    def _DrawFootrestHelpMove(self):
+        self.footresthelp_move.draw(LoadJson_MenuData['FootrestHelp_Move']['x'], LoadJson_MenuData['FootrestHelp_Move']['y'])
 
-    def _DrawHelp04(self, x, y):
-        self.help04.draw(x,y)
+    def _DrawFootrestHelpBroke(self):
+        self.footresthelp_broke.draw(LoadJson_MenuData['FootrestHelp_Broke']['x'], LoadJson_MenuData['FootrestHelp_Broke']['y'])
 
-    def _DrawHelp05(self, x, y):
-        self.help05.draw(x,y)
+    def _DrawFootrestHelpJet(self):
+        self.footresthelp_jet.draw(LoadJson_MenuData['FootrestHelp_Jet']['x'], LoadJson_MenuData['FootrestHelp_Jet']['y'])
     pass
-
 
 class Rabbit:
     def __init__(self):

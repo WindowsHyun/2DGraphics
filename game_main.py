@@ -106,9 +106,9 @@ def draw():
     global GameMap_Col, GameMap_Row, Game_Map
     clear_canvas()
 
-    GameLoad_BackGround._mainDraw(Background_Y, Canvas_Width, Canvas_Height)
-    GameLoad_BackGround._subDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
-    GameLoad_Menu._DrawPlanet(415, 723)
+    GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
+    GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
+    GameLoad_Menu._DrawPlanet()
 
     if ( Rabbit_Jet == False ):
         if (Rabbit_Direction == "Left" ):

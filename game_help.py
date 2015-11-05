@@ -103,10 +103,10 @@ def draw():
     global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_X, Rabbit_Y, Rabbit_Frame
     clear_canvas()
 
-    GameLoad_BackGround._mainDraw(Background_Y, Canvas_Width, Canvas_Height)
-    GameLoad_BackGround._subDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
-    GameLoad_Menu._DrawPlanet(415, 723)
-    GameLoad_Menu._DrawBack(22, 22)
+    GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
+    GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
+    GameLoad_Menu._DrawPlanet()
+    GameLoad_Menu._DrawBack()
 
     if ( Rabbit_Jet == False ):
             if (Rabbit_Direction == "Left" ):
@@ -122,11 +122,11 @@ def draw():
         for j in range(GameMap_Row):
             Load_Footrest.Draw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
 
-    GameLoad_Menu._DrawHelp01(285, 720)
-    GameLoad_Menu._DrawHelp02(285, 605)
-    GameLoad_Menu._DrawHelp03(285, 483)
-    GameLoad_Menu._DrawHelp04(285, 360)
-    GameLoad_Menu._DrawHelp05(285, 245)
+    GameLoad_Menu._DrawFootrestHelpNomal()
+    GameLoad_Menu._DrawFootrestHelpHide()
+    GameLoad_Menu._DrawFootrestHelpMove()
+    GameLoad_Menu._DrawFootrestHelpBroke()
+    GameLoad_Menu._DrawFootrestHelpJet()
     #GameLoad_Menu.dDraw("Help01", 285, 125)
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)

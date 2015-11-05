@@ -72,15 +72,15 @@ def draw():
     global Canvas_Width, Canvas_Height
     clear_canvas()
 
-    GameLoad_BackGround._mainDraw(Background_Y, Canvas_Width, Canvas_Height)
-    GameLoad_BackGround._subDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
+    GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
+    GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
 
-    GameLoad_Menu._DrawPlanet(415, 723)
-    GameLoad_Menu._DrawTitle(240, 550)
-    GameLoad_Menu._DrawStart(240, 350)
-    GameLoad_Menu._DrawScore(240, 250)
-    GameLoad_Menu._DrawExit(240, 150)
-    GameLoad_Menu._DrawHelp(428, 20)
+    GameLoad_Menu._DrawPlanet()
+    GameLoad_Menu._DrawTitle()
+    GameLoad_Menu._DrawStart()
+    GameLoad_Menu._DrawScore()
+    GameLoad_Menu._DrawExit()
+    GameLoad_Menu._DrawHelp()
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
     #GameDraw_Font(200,10, "한글 Korea Print -____-", 255, 255, 255)

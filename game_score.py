@@ -62,10 +62,10 @@ def draw():
     global Canvas_Width, Canvas_Height
     clear_canvas()
 
-    GameLoad_BackGround._mainDraw(Background_Y, Canvas_Width, Canvas_Height)
-    GameLoad_BackGround._subDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
-    GameLoad_Menu._DrawPlanet(415, 723)
-    GameLoad_Menu._DrawBack(22, 22)
+    GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
+    GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
+    GameLoad_Menu._DrawPlanet()
+    GameLoad_Menu._DrawBack()
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
 
