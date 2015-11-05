@@ -26,7 +26,7 @@
   > 1. 게임 스코어를 어떻게 저장하고 기록할지 구상
   > 1. 게임 난이도에 대한 구상
   > 1. 추석 연휴 조금만 하자..!
-  > 1. [1주차 구상한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/TermProjectConcept/ConceptDATA.txt)
+  > 1. [1주차 구상한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/TermProjectConcept/ConceptDATA_1%EC%A3%BC%EC%B0%A8.txt)
 + 2주차 (09/30) 리소스 및 사운드 와 알고리즘 계산
 
   > 1. 메인 이미지 (토끼 관련한 좌우 점프 이미지) 수집
@@ -80,6 +80,7 @@
   > 1. class_data에 무조건 클래스를 다 넣을 필요가 있을까?
   > 1. 변수명, 클래스명 정리를 하자.
   > 1. 좀 더 직관적으로 알아볼 수 있게 코드를 수정하자.
+  > 1. Json 을 어디에 활용할지 생각을 해보자..!
 + 8주차 (11/11) 발판을 올라가면서 점수 체크 기능 작업
 + 9주차 (11/18) 프로젝트 3차 발표를 위한 정리.
 + 10주차 (11/25) 전체적인 완성도 + 디버깅 + 오류검사
