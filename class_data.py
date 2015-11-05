@@ -16,6 +16,12 @@ import random
 #print("- Module random -")
 
 GAME_CurrentMenu = "Game_Main"
+###########################################################################################################################################################################
+# 발판 정보들
+Nomal_Footrest, Hide_Footrest, Pink_Footrest, Red_Footrest, Move_Footrest, Broke_Footrest, Broke2_Footrest = 0, 1, 2, 3, 4, 5, 6
+Broke3_Footrest, Broke4_Footrest, Black_Footrest, Black2_Footrest, Black3_Footrest, Jet_Footrest, Delete_Footrest = 7, 8, 9, 10, 11, 12, -1
+Delete2_Footrest = 13
+###########################################################################################################################################################################
 
 class BackGround:
     def __init__(self):
@@ -170,19 +176,21 @@ class Footrest:
 
 def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump):
     global GameLine_SomeMake, GameMap_ColLocation, gRandTwo, GameMap_Footrest
+
     if ( GameMap_Row - 1 <= GameCreated_Line):
         pass
     else:
         GameLine_SomeMake = random.randint(1, 5)
         GameMap_ColLocation = random.randint(3, 19)
         GameMap_Footrest = random.randint(1, 12)
-        if ( GameMap_Footrest == 2 or GameMap_Footrest == 3  or GameMap_Footrest == 6 or GameMap_Footrest == 7 or GameMap_Footrest == 8 or GameMap_Footrest == 9 or GameMap_Footrest == 10 or GameMap_Footrest == 11 ):
-            GameMap_Footrest = 0
-        if ( GameMap_Footrest == 12 and random.randint(1, 50) == 2):
-            GameMap_Footrest = 12
+        if ( GameMap_Footrest == Pink_Footrest or GameMap_Footrest == Red_Footrest  or GameMap_Footrest == Broke2_Footrest or GameMap_Footrest == Broke3_Footrest
+             or GameMap_Footrest == Broke4_Footrest or GameMap_Footrest == Black_Footrest or GameMap_Footrest == Black2_Footrest or GameMap_Footrest == Black3_Footrest ):
+            GameMap_Footrest = Nomal_Footrest
+        if ( GameMap_Footrest == Jet_Footrest and random.randint(1, 50) == 2):
+            GameMap_Footrest = Jet_Footrest
         else:
-            if ( GameMap_Footrest == 12 ):
-                GameMap_Footrest = 0
+            if ( GameMap_Footrest == Jet_Footrest ):
+                GameMap_Footrest = Nomal_Footrest
         #print("라인 : ", GameCreated_Line, " 몇개 만들지 : ", GameLine_SomeMake, " 어디에 만들지 : ", GameMap_ColLocation)
         if ( Game_MapCheck[GameCreated_Line] == False):
             if (GameLine_SomeMake == 2):
@@ -214,13 +222,14 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
 def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet ):
     for i in range(GameMap_Col):   # 가로
         for j in range(GameMap_Row):   # 세로
-                if(Game_Map[j][i] != -1 ):
+                if(Game_Map[j][i] != Delete_Footrest ):
                     if( Rabbit_X >= ((i - 3)*20) + 25 and Rabbit_X <= ((i - 2)*20) + 110):
                         if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == "Down"):
                             #print("토끼 x 좌표 : ",Rabbit_X, "범위 : ", ((i - 3)*20) + 25, "~", ((i - 2)*20) + 110)
                             #print("토끼 y 좌표 : ",Rabbit_Y, "범위 : ", ((j -2)*30) + 46 + 30, "~", ((j-1)*30) + 46 + 30)
                             Game_Map = Footrest_Fade(i, j, Game_Map)
-                            if(Game_Map[j][i] == 0 or Game_Map[j][i] == 2 or Game_Map[j][i] == 4 or Game_Map[j][i] == 1 or Game_Map[j][i] == 12 ):
+                            if(Game_Map[j][i] == Nomal_Footrest or Game_Map[j][i] == Pink_Footrest or Game_Map[j][i] == Move_Footrest
+                               or Game_Map[j][i] == Hide_Footrest or Game_Map[j][i] == Jet_Footrest ):
                                 Rabbit_UpDownDirection = "Up"
                                 RabbitJump_LimitCount = 0
                             Game_Map = Footrest_Hide(i, j, Game_Map)
@@ -230,38 +239,38 @@ def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit
     pass
 
 def RabbitJet_Activate(i, j, Game_Map, Rabbit_Jet):
-    if ( Game_Map[j][i] == 12 ):
+    if ( Game_Map[j][i] == Jet_Footrest ):
         Rabbit_Jet = True
     return Rabbit_Jet
     pass
 
 def Footrest_Hide(i, j, Game_Map):
-    if ( Game_Map[j][i] == 1 ):
-        Game_Map[j][i] = -1
+    if ( Game_Map[j][i] == Hide_Footrest ):
+        Game_Map[j][i] = Delete_Footrest
     return Game_Map
     pass
 
 def Footrest_Fade(i, j, Game_Map):
-    if ( Game_Map[j][i] == 5 ):
-        Game_Map[j][i] = 6
+    if ( Game_Map[j][i] == Broke_Footrest ):
+        Game_Map[j][i] = Broke2_Footrest
     return Game_Map
     pass
 
 def Footrest_Move(GameMap_Col, GameMap_Row, Game_Map):
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):
-            if ( Game_Map[j][i] == 4 ):
+            if ( Game_Map[j][i] == Move_Footrest ):
                 if( i >= 3):
                     Game_Map[j][i-1] = Game_Map[j][i]
-                    Game_Map[j][i] = -1
+                    Game_Map[j][i] = Delete_Footrest
                 else:
-                    Game_Map[j][i] = 13
-            if ( Game_Map[j][i] == 13 ):
+                    Game_Map[j][i] = Delete2_Footrest
+            if ( Game_Map[j][i] == Delete2_Footrest ):
                 if( i <= 19):
                     Game_Map[j][i+1] = Game_Map[j][i]
-                    Game_Map[j][i] = -1
+                    Game_Map[j][i] = Delete_Footrest
                 else:
-                    Game_Map[j][i] = 4
+                    Game_Map[j][i] = Move_Footrest
     return GameMap_Col, GameMap_Row, Game_Map
     pass
 
@@ -269,7 +278,7 @@ def GameMap_Reset(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck ):
     global GameCreated_Line
     for i in range(GameMap_Col):   # 가로
         for j in range(GameMap_Row):   # 세로
-            Game_Map[j][i] = -1
+            Game_Map[j][i] = Delete_Footrest
             Game_MapCheck[j] = False
             GameCreated_Line = 2
     return Game_Map, Game_MapCheck, GameCreated_Line

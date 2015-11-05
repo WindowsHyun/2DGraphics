@@ -76,22 +76,21 @@ def enter():
     Load_RabbitJet = RabbitJet()
     Load_Footrest = Footrest()
 
-    Game_Map[24][4] = 0
-    Game_Map[20][4] = 1
-    Game_Map[16][4] = 4
-    Game_Map[12][4] = 5
-    Game_Map[8][4] = 12
-    Game_Map[4][4] = 9
+    Game_Map[24][4] = Nomal_Footrest
+    Game_Map[20][4] = Hide_Footrest
+    Game_Map[16][4] = Move_Footrest
+    Game_Map[12][4] = Broke_Footrest
+    Game_Map[8][4] = Jet_Footrest
+    Game_Map[4][4] = Black_Footrest
 
     #토끼, 발판 이미지 불러오기
     GameUpdate_Menu(GAME_Scenes)
     pass
 
-
 def update():
     global Background_Y, BackgroundSub_Y, Load_Rabbit, Load_RabbitJet
     global Rabbit_X, Rabbit_Direction, Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, GameMap_Col, GameMap_Row, Rabbit_Frame, Rabbit_Y, RabbitMaximum_Jump
-    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)                                                    # 이미지 내려주는 함수
+    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)    # 이미지 내려주는 함수
     Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
@@ -116,9 +115,8 @@ def draw():
                 Load_Rabbit._DrawRight(Rabbit_Frame, Rabbit_X, Rabbit_Y)
     else:
         Load_RabbitJet.Draw(2, Rabbit_X, Rabbit_Y)
-        #GameRabbit_Jet()
 
-    Game_Map[4][19] = 0
+    Game_Map[4][19] = Nomal_Footrest
 
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):

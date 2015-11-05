@@ -77,10 +77,10 @@ def enter():
     Load_Rabbit = Rabbit()
     Load_RabbitJet = RabbitJet()
     Load_Footrest = Footrest()
-    Game_Map[1][3] = 0
-    Game_Map[1][8] = 0
-    Game_Map[1][13] = 0
-    Game_Map[1][18] = 0
+    Game_Map[1][3] = Nomal_Footrest
+    Game_Map[1][8] = Nomal_Footrest
+    Game_Map[1][13] = Nomal_Footrest
+    Game_Map[1][18] = Nomal_Footrest
     pass
 
 
@@ -145,12 +145,12 @@ def GameMap_Down():
 def GameFootrest_Hide():
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):
-            if ( Game_Map[j][i] == 8 ):
-                Game_Map[j][i] = -1
-            if ( Game_Map[j][i] == 7 ):
-                Game_Map[j][i] = 8
-            if ( Game_Map[j][i] == 6 ):
-                Game_Map[j][i] = 7
+            if ( Game_Map[j][i] == Broke4_Footrest ):
+                Game_Map[j][i] = Delete_Footrest
+            if ( Game_Map[j][i] == Broke3_Footrest ):
+                Game_Map[j][i] = Broke4_Footrest
+            if ( Game_Map[j][i] == Broke2_Footrest ):
+                Game_Map[j][i] = Broke3_Footrest
     pass
 
 def GameRabbit_Jet():
