@@ -175,7 +175,7 @@ class Footrest:
     pass
 
 def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump):
-    global GameLine_SomeMake, GameMap_ColLocation, gRandTwo, GameMap_Footrest
+    global GameLine_SomeMake, GameMap_ColLocation, GameMap_Footrest
 
     if ( GameMap_Row - 1 <= GameCreated_Line):
         pass
