@@ -71,6 +71,7 @@
   > 1. 발판 알고리즘을 game_ing에 작성할까 class_data에 작성을 할까?
   > 1. 발판의 종류를 몇개 까지 추가를 할까?
   > 1. 발판 말고도 다른 함정들은 어떻게 추가를 해야할까?
+  > 1. [6주차 구상한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/TermProjectConcept/ConceptDATA_6%EC%A3%BC%EC%B0%A8.txt)
 + 7주차 (11/04) 발판과 캐릭터의 충돌 체크 작업
 
   > 1. 캐릭터의 X 좌표와 발판의 X 좌표를 비교를 하자.
@@ -81,6 +82,7 @@
   > 1. 변수명, 클래스명 정리를 하자.
   > 1. 좀 더 직관적으로 알아볼 수 있게 코드를 수정하자.
   > 1. Json 을 어디에 활용할지 생각을 해보자..!
+  > 1. [7주차 구상한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/TermProjectConcept/ConceptDATA_7%EC%A3%BC%EC%B0%A8.txt)
 + 8주차 (11/11) 발판을 올라가면서 점수 체크 기능 작업
 + 9주차 (11/18) 프로젝트 3차 발표를 위한 정리.
 + 10주차 (11/25) 전체적인 완성도 + 디버깅 + 오류검사
