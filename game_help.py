@@ -116,7 +116,7 @@ def draw():
                 Load_Rabbit._DrawRight(Rabbit_Frame, Rabbit_X, Rabbit_Y)
     else:
         Load_RabbitJet.Draw(2, Rabbit_X, Rabbit_Y)
-        #dRabbitJet()
+        #GameRabbit_Jet()
 
     Game_Map[4][19] = 0
 

@@ -93,8 +93,8 @@ def update():
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
     GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump = Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump)
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet)
-    dMapDown()
-    dHideFootRest()
+    GameMap_Down()
+    GameFootrest_Hide()
 
 
     delay(0.015)
@@ -117,7 +117,7 @@ def draw():
                 Load_Rabbit._DrawRight(Rabbit_Frame, Rabbit_X, Rabbit_Y)
     else:
         Load_RabbitJet.Draw(2,Rabbit_X, Rabbit_Y)
-        dRabbitJet()
+        GameRabbit_Jet()
 
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):
@@ -129,7 +129,7 @@ def draw():
     delay(0.015)
     pass
 
-def dMapDown():
+def GameMap_Down():
     global Background_Y, BackgroundSub_Y, Rabbit_Y, Canvas_Height, Rabbit_UpDownDirection
     global Game_Map, Game_MapCheck, GameCreated_Line
     if( Rabbit_Y >= Canvas_Height-300):
@@ -142,7 +142,7 @@ def dMapDown():
         pass
     pass
 
-def dHideFootRest():
+def GameFootrest_Hide():
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):
             if ( Game_Map[j][i] == 8 ):
@@ -153,7 +153,7 @@ def dHideFootRest():
                 Game_Map[j][i] = 7
     pass
 
-def dRabbitJet():
+def GameRabbit_Jet():
     global Rabbit_Jet, RabbitJet_Status, RabbitJet_Frame, Rabbit_Y, Rabbit_UpDownDirection, Rabbit_Frame, RabbitJump_LimitCount
     if ( Rabbit_Jet == True and RabbitJet_Status == False ):
         RabbitJet_Status = True
