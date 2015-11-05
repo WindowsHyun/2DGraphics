@@ -29,7 +29,11 @@ Delete2_Footrest = 13
 LoadJson_MenuData = open('JsonData\\game_menulocation.json', 'r')
 LoadJson_MenuData = json.load(LoadJson_MenuData)
 ###########################################################################################################################################################################
-
+if (os.path.isfile("C:\\2DGraphics\\2DGraphics\\gamescore_data.score") == False):
+    print("파일이 없다.")
+else:
+    print("파일이 있다.")
+###########################################################################################################################################################################
 class BackGround:
     def __init__(self):
         self.image = load_image('BackgroundImage\\SBT.png')
