@@ -20,6 +20,12 @@ GameScore_Data = None
 GameFont_Title = None
 GameFont_Contents = None
 
+Rank_Data = []
+Score_Data = []
+Mode_Data = []
+Time_Data = []
+Registered_Number = 0
+
 print("gmae_score.py : Create Local -> Global function")
 
 def handle_events():
@@ -47,7 +53,6 @@ def handle_events():
 def enter():
     global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, GameScore_Data
     global GameFont_Title, GameFont_Content
-    #Game_MsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
     GAME_Scenes = "Game_Score"
     print("Open : game_score.py Code")
     GameLoad_BackGround = BackGround()
@@ -78,28 +83,17 @@ def draw():
     GameLoad_Menu._DrawPlanet()
     GameLoad_Menu._DrawBack()
 
-    GameFont_Title.draw(45, 758, "Game Rankings Score", (255, 255, 255))
+    GameFont_Title.draw(LoadJson_ScoreData['Title']['x'], LoadJson_ScoreData['Title']['y'], "Game Rankings Score", (255, 255, 255))
+    GameFont_Content.draw(LoadJson_ScoreData['Content']['x'], LoadJson_ScoreData['Content']['y'], "Stand        Score       Mode        Time", (0, 0, 0))
 
-    GameFont_Content.draw(10,650, "Stand        Score       Mode        Time", (0, 0, 0))
-
-    for i in range(0, 10):
-        GameFont_Content.draw(25,600-(i*60), str(i+1) + "st" , (255, 255, 255))
-
-    for i in range(0, 10):
-        GameFont_Content.draw(125, 600-(i*60), "009999" , (255, 255, 255))
-
-    for i in range(0, 10):
-        if(len(str(i)) == 10):
-            GameFont_Content.draw(245, 600-(i*60), "Medium" , (255, 255, 255))
+    for i in range(0, Registered_Number):
+        GameFont_Content.draw(LoadJson_ScoreData['Rank']['x'], LoadJson_ScoreData['Rank']['y']-(i*60), Rank_Data[i] , (255, 255, 255))
+        GameFont_Content.draw(LoadJson_ScoreData['Score']['x'], LoadJson_ScoreData['Score']['y']-(i*60), Score_Data[i] , (255, 255, 255))
+        GameFont_Content.draw(LoadJson_ScoreData['Time']['x'], LoadJson_ScoreData['Time']['y']-(i*60), Time_Data[i] , (255, 255, 255))
+        if(len(Mode_Data[i]) == 6):
+            GameFont_Content.draw(LoadJson_ScoreData['Mode_6']['x'], LoadJson_ScoreData['Mode_6']['y']-(i*60), Mode_Data[i] , (255, 255, 255))
         else:
-            GameFont_Content.draw(255, 600-(i*60), "Hard" , (255, 255, 255))
-
-    for i in range(0, 10):
-        GameFont_Content.draw(357, 600-(i*60), "00:55:55" , (255, 255, 255))
-
-    #GameDraw_Font(10,600, "1st          999999      Hard      00:55:55", 255, 255, 255, 30)
-
-    #GameDraw_Font(10,550, "2st         000888      Medium  00:25:55", 255, 255, 255, 30)
+            GameFont_Content.draw(LoadJson_ScoreData['Mode_4']['x'], LoadJson_ScoreData['Mode_4']['y']-(i*60), Mode_Data[i] , (255, 255, 255))
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
 
@@ -115,11 +109,13 @@ def exit():
     pass
 
 def GameScore_Load():
+    global Registered_Number
     GameScoreData_Location = "C:\\2DGraphics\\2DGraphics\\gamescore_data.score"
     if (os.path.isfile(GameScoreData_Location) == False):
         # 파일이 없을경우 임시로 파일을 만든다.
         f = open(GameScoreData_Location, 'wb')
         Default_Data = Base64_Encode("""
+<list>/1st/2nd/3rd/4th/5th/6th/7th/8th/9th/10th/</list>
 <score>/009999/008888/007777/</score>
 <select>/Hard/Medium/Easy/</select>
 <time>/00:55:55/00:25:55/00:15:00/</time>
@@ -131,15 +127,39 @@ def GameScore_Load():
         f = open(GameScoreData_Location, 'r')
         GameScore_Data = f.read()
         GameScore_Data = Base64_Decode(GameScore_Data)
-
+        ###############################################################################################################
+        GameScore_Rank = re.search('\<list\>(.*?)\<\/list\>', GameScore_Data)
+        GameScore_Rank = str(GameScore_Rank.group(1))
+        for i in range(0, 10):
+            Temp_Data = re.search('\/(.*?)\/', GameScore_Rank)
+            GameScore_Rank = GameScore_Rank.replace("/" + str(Temp_Data.group(1)),  "")
+            Rank_Data.insert(i, Temp_Data.group(1))
+        ###############################################################################################################
         GameScore_Score = re.search('\<score\>(.*?)\<\/score\>', GameScore_Data)
-        print(GameScore_Score.group(1))
-        GameScore_Select = re.search('\<select\>(.*?)\<\/select\>', GameScore_Data)
-        print(GameScore_Select.group(1))
+        GameScore_Score = str(GameScore_Score.group(1))
+        for i in range(0, 10):
+            if ( GameScore_Score != "/"):
+                Temp_Data = re.search('\/(.*?)\/', GameScore_Score)
+                GameScore_Score = GameScore_Score.replace("/" + str(Temp_Data.group(1)),  "")
+                Score_Data.insert(i, Temp_Data.group(1))
+                Registered_Number += 1
+        ###############################################################################################################
+        GameScore_Mode = re.search('\<select\>(.*?)\<\/select\>', GameScore_Data)
+        GameScore_Mode = str(GameScore_Mode.group(1))
+        for i in range(0, 10):
+            if ( GameScore_Mode != "/"):
+                Temp_Data = re.search('\/(.*?)\/', GameScore_Mode)
+                GameScore_Mode = GameScore_Mode.replace("/" + str(Temp_Data.group(1)),  "")
+                Mode_Data.insert(i, Temp_Data.group(1))
+                print(Temp_Data.group(1))
+        ###############################################################################################################
         GameScore_Time = re.search('\<time\>(.*?)\<\/time\>', GameScore_Data)
-        print(GameScore_Time.group(1))
-
-        #print(GameScore_Data)
-        print("불러오기")
+        GameScore_Time = str(GameScore_Time.group(1))
+        for i in range(0, 10):
+            if ( GameScore_Time != "/"):
+                Temp_Data = re.search('\/(.*?)\/', GameScore_Time)
+                GameScore_Time = GameScore_Time.replace("/" + str(Temp_Data.group(1)),  "")
+                Time_Data.insert(i, Temp_Data.group(1))
+        ###############################################################################################################
         f.close()
     pass

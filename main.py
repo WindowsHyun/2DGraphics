@@ -35,7 +35,7 @@ def handle_events():
             GAME_Scenes = GameMenu_Click(GAME_Scenes, x, y)
             ##################################################
             # 종료할경우 Game_Running를 죽인다.
-            if GAME_Scenes == False:
+            if GAME_Scenes == "False":
                 game_framework.quit()
             if GAME_Scenes == "GameSelect":
                 GameUpdate_Menu("Game_Select")

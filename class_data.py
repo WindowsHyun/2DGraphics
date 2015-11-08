@@ -38,7 +38,9 @@ Delete2_Footrest = 13
 LoadJson_MenuData = open('JsonData\\game_menulocation.json', 'r')
 LoadJson_MenuData = json.load(LoadJson_MenuData)
 ###########################################################################################################################################################################
-
+# json 파일에서 스코어 위치 불러오기
+LoadJson_ScoreData = open('JsonData\\game_scorelocation.json', 'r')
+LoadJson_ScoreData = json.load(LoadJson_ScoreData)
 ###########################################################################################################################################################################
 class BackGround:
     def __init__(self):
@@ -319,7 +321,7 @@ def GameMenu_Click(GAME_Menu, x, y):
             GAME_Menu = "Game_Score"
             print("Score")
     if x >= 131 and x <= 349 and y >= 113 and y <= 187 and GAME_Menu == "Game_Main":
-            GAME_Menu = False
+            GAME_Menu = "False"
             print("Exits")
     if x >= 380 and x <= 480 and y >= 0 and y <= 36 and GAME_Menu == "Game_Main":
             GAME_Menu = "Game_Help"
