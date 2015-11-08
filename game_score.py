@@ -6,6 +6,8 @@ import game_framework
 #print("- Module game_framework -")
 import main
 #print("- Module main -")
+import re
+#print("- Module re -")
 
 Canvas_Width = 480
 Canvas_Height = 800
@@ -15,6 +17,8 @@ Rabbit_Frame = 0
 Game_Running = True
 Rabbit_Direction = True
 GameScore_Data = None
+GameFont_Title = None
+GameFont_Contents = None
 
 print("gmae_score.py : Create Local -> Global function")
 
@@ -41,7 +45,8 @@ def handle_events():
     pass
 
 def enter():
-    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes
+    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, GameScore_Data
+    global GameFont_Title, GameFont_Content
     #Game_MsgBox('CrageneRabbit', '스코어 기능을 아직 구현하지 못했습니다..!', 0)
     GAME_Scenes = "Game_Score"
     print("Open : game_score.py Code")
@@ -50,6 +55,11 @@ def enter():
     GameLoad_Menu = MenuPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
     GameUpdate_Menu(GAME_Scenes)
+    # gamescore_data.score 파일 불러와서 기록하기.
+    GameScore_Load()
+    # 폰트 미리 불러오기.
+    GameFont_Title = Font("훈솜사탕R.ttf",50)
+    GameFont_Content = Font("훈솜사탕R.ttf",30)
     pass
 
 
@@ -68,13 +78,28 @@ def draw():
     GameLoad_Menu._DrawPlanet()
     GameLoad_Menu._DrawBack()
 
-    GameDraw_Font(45,758, "Game Rankings Score", 255, 255, 255, 50)
+    GameFont_Title.draw(45, 758, "Game Rankings Score", (255, 255, 255))
 
-    GameDraw_Font(10,650, "Stand        Score       Mode        Time", 0, 0, 0, 30)
+    GameFont_Content.draw(10,650, "Stand        Score       Mode        Time", (0, 0, 0))
 
-    GameDraw_Font(10,600, "1st          999999      Hard      00:55:55", 255, 255, 255, 30)
+    for i in range(0, 10):
+        GameFont_Content.draw(25,600-(i*60), str(i+1) + "st" , (255, 255, 255))
 
-    GameDraw_Font(10,550, "2st         000888      Medium  00:25:55", 255, 255, 255, 30)
+    for i in range(0, 10):
+        GameFont_Content.draw(125, 600-(i*60), "009999" , (255, 255, 255))
+
+    for i in range(0, 10):
+        if(len(str(i)) == 10):
+            GameFont_Content.draw(245, 600-(i*60), "Medium" , (255, 255, 255))
+        else:
+            GameFont_Content.draw(255, 600-(i*60), "Hard" , (255, 255, 255))
+
+    for i in range(0, 10):
+        GameFont_Content.draw(357, 600-(i*60), "00:55:55" , (255, 255, 255))
+
+    #GameDraw_Font(10,600, "1st          999999      Hard      00:55:55", 255, 255, 255, 30)
+
+    #GameDraw_Font(10,550, "2st         000888      Medium  00:25:55", 255, 255, 255, 30)
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
 
@@ -94,7 +119,11 @@ def GameScore_Load():
     if (os.path.isfile(GameScoreData_Location) == False):
         # 파일이 없을경우 임시로 파일을 만든다.
         f = open(GameScoreData_Location, 'wb')
-        Default_Data = Base64_Encode("99999/88888/77777/66666/55555/44444/33333/22222/11111/00000")
+        Default_Data = Base64_Encode("""
+<score>/009999/008888/007777/</score>
+<select>/Hard/Medium/Easy/</select>
+<time>/00:55:55/00:25:55/00:15:00/</time>
+        """)
         f.write(Default_Data)
         f.close()
     else:
@@ -102,6 +131,15 @@ def GameScore_Load():
         f = open(GameScoreData_Location, 'r')
         GameScore_Data = f.read()
         GameScore_Data = Base64_Decode(GameScore_Data)
-        print(GameScore_Data)
+
+        GameScore_Score = re.search('\<score\>(.*?)\<\/score\>', GameScore_Data)
+        print(GameScore_Score.group(1))
+        GameScore_Select = re.search('\<select\>(.*?)\<\/select\>', GameScore_Data)
+        print(GameScore_Select.group(1))
+        GameScore_Time = re.search('\<time\>(.*?)\<\/time\>', GameScore_Data)
+        print(GameScore_Time.group(1))
+
+        #print(GameScore_Data)
+        print("불러오기")
         f.close()
     pass
