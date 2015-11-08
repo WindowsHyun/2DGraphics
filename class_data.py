@@ -19,10 +19,15 @@ import json
 #print("- Module json -")
 
 import base64
-#print("- Module json -")
+#print("- Module base64 -")
+def Base64_Encode(s):
+    return base64.b64encode(s.encode('utf-8'))
 
+def Base64_Decode(b):
+    return base64.b64decode(b).decode('utf-8')
 
 GAME_CurrentMenu = "Game_Main"
+font = None
 ###########################################################################################################################################################################
 # 발판 정보들
 Nomal_Footrest, Hide_Footrest, Pink_Footrest, Red_Footrest, Move_Footrest, Broke_Footrest, Broke2_Footrest = 0, 1, 2, 3, 4, 5, 6
@@ -33,10 +38,7 @@ Delete2_Footrest = 13
 LoadJson_MenuData = open('JsonData\\game_menulocation.json', 'r')
 LoadJson_MenuData = json.load(LoadJson_MenuData)
 ###########################################################################################################################################################################
-if (os.path.isfile("C:\\2DGraphics\\2DGraphics\\gamescore_data.score") == False):
-    print("파일이 없다.")
-else:
-    print("파일이 있다.")
+
 ###########################################################################################################################################################################
 class BackGround:
     def __init__(self):
@@ -356,8 +358,10 @@ def GameMap_Renewal(Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreat
 def Game_MsgBox(title, text, style):
     ctypes.windll.user32.MessageBoxA(0, text.encode('euc-kr'), title.encode('euc-kr'), style)
 
-def GameDraw_Font(x, y, text, r, g, b):
-    font = Font("훈솜사탕R.ttf")
+def GameDraw_Font(x, y, text, r, g, b, size = 20):
+    global font
+    if (font == None):
+        font = Font("훈솜사탕R.ttf",size)
     if ( text != None):
         font.draw(x, y, text, (r,g,b))
 
