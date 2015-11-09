@@ -44,6 +44,15 @@ LoadJson_MenuData = json.load(LoadJson_MenuData)
 LoadJson_ScoreData = open('ResourceData\\JsonData\\game_scorelocation.json', 'r')
 LoadJson_ScoreData = json.load(LoadJson_ScoreData)
 ###########################################################################################################################################################################
+
+class GameScore_Board:
+    def __init__(self):
+        self.image = load_image('ResourceData\\GeneralImage\\ScoreBoard.png')
+
+    def _Draw(self, y, Canvas_Width):
+        self.image.draw_to_origin(0, y, Canvas_Width, 35)
+    pass
+
 class BackGround:
     def __init__(self):
         self.image = load_image('ResourceData\\BackgroundImage\\SBT.png')
@@ -239,29 +248,34 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
     return GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump
     pass
 
-def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet ):
+def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, Game_Score ):
     for i in range(GameMap_Col):   # 가로
         for j in range(GameMap_Row):   # 세로
                 if(Game_Map[j][i] != Delete_Footrest ):
                     if( Rabbit_X >= ((i - 3)*20) + 25 and Rabbit_X <= ((i - 2)*20) + 110):
                         if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == "Down"):
-                            #print("토끼 x 좌표 : ",Rabbit_X, "범위 : ", ((i - 3)*20) + 25, "~", ((i - 2)*20) + 110)
-                            #print("토끼 y 좌표 : ",Rabbit_Y, "범위 : ", ((j -2)*30) + 46 + 30, "~", ((j-1)*30) + 46 + 30)
-                            Game_Map = Footrest_Fade(i, j, Game_Map)
+                            Game_Map, Game_Score = Footrest_Fade(i, j, Game_Map, Game_Score)
                             if(Game_Map[j][i] == Nomal_Footrest or Game_Map[j][i] == Pink_Footrest or Game_Map[j][i] == Move_Footrest
                                or Game_Map[j][i] == Hide_Footrest or Game_Map[j][i] == Jet_Footrest ):
                                 Rabbit_UpDownDirection = "Up"
                                 RabbitJump_LimitCount = 0
+                                if ( GAME_CurrentMenu == "Game_Easy"):
+                                    Game_Score += 10
+                                elif ( GAME_CurrentMenu == "Game_Middle"):
+                                    Game_Score += 20
+                                elif ( GAME_CurrentMenu == "Game_Hard"):
+                                    Game_Score += 30
                             Game_Map = Footrest_Hide(i, j, Game_Map)
-                            Rabbit_Jet = RabbitJet_Activate(i, j, Game_Map, Rabbit_Jet)
+                            Rabbit_Jet, Game_Score = RabbitJet_Activate(i, j, Game_Map, Rabbit_Jet, Game_Score)
                             GameMap_Col, GameMap_Row, Game_Map = Footrest_Move(GameMap_Col, GameMap_Row, Game_Map)
-    return Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map
+    return Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, Game_Score
     pass
 
-def RabbitJet_Activate(i, j, Game_Map, Rabbit_Jet):
+def RabbitJet_Activate(i, j, Game_Map, Rabbit_Jet, Game_Score):
     if ( Game_Map[j][i] == Jet_Footrest ):
         Rabbit_Jet = True
-    return Rabbit_Jet
+        Game_Score += 200
+    return Rabbit_Jet, Game_Score
     pass
 
 def Footrest_Hide(i, j, Game_Map):
@@ -270,10 +284,11 @@ def Footrest_Hide(i, j, Game_Map):
     return Game_Map
     pass
 
-def Footrest_Fade(i, j, Game_Map):
+def Footrest_Fade(i, j, Game_Map, Game_Score):
     if ( Game_Map[j][i] == Broke_Footrest ):
         Game_Map[j][i] = Broke2_Footrest
-    return Game_Map
+        Game_Score -= random.randint(0, 10)
+    return Game_Map, Game_Score
     pass
 
 def Footrest_Move(GameMap_Col, GameMap_Row, Game_Map):

@@ -72,14 +72,16 @@ def handle_events():
     pass
 
 def enter():
-    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, Load_Footrest, Load_RabbitJet
-    global GameStart_Time, GameEnd_Time, DrawTime_Data
+    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, Load_Footrest, Load_RabbitJet, Score_Board
+    global GameStart_Time, GameEnd_Time, DrawTime_Data, Game_Score
     GAME_Scenes = GameShow_Menu()
     print("Open : game_main.py Code")
     GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
     GameLoad_Menu = MenuPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
+    Score_Board = GameScore_Board()
+    #
     Load_Rabbit = Rabbit()
     Load_RabbitJet = RabbitJet()
     Load_Footrest = Footrest()
@@ -97,17 +99,17 @@ def enter():
 
 def update():
     global Load_Rabbit, Load_RabbitJet, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Rabbit_X, Rabbit_Direction, Canvas_Width, RabbitMaximum_Jump, Rabbit_Jet
-    global Game_MapCheck, Game_Map, GameMap_Row, GameCreated_Line, GAME_Scenes
+    global Game_MapCheck, Game_Map, GameMap_Row, GameCreated_Line, GAME_Scenes, Game_Score
     Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X = Load_Rabbit.Rabbit_LeftRightDirection(Rabbit_Direction, Rabbit_X)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
     GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump = Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump)
-    Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet)
+    Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, Game_Score = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, int(Game_Score))
     GameMap_Down()
     GameFootrest_Hide()
     GamesIn_Progress()
-
+    GamesDraw_Score()
     delay(0.015)
     pass
 
@@ -135,11 +137,10 @@ def draw():
         for j in range(GameMap_Row):
             Load_Footrest.Draw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
 
+    Score_Board._Draw(0, Canvas_Width)
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
-
     GameDraw_Font(355,10, DrawTime_Data , 255, 255, 255)
-
-    GameDraw_Font(250,10, "Score : " +str(Game_Score) , 255, 255, 255)
+    GameDraw_Font(175,10, "Score : " + str(Game_Score) , 255, 255, 255)
 
     update_canvas()
     delay(0.015)
@@ -147,11 +148,17 @@ def draw():
 
 def GameMap_Down():
     global Background_Y, BackgroundSub_Y, Rabbit_Y, Canvas_Height, Rabbit_UpDownDirection
-    global Game_Map, Game_MapCheck, GameCreated_Line
+    global Game_Map, Game_MapCheck, GameCreated_Line, Game_Score
     if( Rabbit_Y >= Canvas_Height-300):
         for i in range(10):
             Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)
         Rabbit_UpDownDirection = "Jet"
+        if ( GAME_Scenes == "Game_Easy"):
+            Game_Score += 1
+        elif ( GAME_Scenes == "Game_Middle"):
+            Game_Score += 2
+        elif ( GAME_Scenes == "Game_Hard"):
+            Game_Score += 3
         Game_Map, Game_MapCheck, GameCreated_Line = GameMap_Renewal(Game_Map, Game_MapCheck, GameMap_Col, GameMap_Row, GameCreated_Line)
     if RabbitJump_LimitCount >= RabbitMaximum_Jump:
         Rabbit_UpDownDirection = "Down"
@@ -212,6 +219,24 @@ def GamesIn_Progress():
         pass
     DrawTime_Data = DrawTime_Data.replace(".", ":")
     DrawTime_Data  = "Time : " + str(DrawTime_Data)
+    pass
+
+def GamesDraw_Score():
+    global Game_Score
+    if( len(str(Game_Score)) == 1 ):
+        Game_Score = "00000" +str(Game_Score)
+    elif( len(str(Game_Score)) == 2 ):
+        Game_Score = "0000" +str(Game_Score)
+    elif( len(str(Game_Score)) == 3 ):
+        Game_Score = "000" +str(Game_Score)
+    elif( len(str(Game_Score)) == 4 ):
+        Game_Score = "000" +str(Game_Score)
+    elif( len(str(Game_Score)) == 5 ):
+        Game_Score = "00" +str(Game_Score)
+    elif( len(str(Game_Score)) == 6 ):
+        Game_Score = "0" +str(Game_Score)
+    elif( len(str(Game_Score)) == 7 ):
+        Game_Score = str(Game_Score)
     pass
 
 def exit():
