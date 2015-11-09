@@ -26,6 +26,9 @@ def Base64_Encode(s):
 def Base64_Decode(b):
     return base64.b64decode(b).decode('utf-8')
 
+import time
+#print("- Module time -")
+
 GAME_CurrentMenu = "Game_Main"
 font = None
 ###########################################################################################################################################################################
@@ -139,7 +142,7 @@ class Rabbit:
             RabbitJump_LimitCount += 1
         elif Rabbit_UpDownDirection == "Down":
             Rabbit_Frame = 1
-            Rabbit_Y -= 12
+            Rabbit_Y -= 12 + ( RabbitJump_LimitCount % 5)
             RabbitJump_LimitCount -= 1
         elif Rabbit_UpDownDirection == "Jet":
             Rabbit_Frame = 2
