@@ -64,8 +64,8 @@ def enter():
     Score_Init()
     GameScore_Load()
     # 폰트 미리 불러오기.
-    GameFont_Title = Font("훈솜사탕R.ttf",50)
-    GameFont_Content = Font("훈솜사탕R.ttf",30)
+    GameFont_Title = Font("ResourceData\\훈솜사탕R.ttf",50)
+    GameFont_Content = Font("ResourceData\\훈솜사탕R.ttf",30)
     pass
 
 
@@ -124,10 +124,9 @@ def Score_Init():
 
 def GameScore_Load():
     global Registered_Number
-    GameScoreData_Location = "C:\\2DGraphics\\2DGraphics\\gamescore_data.score"
-    if (os.path.isfile(GameScoreData_Location) == False):
+    if (os.path.isfile("gamescore_data.score") == False):
         # 파일이 없을경우 임시로 파일을 만든다.
-        f = open(GameScoreData_Location, 'wb')
+        f = open("gamescore_data.score", 'wb')
         Default_Data = Base64_Encode("""
 <list>/1st/2nd/3rd/4th/5th/6th/7th/8th/9th/10th/</list>
 <score>/009999/008888/007777/</score>
@@ -138,7 +137,7 @@ def GameScore_Load():
         f.close()
     else:
         #파일이 있을경우 해당 파일을 불러와서 복호화 시킨다.
-        f = open(GameScoreData_Location, 'r')
+        f = open("gamescore_data.score", 'r')
         GameScore_Data = f.read()
         GameScore_Data = Base64_Decode(GameScore_Data)
         ###############################################################################################################

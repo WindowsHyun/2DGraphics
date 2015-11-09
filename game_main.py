@@ -29,6 +29,7 @@ RabbitMaximum_Jump = 10
 GameStart_Time = 0
 GameEnd_Time = 0
 DrawTime_Data = None
+Game_Score = 0
 
 GameMap_Col = 22
 GameMap_Row = 30
@@ -88,6 +89,7 @@ def enter():
     Game_Map[1][18] = Nomal_Footrest
     GameStart_Time = 0
     GameEnd_Time = 0
+    Game_Score = 0
     DrawTime_Data = None
     GameStart_Time = time.time()
     pass
@@ -135,10 +137,9 @@ def draw():
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
 
-
-
-
     GameDraw_Font(355,10, DrawTime_Data , 255, 255, 255)
+
+    GameDraw_Font(250,10, "Score : " +str(Game_Score) , 255, 255, 255)
 
     update_canvas()
     delay(0.015)

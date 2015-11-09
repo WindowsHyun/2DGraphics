@@ -21,13 +21,13 @@ def enter():
     global title, Canvas_Width, Canvas_Height, font, background, planet, start, score, eexit
     open_canvas(Canvas_Width, Canvas_Height)
     print("Open : game_title.py Code")
-    font = Font("훈솜사탕R.ttf",40)
-    title = load_image('GeneralImage\\Mtitle.png')
-    background = load_image('BackgroundImage\\SBT.png')
-    planet = load_image('GeneralImage\\planet.png')
-    start = load_image('GeneralImage\\Mstart.png')
-    score = load_image('GeneralImage\\Mscore.png')
-    eexit = load_image('GeneralImage\\Mexits.png')
+    font = Font("ResourceData\\훈솜사탕R.ttf",40)
+    title = load_image('ResourceData\\GeneralImage\\Mtitle.png')
+    background = load_image('ResourceData\\BackgroundImage\\SBT.png')
+    planet = load_image('ResourceData\\GeneralImage\\planet.png')
+    start = load_image('ResourceData\\GeneralImage\\Mstart.png')
+    score = load_image('ResourceData\\GeneralImage\\Mscore.png')
+    eexit = load_image('ResourceData\\GeneralImage\\Mexits.png')
     pass
 
 def exit():

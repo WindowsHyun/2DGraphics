@@ -3,8 +3,7 @@ __author__ = 'Administrator'
 from main import *
 
 import os
-os.chdir('C:\\2DGraphics\\2DGraphics\\ResourceData')
-#print("- Module OS And Dir Settings -")
+#print("- Module os -")
 
 from pico2d import *
 #print("- import Pico2D -")
@@ -38,16 +37,16 @@ Broke3_Footrest, Broke4_Footrest, Black_Footrest, Black2_Footrest, Black3_Footre
 Delete2_Footrest = 13
 ###########################################################################################################################################################################
 # json 파일에서 메뉴 위치 불러오기
-LoadJson_MenuData = open('JsonData\\game_menulocation.json', 'r')
+LoadJson_MenuData = open('ResourceData\\JsonData\\game_menulocation.json', 'r')
 LoadJson_MenuData = json.load(LoadJson_MenuData)
 ###########################################################################################################################################################################
 # json 파일에서 스코어 위치 불러오기
-LoadJson_ScoreData = open('JsonData\\game_scorelocation.json', 'r')
+LoadJson_ScoreData = open('ResourceData\\JsonData\\game_scorelocation.json', 'r')
 LoadJson_ScoreData = json.load(LoadJson_ScoreData)
 ###########################################################################################################################################################################
 class BackGround:
     def __init__(self):
-        self.image = load_image('BackgroundImage\\SBT.png')
+        self.image = load_image('ResourceData\\BackgroundImage\\SBT.png')
 
     def _MainDraw(self, y, Canvas_Width, Canvas_Height):
         self.image.draw_to_origin(0, y, Canvas_Width, Canvas_Height)
@@ -58,21 +57,21 @@ class BackGround:
 
 class MenuPictures:
     def __init__(self):
-        self.planet = load_image('GeneralImage\\planet.png')
-        self.title = load_image('GeneralImage\\Mtitle.png')
-        self.back = load_image('GeneralImage\\Mback.png')
-        self.easy = load_image('GeneralImage\\Measy.png')
-        self.exit = load_image('GeneralImage\\Mexits.png')
-        self.hard = load_image('GeneralImage\\Mhard.png')
-        self.medium = load_image('GeneralImage\\Mmedium.png')
-        self.start = load_image('GeneralImage\\Mstart.png')
-        self.score = load_image('GeneralImage\\Mscore.png')
-        self.help = load_image('GeneralImage\\Mhelp.png')
-        self.footresthelp_nomal = load_image('GeneralImage\\MfootrestHelp01.png')
-        self.footresthelp_hide = load_image('GeneralImage\\MfootrestHelp02.png')
-        self.footresthelp_move = load_image('GeneralImage\\MfootrestHelp03.png')
-        self.footresthelp_broke = load_image('GeneralImage\\MfootrestHelp04.png')
-        self.footresthelp_jet = load_image('GeneralImage\\MfootrestHelp05.png')
+        self.planet = load_image('ResourceData\\GeneralImage\\planet.png')
+        self.title = load_image('ResourceData\\GeneralImage\\Mtitle.png')
+        self.back = load_image('ResourceData\\GeneralImage\\Mback.png')
+        self.easy = load_image('ResourceData\\GeneralImage\\Measy.png')
+        self.exit = load_image('ResourceData\\GeneralImage\\Mexits.png')
+        self.hard = load_image('ResourceData\\GeneralImage\\Mhard.png')
+        self.medium = load_image('ResourceData\\GeneralImage\\Mmedium.png')
+        self.start = load_image('ResourceData\\GeneralImage\\Mstart.png')
+        self.score = load_image('ResourceData\\GeneralImage\\Mscore.png')
+        self.help = load_image('ResourceData\\GeneralImage\\Mhelp.png')
+        self.footresthelp_nomal = load_image('ResourceData\\GeneralImage\\MfootrestHelp01.png')
+        self.footresthelp_hide = load_image('ResourceData\\GeneralImage\\MfootrestHelp02.png')
+        self.footresthelp_move = load_image('ResourceData\\GeneralImage\\MfootrestHelp03.png')
+        self.footresthelp_broke = load_image('ResourceData\\GeneralImage\\MfootrestHelp04.png')
+        self.footresthelp_jet = load_image('ResourceData\\GeneralImage\\MfootrestHelp05.png')
 
     def _DrawPlanet(self):
         self.planet.draw(LoadJson_MenuData['Planet']['x'], LoadJson_MenuData['Planet']['y'])
@@ -122,8 +121,8 @@ class MenuPictures:
 
 class Rabbit:
     def __init__(self):
-        self.leftimage = load_image('CharacterImage\\Rabbit-Left.png')
-        self.rightimage = load_image('CharacterImage\\Rabbit-Right.png')
+        self.leftimage = load_image('ResourceData\\CharacterImage\\Rabbit-Left.png')
+        self.rightimage = load_image('ResourceData\\CharacterImage\\Rabbit-Right.png')
 
     def _DrawLeft(self, frame, x, y):
         self.leftimage.clip_draw(frame * 85, 0, 85, 113, x, y)
@@ -181,7 +180,7 @@ class Rabbit:
 
 class RabbitJet:
     def __init__(self):
-        self.uphandimage = load_image('CharacterImage\\Rabbit-UpHand.png')
+        self.uphandimage = load_image('ResourceData\\CharacterImage\\Rabbit-UpHand.png')
 
     def Draw(self, frame, x, y):
         self.uphandimage.clip_draw(frame * 56, 0, 56, 113, x, y)
@@ -189,7 +188,7 @@ class RabbitJet:
 
 class Footrest:
     def __init__(self):
-        self.image = load_image('GeneralImage\\newscaffolding.png')
+        self.image = load_image('ResourceData\\GeneralImage\\newscaffolding.png')
         #print("Footrst = ", self.image)
     def Draw(self,Footrest_Frame, x, y):
         self.image.clip_draw(Footrest_Frame * 120, 0, 120, 65, x, y)
@@ -366,7 +365,7 @@ def Game_MsgBox(title, text, style):
 def GameDraw_Font(x, y, text, r, g, b, size = 20):
     global font
     if (font == None):
-        font = Font("훈솜사탕R.ttf",size)
+        font = Font("ResourceData\\훈솜사탕R.ttf",size)
     if ( text != None):
         font.draw(x, y, text, (r,g,b))
 
