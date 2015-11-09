@@ -61,6 +61,7 @@ def enter():
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
     GameUpdate_Menu(GAME_Scenes)
     # gamescore_data.score 파일 불러와서 기록하기.
+    Score_Init()
     GameScore_Load()
     # 폰트 미리 불러오기.
     GameFont_Title = Font("훈솜사탕R.ttf",50)
@@ -108,6 +109,19 @@ def exit():
     print("Unload : game_score.py Code")
     pass
 
+def Score_Init():
+    global Rank_Data, Score_Data, Mode_Data, Time_Data, Registered_Number
+    del Rank_Data
+    del Score_Data
+    del Mode_Data
+    del Time_Data
+    Rank_Data = []
+    Score_Data = []
+    Mode_Data = []
+    Time_Data = []
+    Registered_Number = 0
+    pass
+
 def GameScore_Load():
     global Registered_Number
     GameScoreData_Location = "C:\\2DGraphics\\2DGraphics\\gamescore_data.score"
@@ -151,7 +165,6 @@ def GameScore_Load():
                 Temp_Data = re.search('\/(.*?)\/', GameScore_Mode)
                 GameScore_Mode = GameScore_Mode.replace("/" + str(Temp_Data.group(1)),  "")
                 Mode_Data.insert(i, Temp_Data.group(1))
-                print(Temp_Data.group(1))
         ###############################################################################################################
         GameScore_Time = re.search('\<time\>(.*?)\<\/time\>', GameScore_Data)
         GameScore_Time = str(GameScore_Time.group(1))
