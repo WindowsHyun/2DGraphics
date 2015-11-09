@@ -26,6 +26,10 @@ RabbitJet_Status = False
 RabbitJet_Frame = 0
 RabbitMaximum_Jump = 10
 
+GameStart_Time = 0
+GameEnd_Time = 0
+DrawTime_Data = None
+
 GameMap_Col = 22
 GameMap_Row = 30
 Game_Map = [[0 for col in range(GameMap_Col)] for row in range(GameMap_Row)]
@@ -68,6 +72,7 @@ def handle_events():
 
 def enter():
     global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, Load_Footrest, Load_RabbitJet
+    global GameStart_Time, GameEnd_Time, DrawTime_Data
     GAME_Scenes = GameShow_Menu()
     print("Open : game_main.py Code")
     GameLoad_BackGround = BackGround()
@@ -81,6 +86,10 @@ def enter():
     Game_Map[1][8] = Nomal_Footrest
     Game_Map[1][13] = Nomal_Footrest
     Game_Map[1][18] = Nomal_Footrest
+    GameStart_Time = 0
+    GameEnd_Time = 0
+    DrawTime_Data = None
+    GameStart_Time = time.time()
     pass
 
 
@@ -95,7 +104,7 @@ def update():
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet)
     GameMap_Down()
     GameFootrest_Hide()
-
+    GamesIn_Progress()
 
     delay(0.015)
     pass
@@ -104,6 +113,7 @@ def draw():
     global GameLoad_BackGround, GameLoad_Menu, Load_Rabbit, Load_Footrest, Rabbit_Jet, RabbitJet_Frame
     global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_Frame, Rabbit_X, Rabbit_Y, gtest, Rabbit_UpDownDirection
     global GameMap_Col, GameMap_Row, Game_Map
+    global GameEnd_Time, GameStart_Time
     clear_canvas()
 
     GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
@@ -124,6 +134,11 @@ def draw():
             Load_Footrest.Draw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
+
+
+
+
+    GameDraw_Font(355,10, DrawTime_Data , 255, 255, 255)
 
     update_canvas()
     delay(0.015)
@@ -174,6 +189,29 @@ def GameRabbit_Jet():
         pass
     pass
 
+def GamesIn_Progress():
+    global GameStart_Time, GameEnd_Time, DrawTime_Data
+    GameEnd_Time = time.time()
+    Temp_Text = str(int(GameEnd_Time - GameStart_Time))
+    if ( len(Temp_Text) == 3):
+        # 설마 10분 이상 하는 사람이 있겠어?
+        pass
+    elif ( len(Temp_Text) == 2):
+        if( int(GameEnd_Time - GameStart_Time) >= int(60) ):
+            Temp_Cir = int(int(GameEnd_Time - GameStart_Time)/int(60))
+            Temp_Text2 = str(int(round(GameEnd_Time - GameStart_Time, 2) - int(60*Temp_Cir)))
+            if( len(Temp_Text2) == 1 ):
+                DrawTime_Data = "0" + str(Temp_Cir) + ":0" + str(round(round(GameEnd_Time - GameStart_Time, 2) - int(60*Temp_Cir),2))
+            else:
+                DrawTime_Data = "0" + str(Temp_Cir) + ":" + str(round(round(GameEnd_Time - GameStart_Time, 2) - int(60*Temp_Cir),2))
+        else:
+            DrawTime_Data = "00:" + str(round(GameEnd_Time - GameStart_Time, 2))
+    else:
+        DrawTime_Data = "00:0" + str(round(GameEnd_Time - GameStart_Time, 2))
+        pass
+    DrawTime_Data = DrawTime_Data.replace(".", ":")
+    DrawTime_Data  = "Time : " + str(DrawTime_Data)
+    pass
 
 def exit():
     global GameLoad_BackGround, GameLoad_Menu, Load_Rabbit, Load_Footrest
