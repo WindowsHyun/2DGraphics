@@ -7,6 +7,8 @@ import game_framework
 #print("- Module random -")
 import game_select
 #print("- Module main -")
+import game_over
+#print("- Module main -")
 
 Canvas_Width = 480
 Canvas_Height = 800
@@ -50,10 +52,15 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
+            """
             GameUpdate_Menu("Game_Select")
             Rabbit_Y ,Rabbit_X, Rabbit_UpDownDirection, RabbitJump_LimitCount = 100, 100, "Up", 0
             Game_Map, Game_MapCheck, GameCreated_Line = GameMap_Reset(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck)
             game_framework.change_state(game_select)
+            """
+            Rabbit_Y = 0
+            Game_Over()
+            print("Game_Over")
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, Canvas_Height - event.y
             #GAME_Scenes = GameMenu_Click(GAME_Scenes, x, y)
@@ -110,6 +117,7 @@ def update():
     GameFootrest_Hide()
     GamesIn_Progress()
     GamesDraw_Score()
+    Game_Over()
     delay(0.015)
     pass
 
@@ -237,6 +245,17 @@ def GamesDraw_Score():
         Game_Score = "0" +str(Game_Score)
     elif( len(str(Game_Score)) == 7 ):
         Game_Score = str(Game_Score)
+    pass
+
+def Game_Over():
+    global Rabbit_Y, Rabbit_X, Rabbit_UpDownDirection, RabbitJump_LimitCount
+    global Game_Map, Game_MapCheck, GameCreated_Line
+    if ( Rabbit_Y <= 0):
+        Rabbit_Y ,Rabbit_X, Rabbit_UpDownDirection, RabbitJump_LimitCount = 100, 100, "Up", 0
+        Game_Map, Game_MapCheck, GameCreated_Line = GameMap_Reset(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck)
+        GetGameOver_Data(GAME_Scenes, Game_Score, DrawTime_Data)
+        GameUpdate_Menu("Game_Over")
+        game_framework.change_state(game_over)
     pass
 
 def exit():

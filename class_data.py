@@ -30,6 +30,9 @@ import time
 
 GAME_CurrentMenu = "Game_Main"
 font = None
+Get_Time = None
+Get_Score = None
+Get_Scenes = None
 ###########################################################################################################################################################################
 # 발판 정보들
 Nomal_Footrest, Hide_Footrest, Pink_Footrest, Red_Footrest, Move_Footrest, Broke_Footrest, Broke2_Footrest = 0, 1, 2, 3, 4, 5, 6
@@ -345,7 +348,7 @@ def GameMenu_Click(GAME_Menu, x, y):
             print("Help")
 
     if x >= 4 and x <= 42 and y >= 4 and y <= 42:
-        if GAME_Menu == "Game_Select" or GAME_Menu == "Game_Score" or GAME_Menu == "Game_Help":
+        if GAME_Menu == "Game_Select" or GAME_Menu == "Game_Score" or GAME_Menu == "Game_Help" or GAME_Menu == "Game_Over":
             GAME_Menu = "Game_Main"
             print("Back")
     return GAME_Menu
@@ -391,6 +394,16 @@ def GameShow_Menu():
 def GameUpdate_Menu(menu):
     global GAME_CurrentMenu
     GAME_CurrentMenu = menu
+
+def GetGameOver_Data(GAME_Scenes, Game_Score, DrawTime_Data):
+    global Get_Time, Get_Score, Get_Scenes
+    Get_Scenes = GAME_Scenes.replace("Game_",  "")
+    Get_Time = DrawTime_Data.replace("Time : ",  "")
+    Get_Score = Game_Score
+    pass
+
+def PushGameOver_Data(GAME_Scenes, Game_Score, DrawTime_Data):
+    return Get_Scenes, Get_Score, Get_Time
 
 """
 Styles:

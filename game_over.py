@@ -6,6 +6,8 @@ import game_framework
 #print("- Module game_framework -")
 import main
 #print("- Module main -")
+import game_select
+#print("- Module game_select -")
 import re
 #print("- Module re -")
 
@@ -26,6 +28,10 @@ Mode_Data = []
 Time_Data = []
 Registered_Number = 0
 
+Get_Scenes = None
+Get_Score = None
+Get_Time = None
+
 print("gmae_over.py : Create Local -> Global function")
 
 def handle_events():
@@ -34,10 +40,10 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT or event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             # 종료버튼을 누르거나 or 키보드의 ESC 키를 누를경우 종료를 한다.
-            game_framework.quit()
+            GameUpdate_Menu("Game_Select")
+            game_framework.change_state(game_select)
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, Canvas_Height - event.y
-            print (x, "-", y)
             GAME_Scenes = GameMenu_Click(GAME_Scenes, x, y)
             ##################################################
             # 종료할경우 Game_Running를 죽인다.
@@ -53,7 +59,8 @@ def handle_events():
 def enter():
     global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, GameScore_Data
     global GameFont_Title, GameFont_Content
-    GAME_Scenes = "Game_Score"
+    global Get_Scenes, Get_Score, Get_Time
+    GAME_Scenes = "Game_Over"
     print("Open : game_score.py Code")
     GameLoad_BackGround = BackGround()
     # cBackGround라는 클래스를 BackGround로 가져오기
@@ -63,9 +70,10 @@ def enter():
     # gamescore_data.score 파일 불러와서 기록하기.
     Score_Init()
     GameScore_Load()
+    Get_Scenes, Get_Score, Get_Time = PushGameOver_Data(Get_Scenes, Get_Score, Get_Time)
     # 폰트 미리 불러오기.
     GameFont_Title = Font("ResourceData\\훈솜사탕R.ttf",50)
-    GameFont_Content = Font("ResourceData\\훈솜사탕R.ttf",30)
+    GameFont_Content = Font("ResourceData\\훈솜사탕R.ttf",40)
     pass
 
 
@@ -77,12 +85,24 @@ def update():
 def draw():
     global GameLoad_BackGround, GameLoad_Menu
     global Canvas_Width, Canvas_Height
+    global Get_Scenes, Get_Score, Get_Time
     clear_canvas()
 
     GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
     GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     GameLoad_Menu._DrawPlanet()
     GameLoad_Menu._DrawBack()
+
+    GameFont_Title.draw(150, 758, "Game Over", (255, 255, 255))
+
+    GameFont_Content.draw(10, 650, "Game Mode : ", (0, 0, 0))
+    GameFont_Content.draw(210, 650, Get_Scenes, (255, 255, 255))
+
+    GameFont_Content.draw(10, 550, "Game Score : ", (0, 0, 0))
+    GameFont_Content.draw(230, 550, Get_Score, (255, 255, 255))
+
+    GameFont_Content.draw(10, 450, "Game Time : ", (0, 0, 0))
+    GameFont_Content.draw(230, 450, Get_Time, (255, 255, 255))
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
 
