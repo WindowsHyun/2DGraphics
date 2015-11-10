@@ -93,16 +93,16 @@ def draw():
     GameLoad_Menu._DrawPlanet()
     GameLoad_Menu._DrawBack()
 
-    GameFont_Title.draw(150, 758, "Game Over", (255, 255, 255))
+    GameFont_Title.draw(LoadJson_OverData['Title']['x'], LoadJson_OverData['Title']['y'], "Game Over", (255, 255, 255))
 
-    GameFont_Content.draw(10, 650, "Game Mode : ", (0, 0, 0))
-    GameFont_Content.draw(210, 650, Get_Scenes, (255, 255, 255))
+    GameFont_Content.draw(LoadJson_OverData['Mode']['x'], LoadJson_OverData['Mode']['y'], "Game Mode : ", (0, 0, 0))
+    GameFont_Content.draw(LoadJson_OverData['Mode_Data']['x'], LoadJson_OverData['Mode_Data']['y'], Get_Scenes, (255, 255, 255))
 
-    GameFont_Content.draw(10, 550, "Game Score : ", (0, 0, 0))
-    GameFont_Content.draw(230, 550, Get_Score, (255, 255, 255))
+    GameFont_Content.draw(LoadJson_OverData['Score']['x'], LoadJson_OverData['Score']['y'], "Game Score : ", (0, 0, 0))
+    GameFont_Content.draw(LoadJson_OverData['Score_Data']['x'], LoadJson_OverData['Score_Data']['y'], Get_Score, (255, 255, 255))
 
-    GameFont_Content.draw(10, 450, "Game Time : ", (0, 0, 0))
-    GameFont_Content.draw(230, 450, Get_Time, (255, 255, 255))
+    GameFont_Content.draw(LoadJson_OverData['Time']['x'], LoadJson_OverData['Time']['y'], "Game Time : ", (0, 0, 0))
+    GameFont_Content.draw(LoadJson_OverData['Time_Data']['x'], LoadJson_OverData['Time_Data']['y'], Get_Time, (255, 255, 255))
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
 

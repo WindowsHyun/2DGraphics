@@ -47,6 +47,10 @@ LoadJson_MenuData = json.load(LoadJson_MenuData)
 LoadJson_ScoreData = open('ResourceData\\JsonData\\game_scorelocation.json', 'r')
 LoadJson_ScoreData = json.load(LoadJson_ScoreData)
 ###########################################################################################################################################################################
+# json 파일에서 gameover 위치 불러오기
+LoadJson_OverData = open('ResourceData\\JsonData\\game_overlocation.json', 'r')
+LoadJson_OverData = json.load(LoadJson_OverData)
+###########################################################################################################################################################################
 
 class GameScore_Board:
     def __init__(self):
