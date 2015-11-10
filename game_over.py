@@ -111,9 +111,11 @@ def draw():
     pass
 
 def exit():
-    global GameLoad_BackGround, GameLoad_Menu
+    global GameLoad_BackGround, GameLoad_Menu, GameFont_Title, GameFont_Content
     del(GameLoad_BackGround)
     del(GameLoad_Menu)
+    del(GameFont_Title)
+    del(GameFont_Content)
     print("Unload : game_over.py Code")
     pass
 
