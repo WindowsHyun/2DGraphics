@@ -19,7 +19,7 @@ GameMenu_AppearsSpeed = 0.12
 
 def enter():
     global title, Canvas_Width, Canvas_Height, font, background, planet, start, score, eexit
-    open_canvas(Canvas_Width, Canvas_Height)
+    open_canvas(Canvas_Width, Canvas_Height, sync=True)
     print("Open : game_title.py Code")
     font = Font("ResourceData\\훈솜사탕R.ttf",40)
     title = load_image('ResourceData\\GeneralImage\\Mtitle.png')
