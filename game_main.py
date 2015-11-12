@@ -113,6 +113,7 @@ def update():
     Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Frame_Time)
     Frame_Time = get_time() - Current_Time
     Rabbit_X = Load_Rabbit.Rabbit_LeftRightDirection(Rabbit_Direction, Rabbit_X, Frame_Time)
+    Current_Time += Frame_Time
 
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
@@ -132,7 +133,6 @@ def draw():
     global GameMap_Col, GameMap_Row, Game_Map
     global GameEnd_Time, GameStart_Time, Current_Time
     clear_canvas()
-    Current_Time = get_time()
     GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
     GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     GameLoad_Menu._DrawPlanet()

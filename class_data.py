@@ -136,13 +136,14 @@ class MenuPictures:
     pass
 
 class Rabbit:
+    global Get_JumpSpeed, Get_MoveSpeed
     PixelPerMeter_Height = (100.0 / 0.3) # 10 pixel 30 cm
     PixelPerMeter_Width = (100.0 / 0.3) # 10 pixel 30 cm
-    JumpSpeed_KMPH = 7.0 # Km / Hour
+    JumpSpeed_KMPH = 3.0  # Km / Hour
     JumpSpeed_MPM = (JumpSpeed_KMPH * 1000.0 / 60.0)
     JumpSpeed_MPS = (JumpSpeed_MPM / 60.0)
     JumpSpeed_PPS = (JumpSpeed_MPS * PixelPerMeter_Height)
-    MoveSpeed_KMPH = 4.0 # Km / Hour
+    MoveSpeed_KMPH = 1.5  # Km / Hour
     MoveSpeed_MPM = (MoveSpeed_KMPH * 1000.0 / 60.0)
     MoveSpeed_MPS = (MoveSpeed_MPM / 60.0)
     MoveSpeed_PPS = (MoveSpeed_MPS * PixelPerMeter_Height)
@@ -190,7 +191,6 @@ class Rabbit:
     # 실제 캐릭터가 왼쪽으로 가는지 오른쪽으로 가는지 판단해서 움직여 준다.
     def Rabbit_LeftRightDirection(self, Rabbit_Direction, Rabbit_X, frame_time):
         RabbitMove_Distance = self.MoveSpeed_PPS * frame_time
-        print(RabbitMove_Distance)
         if Rabbit_Direction == "Right":
             Rabbit_X += RabbitMove_Distance
         elif Rabbit_Direction == "Left":
