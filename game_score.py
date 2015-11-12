@@ -132,8 +132,8 @@ def GameScore_Load():
         f = open("gamescore_data.score", 'wb')
         Default_Data = Base64_Encode("""
 <list>/1st/2nd/3rd/4th/5th/6th/7th/8th/9th/10th/</list>
-<score>/009999/008888/007777/</score>
-<select>/Hard/Medium/Easy/</select>
+<score>/000001/000002/000003/</score>
+<select>/Hard000001/Medium000002/Easy000003/</select>
 <time>/00:55:55/00:25:55/00:15:00/</time>
         """)
         f.write(Default_Data)
@@ -166,7 +166,9 @@ def GameScore_Load():
             if ( GameScore_Mode != "/"):
                 Temp_Data = re.search('\/(.*?)\/', GameScore_Mode)
                 GameScore_Mode = GameScore_Mode.replace("/" + str(Temp_Data.group(1)),  "")
-                Mode_Data.insert(i, Temp_Data.group(1))
+                Temp_Duplicated = Temp_Data.group(1)
+                Temp_Duplicated = Temp_Duplicated.replace(Score_Data[i], "")
+                Mode_Data.insert(i, Temp_Duplicated)
         ###############################################################################################################
         GameScore_Time = re.search('\<time\>(.*?)\<\/time\>', GameScore_Data)
         GameScore_Time = str(GameScore_Time.group(1))

@@ -85,7 +85,7 @@ def enter():
     Score_Data.append(Get_Score)
     Mode_Data.append(Get_Scenes)
     Time_Data.append(Get_Time)
-
+    GameScore_Sort()
     GameScore_Save()
 
     # 폰트 미리 불러오기.
@@ -160,8 +160,8 @@ def GameScore_Load():
         f = open("gamescore_data.score", 'wb')
         Default_Data = Base64_Encode("""
 <list>/1st/2nd/3rd/4th/5th/6th/7th/8th/9th/10th/</list>
-<score>/009999/008888/007777/</score>
-<select>/Hard/Medium/Easy/</select>
+<score>/000001/000002/000003/</score>
+<select>/Hard000001/Medium000002/Easy000003/</select>
 <time>/00:55:55/00:25:55/00:15:00/</time>
         """)
         f.write(Default_Data)
@@ -194,7 +194,9 @@ def GameScore_Load():
             if ( GameScore_Mode != "/"):
                 Temp_Data = re.search('\/(.*?)\/', GameScore_Mode)
                 GameScore_Mode = GameScore_Mode.replace("/" + str(Temp_Data.group(1)),  "")
-                Mode_Data.insert(i, Temp_Data.group(1))
+                Temp_Duplicated = Temp_Data.group(1)
+                Temp_Duplicated = Temp_Duplicated.replace(Score_Data[i], "")
+                Mode_Data.insert(i, Temp_Duplicated)
         ###############################################################################################################
         GameScore_Time = re.search('\<time\>(.*?)\<\/time\>', GameScore_Data)
         GameScore_Time = str(GameScore_Time.group(1))
@@ -210,8 +212,9 @@ def GameScore_Load():
 def GameScore_Sort():
     global Registered_Number
     global Time_Data, Mode_Data, Score_Data
-    for i in range(0, Registered_Number):
-        for j in range(0, Registered_Number-1):
+    Registered_Number += 1
+    for i in range(0, len(Score_Data)):
+        for j in range(0, len(Score_Data)-1):
             if(Score_Data[i] > Score_Data[j]):
                 Score_Data[i], Score_Data[j] = Score_Data[j], Score_Data[i]
                 Mode_Data[i], Mode_Data[j] = Mode_Data[j], Mode_Data[i]
@@ -227,14 +230,21 @@ def GameScore_Save():
     Temp_Select = str("<select>//</select>")
     Temp_Time = str("<time>//</time>")
 
-    for i in range(0, Registered_Number+1):
+    if ( len(Score_Data) > 10):
+        Limit_Num = 10
+    else:
+        Limit_Num = len(Score_Data)
+
+    for i in range(0, Limit_Num):
         Temp_Score = Temp_Score.replace("/</", "/" + Score_Data[i] + "/</")
-        Temp_Select = Temp_Select.replace("/</", "/" +  Mode_Data[i] + "/</")
+        Temp_Select = Temp_Select.replace("/</", "/" +  Mode_Data[i] + Score_Data[i] + "/</")
         Temp_Time = Temp_Time.replace("/</", "/" +  Time_Data[i] + "/</")
 
     Temp_Score = Temp_Score.replace("//", "/")
     Temp_Select = Temp_Select.replace("//", "/")
     Temp_Time = Temp_Time.replace("//", "/")
+
+
 
     f = open("gamescore_data.score", 'wb')
     Save_Data = Base64_Encode(str(Temp_List + "\n" + Temp_Score + "\n" + Temp_Select + "\n" + Temp_Time))
