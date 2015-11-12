@@ -243,11 +243,11 @@ def GamesDraw_Score():
     elif( len(str(Game_Score)) == 3 ):
         Game_Score = "000" +str(Game_Score)
     elif( len(str(Game_Score)) == 4 ):
-        Game_Score = "000" +str(Game_Score)
-    elif( len(str(Game_Score)) == 5 ):
         Game_Score = "00" +str(Game_Score)
-    elif( len(str(Game_Score)) == 6 ):
+    elif( len(str(Game_Score)) == 5 ):
         Game_Score = "0" +str(Game_Score)
+    elif( len(str(Game_Score)) == 6 ):
+        Game_Score = "" +str(Game_Score)
     elif( len(str(Game_Score)) == 7 ):
         Game_Score = str(Game_Score)
     pass
