@@ -86,6 +86,7 @@ class MenuPictures:
         self.start = load_image('ResourceData\\GeneralImage\\Mstart.png')
         self.score = load_image('ResourceData\\GeneralImage\\Mscore.png')
         self.help = load_image('ResourceData\\GeneralImage\\Mhelp.png')
+        self.restart = load_image('ResourceData\\GeneralImage\\Mrestart.png')
         self.footresthelp_nomal = load_image('ResourceData\\GeneralImage\\MfootrestHelp01.png')
         self.footresthelp_hide = load_image('ResourceData\\GeneralImage\\MfootrestHelp02.png')
         self.footresthelp_move = load_image('ResourceData\\GeneralImage\\MfootrestHelp03.png')
@@ -121,6 +122,9 @@ class MenuPictures:
 
     def _DrawHelp(self):
         self.help.draw(LoadJson_MenuData['Help']['x'], LoadJson_MenuData['Help']['y'])
+
+    def _DrawRestart(self):
+        self.restart.draw(LoadJson_MenuData['Start']['x'], LoadJson_MenuData['Start']['y'])
 
     def _DrawFootrestHelpNomal(self):
         self.footresthelp_nomal.draw(LoadJson_MenuData['FootrestHelp_Nomal']['x'], LoadJson_MenuData['FootrestHelp_Nomal']['y'])
@@ -167,14 +171,13 @@ class Rabbit:
     # RabbitJump_LimitCount = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
     def RabbitMove_UpDown(self, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, frame_time):
         RabbitJump_Distance = self.JumpSpeed_PPS * frame_time
-        print(RabbitJump_Distance)
         if Rabbit_UpDownDirection == "Up":
             Rabbit_Frame = 2
             Rabbit_Y += RabbitJump_Distance
             RabbitJump_LimitCount += 1
         elif Rabbit_UpDownDirection == "Down":
             Rabbit_Frame = 1
-            Rabbit_Y -= RabbitJump_Distance #+ ( RabbitJump_LimitCount % 5)
+            Rabbit_Y -= RabbitJump_Distance + ( RabbitJump_LimitCount % 3)
             RabbitJump_LimitCount -= 1
         elif Rabbit_UpDownDirection == "Jet":
             Rabbit_Frame = 2
@@ -355,7 +358,7 @@ def GameMenu_Click(GAME_Menu, x, y):
     if x >= 131 and x <= 349 and y >= 113 and y <= 187 and GAME_Menu == "Game_Select":
             GAME_Menu = "Game_Hard"
             print("Hard")
-#400 - 350
+
     if x >= 131 and x <= 349 and y >= 313 and y <= 387 and GAME_Menu == "Game_Main":
             GAME_Menu = "GameSelect"
             print("Start")
@@ -369,9 +372,22 @@ def GameMenu_Click(GAME_Menu, x, y):
             GAME_Menu = "Game_Help"
             print("Help")
 
+    if x >= 131 and x <= 349 and y >= 313 and y <= 387 and GAME_Menu == "Game_Over":
+            GAME_Menu = "Game_Restart"
+            print("Restart")
+    if x >= 131 and x <= 349 and y >= 113 and y <= 187 and GAME_Menu == "Game_Over":
+            GAME_Menu = "False"
+            print("Exits")
+    if x >= 131 and x <= 349 and y >= 213 and y <= 287 and GAME_Menu == "Game_Over":
+            GAME_Menu = "Game_Score"
+            print("Score")
+
     if x >= 4 and x <= 42 and y >= 4 and y <= 42:
-        if GAME_Menu == "Game_Select" or GAME_Menu == "Game_Score" or GAME_Menu == "Game_Help" or GAME_Menu == "Game_Over":
+        if GAME_Menu == "Game_Select" or GAME_Menu == "Game_Score" or GAME_Menu == "Game_Help":
             GAME_Menu = "Game_Main"
+            print("Back")
+        if GAME_Menu == "Game_Over":
+            GAME_Menu = "Game_Select"
             print("Back")
     return GAME_Menu
     pass

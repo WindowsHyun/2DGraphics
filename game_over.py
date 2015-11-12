@@ -8,6 +8,10 @@ import main
 #print("- Module main -")
 import game_select
 #print("- Module game_select -")
+import game_score
+#print("- Module game_score -")
+import game_main
+#print("- Module game_main -")
 import re
 #print("- Module re -")
 
@@ -47,11 +51,17 @@ def handle_events():
             GAME_Scenes = GameMenu_Click(GAME_Scenes, x, y)
             ##################################################
             # 종료할경우 Game_Running를 죽인다.
-            if GAME_Scenes == False:
+            if GAME_Scenes == "False":
                 game_framework.quit()
-            if GAME_Scenes == "Game_Main":
+            if GAME_Scenes == "Game_Score":
                 GameUpdate_Menu(GAME_Scenes)
-                game_framework.change_state(main)
+                game_framework.change_state(game_score)
+            if GAME_Scenes == "Game_Restart":
+                GameUpdate_Menu("Game_" + Get_Scenes)
+                game_framework.change_state(game_main)
+            if GAME_Scenes == "Game_Select":
+                GameUpdate_Menu(GAME_Scenes)
+                game_framework.change_state(game_select)
             ##################################################
             pass
     pass
@@ -92,6 +102,10 @@ def draw():
     GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     GameLoad_Menu._DrawPlanet()
     GameLoad_Menu._DrawBack()
+
+    GameLoad_Menu._DrawRestart()
+    GameLoad_Menu._DrawScore()
+    GameLoad_Menu._DrawExit()
 
     GameFont_Title.draw(LoadJson_OverData['Title']['x'], LoadJson_OverData['Title']['y'], "Game Over", (255, 255, 255))
 
