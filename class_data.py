@@ -136,6 +136,12 @@ class MenuPictures:
     pass
 
 class Rabbit:
+    PIXEL_PER_METER = (100.0 / 0.3) # 10 pixel 30 cm
+    RUN_SPEED_KMPH = 4.0 # Km / Hour
+    RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
+    RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
+    RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+
     def __init__(self):
         self.leftimage = load_image('ResourceData\\CharacterImage\\Rabbit-Left.png')
         self.rightimage = load_image('ResourceData\\CharacterImage\\Rabbit-Right.png')
@@ -150,14 +156,16 @@ class Rabbit:
     # Rabbit_Frame = 캐릭터의 이미지 동작
     # Rabbit_Y = 캐릭터가 맵화면에 올라가는 좌표
     # RabbitJump_LimitCount = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
-    def RabbitMove_UpDown(self, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount):
+    def RabbitMove_UpDown(self, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, frame_time):
+        RabbitJump_Distance = self.RUN_SPEED_PPS * frame_time
+        print(RabbitJump_Distance)
         if Rabbit_UpDownDirection == "Up":
             Rabbit_Frame = 2
-            Rabbit_Y += 12
+            Rabbit_Y += RabbitJump_Distance
             RabbitJump_LimitCount += 1
         elif Rabbit_UpDownDirection == "Down":
             Rabbit_Frame = 1
-            Rabbit_Y -= 12 + ( RabbitJump_LimitCount % 5)
+            Rabbit_Y -= RabbitJump_Distance #+ ( RabbitJump_LimitCount % 5)
             RabbitJump_LimitCount -= 1
         elif Rabbit_UpDownDirection == "Jet":
             Rabbit_Frame = 2

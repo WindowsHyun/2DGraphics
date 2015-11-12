@@ -80,7 +80,7 @@ def handle_events():
 
 def enter():
     global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, Load_Footrest, Load_RabbitJet, Score_Board
-    global GameStart_Time, GameEnd_Time, DrawTime_Data, Game_Score
+    global GameStart_Time, GameEnd_Time, DrawTime_Data, Game_Score, Current_Time
     GAME_Scenes = GameShow_Menu()
     print("Open : game_main.py Code")
     GameLoad_BackGround = BackGround()
@@ -101,13 +101,18 @@ def enter():
     Game_Score = 0
     DrawTime_Data = None
     GameStart_Time = time.time()
+    Current_Time = get_time()
     pass
 
 
 def update():
     global Load_Rabbit, Load_RabbitJet, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Rabbit_X, Rabbit_Direction, Canvas_Width, RabbitMaximum_Jump, Rabbit_Jet
-    global Game_MapCheck, Game_Map, GameMap_Row, GameCreated_Line, GAME_Scenes, Game_Score
-    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
+    global Game_MapCheck, Game_Map, GameMap_Row, GameCreated_Line, GAME_Scenes, Game_Score, Current_Time, Frame_Time
+
+    Frame_Time = get_time() - Current_Time
+    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Frame_Time)
+
+
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X = Load_Rabbit.Rabbit_LeftRightDirection(Rabbit_Direction, Rabbit_X)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
@@ -125,9 +130,9 @@ def draw():
     global GameLoad_BackGround, GameLoad_Menu, Load_Rabbit, Load_Footrest, Rabbit_Jet, RabbitJet_Frame
     global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_Frame, Rabbit_X, Rabbit_Y, gtest, Rabbit_UpDownDirection
     global GameMap_Col, GameMap_Row, Game_Map
-    global GameEnd_Time, GameStart_Time
+    global GameEnd_Time, GameStart_Time, Current_Time
     clear_canvas()
-
+    Current_Time = get_time()
     GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
     GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     GameLoad_Menu._DrawPlanet()

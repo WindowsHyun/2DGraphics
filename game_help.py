@@ -14,7 +14,10 @@ BackgroundSub_Y = 800
 Rabbit_Frame = 0
 Game_Running = True
 Game_Score = 0
-
+"""
+발판이다. 가 아닌 발판 으로 바꿔서 3줄로 맞춘다.
+너무 정신이 없다.
+"""
 ######################################################
 # 토끼 불러오는 함수
 Rabbit_Direction = "Left"
@@ -65,7 +68,7 @@ def handle_events():
     pass
 
 def enter():
-    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, Load_Footrest, Load_RabbitJet, Game_Map
+    global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, Load_Rabbit, Load_Footrest, Load_RabbitJet, Game_Map, Current_Time
     GAME_Scenes = "Game_Help"
     print("Open : game_help.py Code")
     GameLoad_BackGround = BackGround()
@@ -82,16 +85,18 @@ def enter():
     Game_Map[12][4] = Broke_Footrest
     Game_Map[8][4] = Jet_Footrest
     Game_Map[4][4] = Black_Footrest
-
+    Current_Time = get_time()
     #토끼, 발판 이미지 불러오기
     GameUpdate_Menu(GAME_Scenes)
     pass
 
 def update():
     global Background_Y, BackgroundSub_Y, Load_Rabbit, Load_RabbitJet
-    global Rabbit_X, Rabbit_Direction, Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, GameMap_Col, GameMap_Row, Rabbit_Frame, Rabbit_Y, RabbitMaximum_Jump
+    global Rabbit_X, Rabbit_Direction, Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, GameMap_Col, GameMap_Row, Rabbit_Frame, Rabbit_Y, RabbitMaximum_Jump, Frame_Time, Current_Time
     Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)    # 이미지 내려주는 함수
-    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount)
+
+    Frame_Time = get_time() - Current_Time
+    Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Frame_Time)
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, Game_Score = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, 0)
@@ -100,9 +105,9 @@ def update():
 
 def draw():
     global GameLoad_BackGround, GameLoad_Menu
-    global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_X, Rabbit_Y, Rabbit_Frame
+    global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_X, Rabbit_Y, Rabbit_Frame, Current_Time
     clear_canvas()
-
+    Current_Time = get_time()
     GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
     GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     GameLoad_Menu._DrawPlanet()
