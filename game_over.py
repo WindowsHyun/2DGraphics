@@ -81,6 +81,13 @@ def enter():
     Score_Init()
     GameScore_Load()
     Get_Scenes, Get_Score, Get_Time = PushGameOver_Data(Get_Scenes, Get_Score, Get_Time)
+
+    Score_Data.append(Get_Score)
+    Mode_Data.append(Get_Scenes)
+    Time_Data.append(Get_Time)
+
+    GameScore_Save()
+
     # 폰트 미리 불러오기.
     GameFont_Title = Font("ResourceData\\훈솜사탕R.ttf",50)
     GameFont_Content = Font("ResourceData\\훈솜사탕R.ttf",40)
@@ -198,4 +205,39 @@ def GameScore_Load():
                 Time_Data.insert(i, Temp_Data.group(1))
         ###############################################################################################################
         f.close()
+    pass
+
+def GameScore_Sort():
+    global Registered_Number
+    global Time_Data, Mode_Data, Score_Data
+    for i in range(0, Registered_Number):
+        for j in range(0, Registered_Number-1):
+            if(Score_Data[i] > Score_Data[j]):
+                Score_Data[i], Score_Data[j] = Score_Data[j], Score_Data[i]
+                Mode_Data[i], Mode_Data[j] = Mode_Data[j], Mode_Data[i]
+                Time_Data[i], Time_Data[j] = Time_Data[j], Time_Data[i]
+    pass
+
+def GameScore_Save():
+    global Registered_Number
+    global Time_Data, Mode_Data, Score_Data
+
+    Temp_List = str("<list>/1st/2nd/3rd/4th/5th/6th/7th/8th/9th/10th/</list>")
+    Temp_Score = str("<score>//</score>")
+    Temp_Select = str("<select>//</select>")
+    Temp_Time = str("<time>//</time>")
+
+    for i in range(0, Registered_Number+1):
+        Temp_Score = Temp_Score.replace("/</", "/" + Score_Data[i] + "/</")
+        Temp_Select = Temp_Select.replace("/</", "/" +  Mode_Data[i] + "/</")
+        Temp_Time = Temp_Time.replace("/</", "/" +  Time_Data[i] + "/</")
+
+    Temp_Score = Temp_Score.replace("//", "/")
+    Temp_Select = Temp_Select.replace("//", "/")
+    Temp_Time = Temp_Time.replace("//", "/")
+
+    f = open("gamescore_data.score", 'wb')
+    Save_Data = Base64_Encode(str(Temp_List + "\n" + Temp_Score + "\n" + Temp_Select + "\n" + Temp_Time))
+    f.write(Save_Data)
+    f.close()
     pass

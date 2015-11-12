@@ -63,6 +63,7 @@ def enter():
     # gamescore_data.score 파일 불러와서 기록하기.
     Score_Init()
     GameScore_Load()
+    GameScore_Sort()
     # 폰트 미리 불러오기.
     GameFont_Title = Font("ResourceData\\훈솜사탕R.ttf",50)
     GameFont_Content = Font("ResourceData\\훈솜사탕R.ttf",30)
@@ -176,4 +177,15 @@ def GameScore_Load():
                 Time_Data.insert(i, Temp_Data.group(1))
         ###############################################################################################################
         f.close()
+    pass
+
+def GameScore_Sort():
+    global Registered_Number
+    global Time_Data, Mode_Data, Score_Data
+    for i in range(0, Registered_Number):
+        for j in range(0, Registered_Number-1):
+            if(Score_Data[i] > Score_Data[j]):
+                Score_Data[i], Score_Data[j] = Score_Data[j], Score_Data[i]
+                Mode_Data[i], Mode_Data[j] = Mode_Data[j], Mode_Data[i]
+                Time_Data[i], Time_Data[j] = Time_Data[j], Time_Data[i]
     pass
