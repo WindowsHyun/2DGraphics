@@ -1,9 +1,9 @@
 {
-    "Title" : {"x":150, "y":758},
-    "Mode" : {"x":10, "y":650},
-    "Mode_Data" : {"x":210, "y":650},
-    "Score" : {"x":10, "y":550},
-    "Score_Data" : {"x":230, "y":550},
-    "Time" : {"x":10, "y":450},
-    "Time_Data" : {"x":230, "y":450}
+    "Title" : {"x":"MTUw", "y":"NzU4"},
+    "Mode" : {"x":"MTA=", "y":"NjUw"},
+    "Mode_Data" : {"x":"MjEw", "y":"NjUw"},
+    "Score" : {"x":"MTA=", "y":"NTUw"},
+    "Score_Data" : {"x":"MjMw", "y":"NTUw"},
+    "Time" : {"x":"MTA=", "y":"NDUw"},
+    "Time_Data" : {"x":"MjMw", "y":"NDUw"}
 }
