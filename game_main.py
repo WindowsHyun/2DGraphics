@@ -111,10 +111,10 @@ def update():
 
     Frame_Time = get_time() - Current_Time
     Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Frame_Time)
-
+    Frame_Time = get_time() - Current_Time
+    Rabbit_X = Load_Rabbit.Rabbit_LeftRightDirection(Rabbit_Direction, Rabbit_X, Frame_Time)
 
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
-    Rabbit_X = Load_Rabbit.Rabbit_LeftRightDirection(Rabbit_Direction, Rabbit_X)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
     GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump = Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump)
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, Game_Score = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, int(Game_Score))

@@ -136,11 +136,16 @@ class MenuPictures:
     pass
 
 class Rabbit:
-    PIXEL_PER_METER = (100.0 / 0.3) # 10 pixel 30 cm
-    RUN_SPEED_KMPH = 4.0 # Km / Hour
-    RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
-    RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
-    RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+    PixelPerMeter_Height = (100.0 / 0.3) # 10 pixel 30 cm
+    PixelPerMeter_Width = (100.0 / 0.3) # 10 pixel 30 cm
+    JumpSpeed_KMPH = 7.0 # Km / Hour
+    JumpSpeed_MPM = (JumpSpeed_KMPH * 1000.0 / 60.0)
+    JumpSpeed_MPS = (JumpSpeed_MPM / 60.0)
+    JumpSpeed_PPS = (JumpSpeed_MPS * PixelPerMeter_Height)
+    MoveSpeed_KMPH = 4.0 # Km / Hour
+    MoveSpeed_MPM = (MoveSpeed_KMPH * 1000.0 / 60.0)
+    MoveSpeed_MPS = (MoveSpeed_MPM / 60.0)
+    MoveSpeed_PPS = (MoveSpeed_MPS * PixelPerMeter_Height)
 
     def __init__(self):
         self.leftimage = load_image('ResourceData\\CharacterImage\\Rabbit-Left.png')
@@ -157,8 +162,7 @@ class Rabbit:
     # Rabbit_Y = 캐릭터가 맵화면에 올라가는 좌표
     # RabbitJump_LimitCount = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
     def RabbitMove_UpDown(self, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, frame_time):
-        RabbitJump_Distance = self.RUN_SPEED_PPS * frame_time
-        print(RabbitJump_Distance)
+        RabbitJump_Distance = self.JumpSpeed_PPS * frame_time
         if Rabbit_UpDownDirection == "Up":
             Rabbit_Frame = 2
             Rabbit_Y += RabbitJump_Distance
@@ -184,11 +188,13 @@ class Rabbit:
         return Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection
 
     # 실제 캐릭터가 왼쪽으로 가는지 오른쪽으로 가는지 판단해서 움직여 준다.
-    def Rabbit_LeftRightDirection(self, Rabbit_Direction, Rabbit_X):
+    def Rabbit_LeftRightDirection(self, Rabbit_Direction, Rabbit_X, frame_time):
+        RabbitMove_Distance = self.MoveSpeed_PPS * frame_time
+        print(RabbitMove_Distance)
         if Rabbit_Direction == "Right":
-            Rabbit_X += 7
+            Rabbit_X += RabbitMove_Distance
         elif Rabbit_Direction == "Left":
-            Rabbit_X -= 7
+            Rabbit_X -= RabbitMove_Distance
         return Rabbit_X
 
     # 실제 캐릭터가 벽을 넘어갔을 경우 반대편으로 다시 나오게 한다.
