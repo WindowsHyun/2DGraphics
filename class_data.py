@@ -164,6 +164,7 @@ class Rabbit:
     # RabbitJump_LimitCount = 캐릭터 올라가는 횟수 ( 추후 충돌체크시 초기화를 하여 그 위치부터 다시 올라가게 해야한다. )
     def RabbitMove_UpDown(self, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, frame_time):
         RabbitJump_Distance = self.JumpSpeed_PPS * frame_time
+        print(RabbitJump_Distance)
         if Rabbit_UpDownDirection == "Up":
             Rabbit_Frame = 2
             Rabbit_Y += RabbitJump_Distance
