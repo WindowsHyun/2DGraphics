@@ -25,6 +25,9 @@ def Base64_Encode(s):
 def Base64_Decode(b):
     return base64.b64decode(b).decode('utf-8')
 
+import sys
+sys.dont_write_bytecode = True
+
 import time
 #print("- Module time -")
 
