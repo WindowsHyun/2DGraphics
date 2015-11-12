@@ -94,52 +94,52 @@ class MenuPictures:
         self.footresthelp_jet = load_image('ResourceData\\GeneralImage\\MfootrestHelp05.png')
 
     def _DrawPlanet(self):
-        self.planet.draw(LoadJson_MenuData['Planet']['x'], LoadJson_MenuData['Planet']['y'])
+        self.planet.draw(int(Base64_Decode(LoadJson_MenuData['Planet']['x'])), int(Base64_Decode(LoadJson_MenuData['Planet']['y'])))
 
     def _DrawTitle(self):
-        self.title.draw(LoadJson_MenuData['Title']['x'], LoadJson_MenuData['Title']['y'])
+        self.title.draw(int(Base64_Decode(LoadJson_MenuData['Title']['x'])), int(Base64_Decode(LoadJson_MenuData['Title']['y'])))
 
     def _DrawBack(self):
-        self.back.draw(LoadJson_MenuData['Back']['x'], LoadJson_MenuData['Back']['y'])
+        self.back.draw(int(Base64_Decode(LoadJson_MenuData['Back']['x'])), int(Base64_Decode(LoadJson_MenuData['Back']['y'])))
 
     def _DrawEasy(self):
-        self.easy.draw(LoadJson_MenuData['Easy']['x'], LoadJson_MenuData['Easy']['y'])
+        self.easy.draw(int(Base64_Decode(LoadJson_MenuData['Start']['x'])), int(Base64_Decode(LoadJson_MenuData['Start']['y'])))
 
     def _DrawExit(self):
-        self.exit.draw(LoadJson_MenuData['Exit']['x'], LoadJson_MenuData['Exit']['y'])
+        self.exit.draw(int(Base64_Decode(LoadJson_MenuData['Exit']['x'])), int(Base64_Decode(LoadJson_MenuData['Exit']['y'])))
 
     def _DrawHard(self):
-        self.hard.draw(LoadJson_MenuData['Hard']['x'], LoadJson_MenuData['Hard']['y'])
+        self.hard.draw(int(Base64_Decode(LoadJson_MenuData['Hard']['x'])), int(Base64_Decode(LoadJson_MenuData['Hard']['y'])))
 
     def _DrawMedium(self):
-        self.medium.draw(LoadJson_MenuData['Medium']['x'], LoadJson_MenuData['Medium']['y'])
+        self.medium.draw(int(Base64_Decode(LoadJson_MenuData['Medium']['x'])), int(Base64_Decode(LoadJson_MenuData['Medium']['y'])))
 
     def _DrawStart(self):
-        self.start.draw(LoadJson_MenuData['Start']['x'], LoadJson_MenuData['Start']['y'])
+        self.start.draw(int(Base64_Decode(LoadJson_MenuData['Start']['x'])),int(Base64_Decode(LoadJson_MenuData['Start']['y'])))
 
     def _DrawScore(self):
-        self.score.draw(LoadJson_MenuData['Score']['x'], LoadJson_MenuData['Score']['y'])
+        self.score.draw(int(Base64_Decode(LoadJson_MenuData['Score']['x'])), int(Base64_Decode(LoadJson_MenuData['Score']['y'])))
 
     def _DrawHelp(self):
-        self.help.draw(LoadJson_MenuData['Help']['x'], LoadJson_MenuData['Help']['y'])
+        self.help.draw(int(Base64_Decode(LoadJson_MenuData['Help']['x'])), int(Base64_Decode(LoadJson_MenuData['Help']['y'])))
 
     def _DrawRestart(self):
-        self.restart.draw(LoadJson_MenuData['Start']['x'], LoadJson_MenuData['Start']['y'])
+        self.restart.draw(int(Base64_Decode(LoadJson_MenuData['Start']['x'])),int(Base64_Decode(LoadJson_MenuData['Start']['y'])))
 
     def _DrawFootrestHelpNomal(self):
-        self.footresthelp_nomal.draw(LoadJson_MenuData['FootrestHelp_Nomal']['x'], LoadJson_MenuData['FootrestHelp_Nomal']['y'])
+        self.footresthelp_nomal.draw(int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Nomal']['x'])), int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Nomal']['y'])))
 
     def _DrawFootrestHelpHide(self):
-        self.footresthelp_hide.draw(LoadJson_MenuData['FootrestHelp_Hide']['x'], LoadJson_MenuData['FootrestHelp_Hide']['y'])
+        self.footresthelp_hide.draw(int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Hide']['x'])), int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Hide']['y'])))
 
     def _DrawFootrestHelpMove(self):
-        self.footresthelp_move.draw(LoadJson_MenuData['FootrestHelp_Move']['x'], LoadJson_MenuData['FootrestHelp_Move']['y'])
+        self.footresthelp_move.draw(int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Move']['x'])), int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Move']['y'])))
 
     def _DrawFootrestHelpBroke(self):
-        self.footresthelp_broke.draw(LoadJson_MenuData['FootrestHelp_Broke']['x'], LoadJson_MenuData['FootrestHelp_Broke']['y'])
+        self.footresthelp_broke.draw(int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Broke']['x'])), int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Broke']['y'])))
 
     def _DrawFootrestHelpJet(self):
-        self.footresthelp_jet.draw(LoadJson_MenuData['FootrestHelp_Jet']['x'], LoadJson_MenuData['FootrestHelp_Jet']['y'])
+        self.footresthelp_jet.draw(int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Jet']['x'])), int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Jet']['y'])))
     pass
 
 class Rabbit:

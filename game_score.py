@@ -84,17 +84,17 @@ def draw():
     GameLoad_Menu._DrawPlanet()
     GameLoad_Menu._DrawBack()
 
-    GameFont_Title.draw(LoadJson_ScoreData['Title']['x'], LoadJson_ScoreData['Title']['y'], "Game Rankings Score", (255, 255, 255))
-    GameFont_Content.draw(LoadJson_ScoreData['Content']['x'], LoadJson_ScoreData['Content']['y'], "Stand        Score       Mode        Time", (0, 0, 0))
+    GameFont_Title.draw(int(Base64_Decode(LoadJson_ScoreData['Title']['x'])), int(Base64_Decode(LoadJson_ScoreData['Title']['y'])), "Game Rankings Score", (255, 255, 255))
+    GameFont_Content.draw(int(Base64_Decode(LoadJson_ScoreData['Content']['x'])), int(Base64_Decode(LoadJson_ScoreData['Content']['y'])), "Stand        Score       Mode        Time", (0, 0, 0))
 
     for i in range(0, Registered_Number):
-        GameFont_Content.draw(LoadJson_ScoreData['Rank']['x'], LoadJson_ScoreData['Rank']['y']-(i*60), Rank_Data[i] , (255, 255, 255))
-        GameFont_Content.draw(LoadJson_ScoreData['Score']['x'], LoadJson_ScoreData['Score']['y']-(i*60), Score_Data[i] , (255, 255, 255))
-        GameFont_Content.draw(LoadJson_ScoreData['Time']['x'], LoadJson_ScoreData['Time']['y']-(i*60), Time_Data[i] , (255, 255, 255))
+        GameFont_Content.draw(int(Base64_Decode(LoadJson_ScoreData['Rank']['x'])), int(Base64_Decode(LoadJson_ScoreData['Rank']['y']))-(i*60), Rank_Data[i] , (255, 255, 255))
+        GameFont_Content.draw(int(Base64_Decode(LoadJson_ScoreData['Score']['x'])), int(Base64_Decode(LoadJson_ScoreData['Score']['y']))-(i*60), Score_Data[i] , (255, 255, 255))
+        GameFont_Content.draw(int(Base64_Decode(LoadJson_ScoreData['Time']['x'])), int(Base64_Decode(LoadJson_ScoreData['Time']['y']))-(i*60), Time_Data[i] , (255, 255, 255))
         if(len(Mode_Data[i]) == 6):
-            GameFont_Content.draw(LoadJson_ScoreData['Mode_6']['x'], LoadJson_ScoreData['Mode_6']['y']-(i*60), Mode_Data[i] , (255, 255, 255))
+            GameFont_Content.draw(int(Base64_Decode(LoadJson_ScoreData['Mode_6']['x'])), int(Base64_Decode(LoadJson_ScoreData['Mode_6']['y']))-(i*60), Mode_Data[i] , (255, 255, 255))
         else:
-            GameFont_Content.draw(LoadJson_ScoreData['Mode_4']['x'], LoadJson_ScoreData['Mode_4']['y']-(i*60), Mode_Data[i] , (255, 255, 255))
+            GameFont_Content.draw(int(Base64_Decode(LoadJson_ScoreData['Mode_4']['x'])), int(Base64_Decode(LoadJson_ScoreData['Mode_4']['y']))-(i*60), Mode_Data[i] , (255, 255, 255))
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
 
