@@ -36,6 +36,14 @@ font = None
 Get_Time = None
 Get_Score = None
 Get_Scenes = None
+
+CreatedLine_Easy = 1
+MaximumJump_Easy = 10
+CreatedLine_Middle = 2
+MaximumJump_Middle = 13
+CreatedLine_Hard = 3
+MaximumJump_Hard = 16
+LevelUp_Score = 500
 ###########################################################################################################################################################################
 # 발판 정보들
 Nomal_Footrest, Hide_Footrest, Pink_Footrest, Red_Footrest, Move_Footrest, Broke_Footrest, Broke2_Footrest = 0, 1, 2, 3, 4, 5, 6
@@ -231,8 +239,9 @@ class Footrest:
         self.image.clip_draw(Footrest_Frame * 120, 0, 120, 65, x, y)
     pass
 
-def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump):
+def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump, Game_Score):
     global GameLine_SomeMake, GameMap_ColLocation, GameMap_Footrest
+    global CreatedLine_Easy, MaximumJump_Easy, CreatedLine_Middle, MaximumJump_Middle, CreatedLine_Hard, MaximumJump_Hard, LevelUp_Score
 
     if ( GameMap_Row - 1 <= GameCreated_Line):
         pass
@@ -264,15 +273,26 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
                 Game_MapCheck[GameCreated_Line] = True
                 #1개 였을경우
             pass
+
+            if( Game_Score >= LevelUp_Score):
+                print("Level Up ~!!!")
+                LevelUp_Score += 500
+                CreatedLine_Easy += 1
+                MaximumJump_Easy += 2
+                CreatedLine_Middle += 1
+                MaximumJump_Middle += 2
+                CreatedLine_Hard += 1
+                MaximumJump_Hard += 2
+
             if ( GAME_Scenes == "Game_Easy"):
-                GameCreated_Line += 1
-                RabbitMaximum_Jump = 10
+                GameCreated_Line += CreatedLine_Easy
+                RabbitMaximum_Jump = MaximumJump_Easy
             elif ( GAME_Scenes == "Game_Middle"):
-                GameCreated_Line += 2
-                RabbitMaximum_Jump = 13
+                GameCreated_Line += CreatedLine_Middle
+                RabbitMaximum_Jump = MaximumJump_Middle
             elif ( GAME_Scenes == "Game_Hard"):
-                GameCreated_Line += 3
-                RabbitMaximum_Jump = 15
+                GameCreated_Line += CreatedLine_Hard
+                RabbitMaximum_Jump = MaximumJump_Hard
     return GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump
     pass
 
@@ -339,11 +359,19 @@ def Footrest_Move(GameMap_Col, GameMap_Row, Game_Map):
 
 def GameMap_Reset(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck ):
     global GameCreated_Line
+    global CreatedLine_Easy, MaximumJump_Easy, CreatedLine_Middle, MaximumJump_Middle, CreatedLine_Hard, MaximumJump_Hard, LevelUp_Score
     for i in range(GameMap_Col):   # 가로
         for j in range(GameMap_Row):   # 세로
             Game_Map[j][i] = Delete_Footrest
             Game_MapCheck[j] = False
             GameCreated_Line = 2
+            LevelUp_Score = 500
+            CreatedLine_Easy = 1
+            MaximumJump_Easy = 10
+            CreatedLine_Middle = 2
+            MaximumJump_Middle = 13
+            CreatedLine_Hard = 3
+            MaximumJump_Hard = 16
     return Game_Map, Game_MapCheck, GameCreated_Line
     pass
 

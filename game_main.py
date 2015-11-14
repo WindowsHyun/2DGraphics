@@ -117,7 +117,7 @@ def update():
 
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
-    GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump = Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump)
+    GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump = Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump, int(Game_Score))
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, Game_Score = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, int(Game_Score))
     GameMap_Down()
     GameFootrest_Hide()
@@ -214,10 +214,7 @@ def GamesIn_Progress():
     global GameStart_Time, GameEnd_Time, DrawTime_Data
     GameEnd_Time = time.time()
     Temp_Text = str(int(GameEnd_Time - GameStart_Time))
-    if ( len(Temp_Text) == 3):
-        # 설마 10분 이상 하는 사람이 있겠어?
-        pass
-    elif ( len(Temp_Text) == 2):
+    if ( len(Temp_Text) >= 2):
         if( int(GameEnd_Time - GameStart_Time) >= int(60) ):
             Temp_Cir = int(int(GameEnd_Time - GameStart_Time)/int(60))
             Temp_Text2 = str(int(round(GameEnd_Time - GameStart_Time, 2) - int(60*Temp_Cir)))
