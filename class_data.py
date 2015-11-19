@@ -156,7 +156,7 @@ class MenuPictures:
         self.footresthelp_jet.draw(int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Jet']['x'])), int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Jet']['y'])))
 
     def _DrawLevelUP(self):
-        self.levelup.draw(240, 610)
+        self.levelup.draw(int(Base64_Decode(LoadJson_MenuData['Leveup_Image']['x'])), int(Base64_Decode(LoadJson_MenuData['Leveup_Image']['y'])))
     pass
 
 class Rabbit:

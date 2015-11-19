@@ -14,5 +14,6 @@
     "FootrestHelp_Move" : {"x":"Mjg1", "y":"NDgz"},
     "FootrestHelp_Broke" : {"x":"Mjg1", "y":"MzYw"},
     "FootrestHelp_Jet" : {"x":"Mjg1", "y":"MjQ1"},
-    "FootrestHelp_Black" : {"x":"Mjg1", "y":"MTI1"}
+    "FootrestHelp_Black" : {"x":"Mjg1", "y":"MTI1"},
+    "Leveup_Image" : {"x":"MjQw", "y":"NjEw"}
 }
