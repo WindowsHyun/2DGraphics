@@ -100,6 +100,7 @@
   > 1. pyc 파일이 계속 생성되는데, 줄일 수 있는 방법이 없을까?
   > 1. 중력가속도 설정하는 공식을 알아도 적용을 못하겠다... 어떻게 방법이 없을까?
   > 1. 그 외 추가할만한 기능이 뭐가 있을까?
+  > 1. [8주차 구상한 내용 정리 파일](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/TermProjectConcept/ConceptDATA_8%EC%A3%BC%EC%B0%A8.txt)
 + 9주차 (11/18) 프로젝트 3차 발표를 위한 정리.
 + 10주차 (11/25) 전체적인 완성도 + 디버깅 + 오류검사
 + 11주차 (12/02) 프로젝트 최종 발표를 위한 정리.
