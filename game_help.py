@@ -93,11 +93,11 @@ def enter():
 def update():
     global Background_Y, BackgroundSub_Y, Load_Rabbit, Load_RabbitJet
     global Rabbit_X, Rabbit_Direction, Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, GameMap_Col, GameMap_Row, Rabbit_Frame, Rabbit_Y, RabbitMaximum_Jump, Frame_Time, Current_Time
-    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)    # 이미지 내려주는 함수
 
     Frame_Time = get_time() - Current_Time
-    Current_Time += Frame_Time
+    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y, Frame_Time)    # 이미지 내려주는 함수
     Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Frame_Time)
+    Current_Time += Frame_Time
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, Game_Score = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, 0)

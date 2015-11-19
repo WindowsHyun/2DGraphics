@@ -36,7 +36,12 @@ font = None
 Get_Time = None
 Get_Score = None
 Get_Scenes = None
-
+###########################################################################################################################################################################
+Jump_Sound = None
+Jet_Sound = None
+FootrestBreak_Sound = None
+Click_Sound = None
+###########################################################################################################################################################################
 CreatedLine_Easy = 1
 MaximumJump_Easy = 10
 CreatedLine_Middle = 2
@@ -164,8 +169,15 @@ class Rabbit:
     MoveSpeed_PPS = (MoveSpeed_MPS * PixelPerMeter_Height)
 
     def __init__(self):
+        global Jump_Sound, Jet_Sound
         self.leftimage = load_image('ResourceData\\CharacterImage\\Rabbit-Left.png')
         self.rightimage = load_image('ResourceData\\CharacterImage\\Rabbit-Right.png')
+        if Jump_Sound == None:
+            Jump_Sound = load_wav('ResourceData\\SoundData\\Jump.wav')
+            Jump_Sound.set_volume(100)
+        if Jet_Sound == None:
+            Jet_Sound = load_wav('ResourceData\\SoundData\\rocket.wav')
+            Jet_Sound.set_volume(100)
 
     def _DrawLeft(self, frame, x, y):
         self.leftimage.clip_draw(frame * 85, 0, 85, 113, x, y)
@@ -297,15 +309,17 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
     pass
 
 def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, Game_Score ):
+    global Jump_Sound
     for i in range(GameMap_Col):   # 가로
         for j in range(GameMap_Row):   # 세로
                 if(Game_Map[j][i] != Delete_Footrest ):
                     if( Rabbit_X >= ((i - 3)*20) + 25 and Rabbit_X <= ((i - 2)*20) + 110):
-                        if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == "Down"):
+                        if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == "Down" and Rabbit_Jet == False):
                             Game_Map, Game_Score = Footrest_Fade(i, j, Game_Map, Game_Score)
                             if(Game_Map[j][i] == Nomal_Footrest or Game_Map[j][i] == Pink_Footrest or Game_Map[j][i] == Move_Footrest
                                or Game_Map[j][i] == Hide_Footrest or Game_Map[j][i] == Jet_Footrest ):
                                 Rabbit_UpDownDirection = "Up"
+                                Jump_Sound.play()
                                 RabbitJump_LimitCount = 0
                                 if ( GAME_CurrentMenu == "Game_Easy"):
                                     Game_Score += 10
@@ -320,7 +334,9 @@ def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit
     pass
 
 def RabbitJet_Activate(i, j, Game_Map, Rabbit_Jet, Game_Score):
+    global Jet_Sound
     if ( Game_Map[j][i] == Jet_Footrest ):
+        Jet_Sound.play()
         Rabbit_Jet = True
         Game_Score += 200
     return Rabbit_Jet, Game_Score
@@ -333,7 +349,12 @@ def Footrest_Hide(i, j, Game_Map):
     pass
 
 def Footrest_Fade(i, j, Game_Map, Game_Score):
+    global FootrestBreak_Sound
     if ( Game_Map[j][i] == Broke_Footrest ):
+        if FootrestBreak_Sound == None:
+            FootrestBreak_Sound = load_wav('ResourceData\\SoundData\\BreakFootRest.wav')
+            FootrestBreak_Sound.set_volume(100)
+        FootrestBreak_Sound.play()
         Game_Map[j][i] = Broke2_Footrest
         Game_Score -= random.randint(0, 10)
     return Game_Map, Game_Score
@@ -376,53 +397,79 @@ def GameMap_Reset(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck ):
     pass
 
 def GameMenu_Click(GAME_Menu, x, y):
-    global Game_Running
+    global Game_Running, Click_Sound
+    if Click_Sound == None:
+        Click_Sound = load_wav('ResourceData\\SoundData\\Click.ogg')
+        Click_Sound.set_volume(100)
+
     if x >= 131 and x <= 349 and y >= 313 and y <= 387 and GAME_Menu == "Game_Select":
             GAME_Menu = "Game_Easy"
             print("Easy")
+            Click_Sound.play()
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and GAME_Menu == "Game_Select":
             GAME_Menu = "Game_Middle"
             print("Middle")
+            Click_Sound.play()
     if x >= 131 and x <= 349 and y >= 113 and y <= 187 and GAME_Menu == "Game_Select":
             GAME_Menu = "Game_Hard"
             print("Hard")
+            Click_Sound.play()
 
     if x >= 131 and x <= 349 and y >= 313 and y <= 387 and GAME_Menu == "Game_Main":
             GAME_Menu = "GameSelect"
             print("Start")
+            Click_Sound.play()
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and GAME_Menu == "Game_Main":
             GAME_Menu = "Game_Score"
             print("Score")
+            Click_Sound.play()
     if x >= 131 and x <= 349 and y >= 113 and y <= 187 and GAME_Menu == "Game_Main":
             GAME_Menu = "False"
             print("Exits")
+            Click_Sound.play()
     if x >= 380 and x <= 480 and y >= 0 and y <= 36 and GAME_Menu == "Game_Main":
             GAME_Menu = "Game_Help"
             print("Help")
+            Click_Sound.play()
 
     if x >= 131 and x <= 349 and y >= 313 and y <= 387 and GAME_Menu == "Game_Over":
             GAME_Menu = "Game_Restart"
             print("Restart")
+            Click_Sound.play()
     if x >= 131 and x <= 349 and y >= 113 and y <= 187 and GAME_Menu == "Game_Over":
             GAME_Menu = "False"
             print("Exits")
+            Click_Sound.play()
     if x >= 131 and x <= 349 and y >= 213 and y <= 287 and GAME_Menu == "Game_Over":
             GAME_Menu = "Game_Score"
             print("Score")
+            Click_Sound.play()
 
     if x >= 4 and x <= 42 and y >= 4 and y <= 42:
         if GAME_Menu == "Game_Select" or GAME_Menu == "Game_Score" or GAME_Menu == "Game_Help":
             GAME_Menu = "Game_Main"
             print("Back")
+            Click_Sound.play()
         if GAME_Menu == "Game_Over":
             GAME_Menu = "Game_Select"
             print("Back")
+            Click_Sound.play()
     return GAME_Menu
     pass
 
-def GameMap_Slide(Background_Y, BackgroundSub_Y):
-    Background_Y -= 3
-    BackgroundSub_Y -= 3
+def GameMap_Slide(Background_Y, BackgroundSub_Y, frame_time, Rabbit_UpDownDirection = False):
+    PixelPerMeter_Ground = (100.0 / 0.3) # 10 pixel 30 cm
+    if ( Rabbit_UpDownDirection == True):
+        GroundSpeed_KMPH = 10.0  # Km / Hour
+    else:
+        GroundSpeed_KMPH = 1.0  # Km / Hour
+    GroundSpeed_MPM = (GroundSpeed_KMPH * 1000.0 / 60.0)
+    GroundSpeed_MPS = (GroundSpeed_MPM / 60.0)
+    GroundSpeed_PPS = (GroundSpeed_MPS * PixelPerMeter_Ground)
+    Ground_Distance = GroundSpeed_PPS * frame_time
+
+    Background_Y -= Ground_Distance
+    BackgroundSub_Y -= Ground_Distance
     if BackgroundSub_Y <= 0:
         Background_Y = 0
         BackgroundSub_Y = 800

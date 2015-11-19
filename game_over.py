@@ -70,6 +70,7 @@ def enter():
     global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes, GameScore_Data
     global GameFont_Title, GameFont_Content
     global Get_Scenes, Get_Score, Get_Time
+    global Current_Time
     GAME_Scenes = "Game_Over"
     print("Open : game_score.py Code")
     GameLoad_BackGround = BackGround()
@@ -91,12 +92,17 @@ def enter():
     # 폰트 미리 불러오기.
     GameFont_Title = Font("ResourceData\\훈솜사탕R.ttf",50)
     GameFont_Content = Font("ResourceData\\훈솜사탕R.ttf",40)
+    Current_Time = get_time()
     pass
 
 
 def update():
     global Background_Y, BackgroundSub_Y
-    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)                                                    # 이미지 내려주는 함수
+    global Current_Time
+
+    Frame_Time = get_time() - Current_Time
+    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y, Frame_Time)                                                    # 이미지 내려주는 함수
+    Current_Time += Frame_Time
     pass
 
 def draw():

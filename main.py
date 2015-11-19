@@ -52,6 +52,7 @@ def handle_events():
 
 def enter():
     global GameLoad_BackGround, GameLoad_Menu, GAME_Scenes
+    global Current_Time
     GAME_Scenes = "Game_Main"
     print("Open : main.py Code")
     GameLoad_BackGround = BackGround()
@@ -59,12 +60,17 @@ def enter():
     GameLoad_Menu = MenuPictures()
     # 클래스 함수를 만들어서 여러가지 이미지 불러오기
     GameUpdate_Menu(GAME_Scenes)
+    Current_Time = get_time()
     pass
 
 
 def update():
     global Background_Y, BackgroundSub_Y
-    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y)                                                    # 이미지 내려주는 함수
+    global Current_Time
+
+    Frame_Time = get_time() - Current_Time
+    Background_Y, BackgroundSub_Y = GameMap_Slide(Background_Y, BackgroundSub_Y, Frame_Time)                                                    # 이미지 내려주는 함수
+    Current_Time += Frame_Time
     pass
 
 def draw():
