@@ -32,6 +32,7 @@ GameStart_Time = 0
 GameEnd_Time = 0
 DrawTime_Data = None
 Game_Score = 0
+LevelUpShow_Count = 0
 
 GameOver_Sound = None
 Stage_Sound = None
@@ -119,7 +120,7 @@ def enter():
 def update():
     global Load_Rabbit, Load_RabbitJet, Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Rabbit_X, Rabbit_Direction, Canvas_Width, RabbitMaximum_Jump, Rabbit_Jet
     global Game_MapCheck, Game_Map, GameMap_Row, GameCreated_Line, GAME_Scenes, Game_Score, Current_Time, Frame_Time
-
+    global Level_Update, LevelUpShow_Count
     Frame_Time = get_time() - Current_Time
     Rabbit_Frame, Rabbit_Y, RabbitJump_LimitCount = Load_Rabbit.RabbitMove_UpDown(Rabbit_Frame, Rabbit_UpDownDirection, Rabbit_Y, RabbitJump_LimitCount, Frame_Time)
     Frame_Time = get_time() - Current_Time
@@ -128,13 +129,17 @@ def update():
 
     Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection = Load_Rabbit.RabbitMove_Jump(Rabbit_Frame, RabbitJump_LimitCount, Rabbit_UpDownDirection, RabbitMaximum_Jump)
     Rabbit_X, Rabbit_Direction = Load_Rabbit.RabbitWall_Pass(Rabbit_X, Rabbit_Direction, Canvas_Width)
-    GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump = Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump, int(Game_Score))
+    GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump, Level_Update = Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump, int(Game_Score))
     Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet, Game_Map, Game_Score = CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, int(Game_Score))
     GameMap_Down(Frame_Time)
     GameFootrest_Hide()
     GamesIn_Progress()
     GamesDraw_Score()
     Game_Over()
+
+    if Level_Update == "Up":
+        LevelUpShow_Count = -5
+
     delay(0.015)
     pass
 
@@ -143,6 +148,7 @@ def draw():
     global Canvas_Width, Canvas_Height, Rabbit_Direction, Rabbit_Frame, Rabbit_X, Rabbit_Y, gtest, Rabbit_UpDownDirection
     global GameMap_Col, GameMap_Row, Game_Map
     global GameEnd_Time, GameStart_Time, Current_Time
+    global Level_Update, LevelUpShow_Count
     clear_canvas()
     GameLoad_BackGround._MainDraw(Background_Y, Canvas_Width, Canvas_Height)
     GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
@@ -160,6 +166,11 @@ def draw():
     for i in range(GameMap_Col):
         for j in range(GameMap_Row):
             Load_Footrest.Draw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
+
+    if LevelUpShow_Count <= 0:
+        GameLoad_Menu._DrawLevelUP()
+        LevelUpShow_Count += 1
+        pass
 
     Score_Board._Draw(0, Canvas_Width)
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
@@ -267,7 +278,7 @@ def Game_Over():
     if ( Rabbit_Y <= 0):
         GameOver_Sound.play()
         Stage_Sound.set_volume(0)
-        Stage_Sound.__del__()
+        #Stage_Sound.__del__()
         Stage_Sound = None
         Rabbit_Y ,Rabbit_X, Rabbit_UpDownDirection, RabbitJump_LimitCount, Rabbit_Jet = 100, 100, "Up", 0, False
         Game_Map, Game_MapCheck, GameCreated_Line = GameMap_Reset(GameMap_Col, GameMap_Row, Game_Map, Game_MapCheck)

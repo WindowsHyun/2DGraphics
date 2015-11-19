@@ -105,6 +105,7 @@ class MenuPictures:
         self.footresthelp_move = load_image('ResourceData\\GeneralImage\\MfootrestHelp03.png')
         self.footresthelp_broke = load_image('ResourceData\\GeneralImage\\MfootrestHelp04.png')
         self.footresthelp_jet = load_image('ResourceData\\GeneralImage\\MfootrestHelp05.png')
+        self.levelup = load_image('ResourceData\\GeneralImage\\LevelUP.png')
 
     def _DrawPlanet(self):
         self.planet.draw(int(Base64_Decode(LoadJson_MenuData['Planet']['x'])), int(Base64_Decode(LoadJson_MenuData['Planet']['y'])))
@@ -153,6 +154,9 @@ class MenuPictures:
 
     def _DrawFootrestHelpJet(self):
         self.footresthelp_jet.draw(int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Jet']['x'])), int(Base64_Decode(LoadJson_MenuData['FootrestHelp_Jet']['y'])))
+
+    def _DrawLevelUP(self):
+        self.levelup.draw(240, 610)
     pass
 
 class Rabbit:
@@ -253,7 +257,7 @@ class Footrest:
 
 def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump, Game_Score):
     global GameLine_SomeMake, GameMap_ColLocation, GameMap_Footrest
-    global CreatedLine_Easy, MaximumJump_Easy, CreatedLine_Middle, MaximumJump_Middle, CreatedLine_Hard, MaximumJump_Hard, LevelUp_Score
+    global CreatedLine_Easy, MaximumJump_Easy, CreatedLine_Middle, MaximumJump_Middle, CreatedLine_Hard, MaximumJump_Hard, LevelUp_Score, Level_Update
 
     if ( GameMap_Row - 1 <= GameCreated_Line):
         pass
@@ -286,6 +290,8 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
                 #1개 였을경우
             pass
 
+            Level_Update = "No"
+
             if( Game_Score >= LevelUp_Score):
                 print("Level Up ~!!!")
                 LevelUp_Score += 500
@@ -295,6 +301,8 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
                 MaximumJump_Middle += 2
                 CreatedLine_Hard += 1
                 MaximumJump_Hard += 2
+                Level_Update = "Up"
+
 
             if ( GAME_Scenes == "Game_Easy"):
                 GameCreated_Line += CreatedLine_Easy
@@ -305,7 +313,7 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
             elif ( GAME_Scenes == "Game_Hard"):
                 GameCreated_Line += CreatedLine_Hard
                 RabbitMaximum_Jump = MaximumJump_Hard
-    return GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump
+    return GameCreated_Line, Game_MapCheck, Game_Map, RabbitMaximum_Jump, Level_Update
     pass
 
 def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, Game_Score ):
