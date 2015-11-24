@@ -128,7 +128,7 @@ def draw():
     GameFont_Content.draw(int(Base64_Decode(LoadJson_OverData['Score']['x'])), int(Base64_Decode(LoadJson_OverData['Score']['y'])), "Game Score : ", (0, 0, 0))
     GameFont_Content.draw(int(Base64_Decode(LoadJson_OverData['Score_Data']['x'])), int(Base64_Decode(LoadJson_OverData['Score_Data']['y'])), Get_Score, (255, 255, 255))
 
-    GameFont_Content.draw(int(Base64_Decode(LoadJson_OverData['Time']['x'])), int(Base64_Decode(LoadJson_OverData['Time']['y'])), "Game Time : ", (0, 0, 0))
+    GameFont_Content.draw(int(Base64_Decode(LoadJson_OverData['Time']['x'])), int(Base64_Decode(LoadJson_OverData['Time']['y'])), "Play Time : ", (0, 0, 0))
     GameFont_Content.draw(int(Base64_Decode(LoadJson_OverData['Time_Data']['x'])), int(Base64_Decode(LoadJson_OverData['Time_Data']['y'])), Get_Time, (255, 255, 255))
 
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)

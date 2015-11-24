@@ -112,7 +112,7 @@ def enter():
         GameOver_Sound.set_volume(100)
     if Stage_Sound == None:
         Stage_Sound = load_wav('ResourceData\\SoundData\\Stage.ogg')
-        Stage_Sound.set_volume(100)
+        Stage_Sound.set_volume(30)
     Stage_Sound.repeat_play()
     pass
 
@@ -173,6 +173,7 @@ def draw():
         pass
 
     Score_Board._Draw(0, Canvas_Width)
+
     GameDraw_Font(3,10, GAME_Scenes, 255, 255, 255)
     GameDraw_Font(355,10, DrawTime_Data , 255, 255, 255)
     GameDraw_Font(175,10, "Score : " + str(Game_Score) , 255, 255, 255)
