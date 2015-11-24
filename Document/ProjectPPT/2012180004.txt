@@ -1,0 +1,319 @@
+Thu Nov 19 21:19:27 2015 +0900 Update py Code
+Thu Nov 19 21:16:56 2015 +0900 Uload Sound Data
+Thu Nov 19 21:16:16 2015 +0900 Update Cache File
+Thu Nov 19 11:52:57 2015 +0900 Update gamescore Score
+Tue Nov 17 11:27:29 2015 +0900 Update gamescore Score
+Mon Nov 16 12:05:25 2015 +0900 Update gamescore Score
+Mon Nov 16 11:08:16 2015 +0900 Update gamescore.score
+Mon Nov 16 10:28:50 2015 +0900 Merge remote-tracking branch 'origin/master'
+Mon Nov 16 10:28:15 2015 +0900 Update Cache File
+Sun Nov 15 11:41:06 2015 +0900 Update Cache File
+Sat Nov 14 16:39:06 2015 +0900 Update py Code
+Sat Nov 14 16:37:43 2015 +0900 Update Cache File
+Sat Nov 14 02:51:33 2015 +0900 Update gamescore_data Score
+Sat Nov 14 02:51:16 2015 +0900 Update Cache File
+Fri Nov 13 02:34:28 2015 +0900 Update py Code
+Fri Nov 13 02:28:22 2015 +0900 Update py Code
+Fri Nov 13 02:25:28 2015 +0900 Update Cache File
+Fri Nov 13 02:00:12 2015 +0900 Update py Code
+Thu Nov 12 23:02:51 2015 +0900 Update README.md
+Thu Nov 12 22:30:07 2015 +0900 Update py Code
+Thu Nov 12 22:29:22 2015 +0900 Update Json Data
+Thu Nov 12 22:28:35 2015 +0900 Update Cache File
+Thu Nov 12 22:03:14 2015 +0900 Update py Code
+Thu Nov 12 22:02:46 2015 +0900 Upload Resource Data
+Thu Nov 12 22:02:23 2015 +0900 Update Cache File
+Thu Nov 12 21:34:13 2015 +0900 Update class_data Code
+Thu Nov 12 21:33:54 2015 +0900 Update Cache File
+Thu Nov 12 21:21:06 2015 +0900 Merge remote-tracking branch 'origin/master'
+Thu Nov 12 21:20:22 2015 +0900 Update class_data Code
+Thu Nov 12 21:20:08 2015 +0900 Update Cache File
+Thu Nov 12 21:19:34 2015 +0900 Update class_data Code
+Thu Nov 12 21:18:48 2015 +0900 Update Cache File
+Thu Nov 12 21:15:12 2015 +0900 Merge remote-tracking branch 'origin/master'
+Thu Nov 12 21:14:44 2015 +0900 Update py Code
+Thu Nov 12 21:14:20 2015 +0900 Update Cache File
+Thu Nov 12 21:13:28 2015 +0900 Update Cache File
+Thu Nov 12 21:12:24 2015 +0900 Update Cache File
+Thu Nov 12 18:39:17 2015 +0900 Update Cache File
+Thu Nov 12 13:09:00 2015 +0900 Update Cache File
+Thu Nov 12 13:07:05 2015 +0900 Update py Code
+Thu Nov 12 13:05:44 2015 +0900 Update Cache File
+Thu Nov 12 11:55:12 2015 +0900 Update py Code
+Thu Nov 12 11:54:10 2015 +0900 Update Cache File
+Wed Nov 11 14:13:33 2015 +0900 Update game_title Code
+Wed Nov 11 14:12:55 2015 +0900 Update Cachce File
+Tue Nov 10 11:12:06 2015 +0900 Update Cache File
+Tue Nov 10 11:04:02 2015 +0900 Update Cache File
+Tue Nov 10 11:03:52 2015 +0900 Update py Code
+Tue Nov 10 10:59:01 2015 +0900 Update py Code
+Tue Nov 10 10:58:10 2015 +0900 Upload Json Data
+Tue Nov 10 10:57:27 2015 +0900 Update Cache File
+Tue Nov 10 02:19:16 2015 +0900 Update py Code
+Tue Nov 10 02:14:57 2015 +0900 Update Cache File
+Tue Nov 10 01:02:03 2015 +0900 Upload game_over Code
+Tue Nov 10 00:51:36 2015 +0900 Update game_help Code
+Tue Nov 10 00:50:55 2015 +0900 Update Cache File
+Tue Nov 10 00:33:02 2015 +0900 Update Cache File
+Tue Nov 10 00:08:59 2015 +0900 Update py Code
+Tue Nov 10 00:07:20 2015 +0900 Update Resource Data
+Tue Nov 10 00:06:27 2015 +0900 No Update ResourceData
+Tue Nov 10 00:04:58 2015 +0900 Update Cache File
+Mon Nov 9 23:28:03 2015 +0900 Update Cache File
+Mon Nov 9 23:27:53 2015 +0900 Update py Code
+Mon Nov 9 23:25:14 2015 +0900 Update Cache File
+Mon Nov 9 20:46:48 2015 +0900 Update game_main Code
+Mon Nov 9 20:45:54 2015 +0900 Update class_data Code
+Mon Nov 9 20:45:02 2015 +0900 Update Cache File
+Mon Nov 9 10:31:01 2015 +0900 Update Cache File
+Mon Nov 9 10:24:37 2015 +0900 Update game_score Code
+Mon Nov 9 10:23:26 2015 +0900 Update Cache File
+Mon Nov 9 00:09:12 2015 +0900 Update py Code
+Mon Nov 9 00:06:08 2015 +0900 Update Score, Json File
+Mon Nov 9 00:05:06 2015 +0900 Update Cache File
+Sun Nov 8 19:10:38 2015 +0900 Update game_score Code
+Sun Nov 8 19:08:56 2015 +0900 Update Cache File
+Sun Nov 8 12:45:33 2015 +0900 Update class_data Code
+Sun Nov 8 12:44:08 2015 +0900 Upload gamescore_data.score
+Sun Nov 8 12:43:33 2015 +0900 Update game_score Code
+Sun Nov 8 12:42:20 2015 +0900 Updata Cache File
+Fri Nov 6 17:14:44 2015 +0900 Update class_data Code
+Fri Nov 6 17:14:03 2015 +0900 Update Cache File
+Fri Nov 6 02:28:13 2015 +0900 Update class_data Code
+Fri Nov 6 02:27:30 2015 +0900 Update Cache File
+Thu Nov 5 20:58:34 2015 +0900 Update Concept Data
+Thu Nov 5 20:56:21 2015 +0900 Update README.md
+Thu Nov 5 20:54:52 2015 +0900 Update Concept Data
+Thu Nov 5 20:39:08 2015 +0900 Update README.md
+Thu Nov 5 20:32:16 2015 +0900 Upload Json Data
+Thu Nov 5 20:31:33 2015 +0900 Update py Code
+Thu Nov 5 20:30:43 2015 +0900 Delete NeedResourceList
+Thu Nov 5 20:30:08 2015 +0900 Update ConceptData
+Thu Nov 5 20:29:38 2015 +0900 Update Cache File
+Thu Nov 5 11:19:07 2015 +0900 Update class_data Code
+Thu Nov 5 11:10:31 2015 +0900 Update README.md
+Thu Nov 5 11:00:21 2015 +0900 Update py Code
+Thu Nov 5 10:59:16 2015 +0900 Update Cache File
+Thu Nov 5 10:28:21 2015 +0900 Update py Code
+Thu Nov 5 10:27:43 2015 +0900 Update Cache File
+Thu Nov 5 03:00:10 2015 +0900 Update py Code
+Thu Nov 5 02:59:20 2015 +0900 Update Cache File
+Thu Nov 5 02:46:57 2015 +0900 Update py Code
+Thu Nov 5 02:45:07 2015 +0900 Update Cache File
+Thu Nov 5 02:00:25 2015 +0900 Update py Code
+Thu Nov 5 01:59:41 2015 +0900 Update Cache File
+Thu Nov 5 01:42:54 2015 +0900 Update py Code
+Thu Nov 5 01:41:51 2015 +0900 Update Cache File
+Thu Nov 5 01:41:38 2015 +0900 Revert "Update Cache File"
+Thu Nov 5 01:41:16 2015 +0900 Update Cache File
+Thu Nov 5 01:26:43 2015 +0900 Update py Code
+Thu Nov 5 01:25:58 2015 +0900 Update Cache File
+Thu Nov 5 01:17:24 2015 +0900 Update Cache File
+Wed Nov 4 23:38:38 2015 +0900 Update README.md
+Wed Nov 4 23:37:42 2015 +0900 Update README.md
+Wed Nov 4 23:36:59 2015 +0900 Update README.md
+Wed Nov 4 23:33:40 2015 +0900 Move to Document
+Wed Nov 4 23:33:10 2015 +0900 Update py Code
+Wed Nov 4 23:32:29 2015 +0900 Move to Document
+Wed Nov 4 23:30:36 2015 +0900 Update Cache File
+Wed Nov 4 11:40:16 2015 +0900 Update Cache File
+Tue Nov 3 01:36:24 2015 +0900 Update Cache File
+Tue Nov 3 01:18:23 2015 +0900 Update Cache File
+Mon Nov 2 22:39:41 2015 +0900 Update Cache File
+Mon Nov 2 22:33:56 2015 +0900 Update Py Code
+Mon Nov 2 22:32:51 2015 +0900 Upload ResourceData
+Mon Nov 2 22:32:21 2015 +0900 Update Cache File
+Sun Nov 1 23:38:20 2015 +0900 Update game_help Code
+Sun Nov 1 23:37:59 2015 +0900 Update Cache File
+Sun Nov 1 20:40:09 2015 +0900 Update game_help Code
+Sun Nov 1 20:37:36 2015 +0900 Update main Code
+Sun Nov 1 20:37:10 2015 +0900 Python Cache File
+Sun Nov 1 19:23:42 2015 +0900 Update main Code
+Sun Nov 1 19:23:40 2015 +0900 Upload game_help Code
+Sun Nov 1 19:23:39 2015 +0900 Update class_data Code
+Sun Nov 1 19:23:38 2015 +0900 Upload Resource Help Menu
+Sun Nov 1 19:23:36 2015 +0900 Python Cache File
+Sun Nov 1 14:49:45 2015 +0900 Update README.md
+Sun Nov 1 14:45:47 2015 +0900 Update README.md
+Sun Nov 1 14:39:44 2015 +0900 Update class_data Code
+Sun Nov 1 14:39:43 2015 +0900 Python Cache Data
+Thu Oct 29 18:51:55 2015 +0900 Update README.md
+Thu Oct 29 18:50:33 2015 +0900 Update class_data Code
+Thu Oct 29 18:46:35 2015 +0900 Update game_ing Code
+Thu Oct 29 18:43:29 2015 +0900 Update game_score Code
+Thu Oct 29 18:42:53 2015 +0900 Update game_select Code
+Thu Oct 29 18:42:17 2015 +0900 Update main Code
+Thu Oct 29 18:40:46 2015 +0900 Update Project PPT
+Thu Oct 29 18:40:09 2015 +0900 Don't Update
+Thu Oct 29 18:39:29 2015 +0900 Update ResourceData
+Thu Oct 29 18:39:05 2015 +0900 Update ConceptData 6~7
+Thu Oct 29 18:37:17 2015 +0900 Update File Cache
+Mon Oct 26 00:58:02 2015 +0900 Update Detailed proposals
+Mon Oct 26 00:28:06 2015 +0900 Update Detailed proposals
+Sat Oct 24 01:28:15 2015 +0900 Update README.md
+Sat Oct 24 01:27:43 2015 +0900 Update Project PPT
+Sat Oct 24 01:26:33 2015 +0900 Update README.md
+Sat Oct 24 01:22:38 2015 +0900 Upload PPT Project
+Sat Oct 24 01:21:42 2015 +0900 Update PPT Project
+Sat Oct 24 01:21:33 2015 +0900 Upload Cache File
+Fri Oct 23 23:40:29 2015 +0900 Update PPT Project
+Fri Oct 23 23:11:47 2015 +0900 Update PPT Project
+Fri Oct 23 23:11:38 2015 +0900 Update Cache File
+Fri Oct 23 23:05:54 2015 +0900 Update py Code
+Fri Oct 23 23:05:41 2015 +0900 Update Project PPT
+Fri Oct 23 23:05:28 2015 +0900 Update Cache File
+Thu Oct 22 14:24:41 2015 +0900 Update Project PPT
+Thu Oct 22 14:23:16 2015 +0900 Update README.md
+Wed Oct 21 23:49:24 2015 +0900 Update ProjectPPT
+Wed Oct 21 23:30:15 2015 +0900 Update Project PPT
+Wed Oct 21 22:19:46 2015 +0900 Upload Project PPT
+Wed Oct 21 22:19:14 2015 +0900 Update Cache File
+Wed Oct 21 17:11:59 2015 +0900 Merge remote-tracking branch 'origin/master'
+Wed Oct 21 17:11:33 2015 +0900 Update py Code
+Wed Oct 21 17:11:21 2015 +0900 Update Cache File
+Wed Oct 21 17:10:07 2015 +0900 Project PPT 2th
+Wed Oct 21 17:09:48 2015 +0900 Update Cache File
+Sat Oct 17 12:52:44 2015 +0900 Update py Code
+Sat Oct 17 12:52:03 2015 +0900 Update Cache File
+Sat Oct 17 11:50:04 2015 +0900 Update class_data
+Sat Oct 17 11:49:29 2015 +0900 Update Cache File
+Thu Oct 15 10:34:30 2015 +0900 Update py Code
+Tue Oct 13 00:54:07 2015 +0900 Update py Code
+Tue Oct 13 00:52:24 2015 +0900 Update Cache File
+Tue Oct 13 00:52:06 2015 +0900 Delete Resource File
+Mon Oct 12 22:36:41 2015 +0900 Update py Code
+Mon Oct 12 22:36:21 2015 +0900 Update Cache File
+Mon Oct 12 22:29:47 2015 +0900 Upload py Code
+Mon Oct 12 22:28:56 2015 +0900 Upload Resource File
+Mon Oct 12 22:28:36 2015 +0900 Update Cache File
+Mon Oct 12 21:12:13 2015 +0900 Update py Code
+Mon Oct 12 21:11:55 2015 +0900 Update Cache File
+Mon Oct 12 01:36:35 2015 +0900 Update py Code
+Mon Oct 12 01:35:27 2015 +0900 Update Cache File
+Mon Oct 12 01:04:59 2015 +0900 Update Cache File
+Sun Oct 11 19:59:38 2015 +0900 Update py Code
+Sun Oct 11 19:58:44 2015 +0900 Update Cache File
+Sun Oct 11 19:49:53 2015 +0900 Update ResourceData
+Sun Oct 11 19:48:26 2015 +0900 Update py Code
+Sun Oct 11 19:46:52 2015 +0900 Update ResourceData
+Sun Oct 11 19:46:01 2015 +0900 Update ResourceData
+Sun Oct 11 19:45:11 2015 +0900 Update Cache File
+Sun Oct 11 19:44:51 2015 +0900 Revert "Update Cache File"
+Sun Oct 11 19:44:39 2015 +0900 Update Cache File
+Sun Oct 11 19:23:32 2015 +0900 Update py Code
+Sun Oct 11 19:22:27 2015 +0900 Update Cache File
+Sun Oct 11 19:07:06 2015 +0900 Update py Code
+Sun Oct 11 19:07:05 2015 +0900 Update Cache File
+Sun Oct 11 19:05:38 2015 +0900 Update README.md
+Sun Oct 11 13:39:49 2015 +0900 Upload gmae_select
+Sun Oct 11 13:39:31 2015 +0900 Update Cache File
+Sun Oct 11 01:51:25 2015 +0900 Update README.md
+Sun Oct 11 01:47:30 2015 +0900 Update py Code
+Sun Oct 11 01:45:56 2015 +0900 Backup File
+Sun Oct 11 01:45:25 2015 +0900 Update Cache File
+Fri Oct 9 14:13:55 2015 +0900 Upload ShowLineNumbers
+Thu Oct 8 23:15:03 2015 +0900 Update Cache File
+Thu Oct 8 23:14:54 2015 +0900 Update py Code
+Thu Oct 8 22:28:41 2015 +0900 Merge remote-tracking branch 'origin/master'
+Thu Oct 8 22:28:12 2015 +0900 Upload ttf File
+Thu Oct 8 22:28:03 2015 +0900 Update Cache File
+Thu Oct 8 16:19:23 2015 +0900 Update Main.py
+Thu Oct 8 16:18:14 2015 +0900 Update Cache File
+Thu Oct 8 15:45:29 2015 +0900 Upload desktop
+Wed Oct 7 21:37:32 2015 +0900 Update class_data
+Wed Oct 7 21:36:49 2015 +0900 Update py Code
+Wed Oct 7 21:35:24 2015 +0900 Update Cache File
+Wed Oct 7 21:35:15 2015 +0900 Update Image Data
+Wed Oct 7 21:21:05 2015 +0900 Update Image Data
+Wed Oct 7 21:20:23 2015 +0900 Update Image Data
+Wed Oct 7 21:09:18 2015 +0900 Update py Code
+Wed Oct 7 21:07:13 2015 +0900 Update Cache File
+Wed Oct 7 21:07:02 2015 +0900 Upload scaffolding Image
+Wed Oct 7 18:28:16 2015 +0900 Update py Code
+Wed Oct 7 18:27:37 2015 +0900 Update Cache File
+Wed Oct 7 12:04:39 2015 +0900 Update py Code
+Wed Oct 7 12:03:30 2015 +0900 Update Cache File
+Wed Oct 7 02:57:00 2015 +0900 Update Cache File
+Wed Oct 7 02:56:39 2015 +0900 Update Menu Image
+Wed Oct 7 02:26:08 2015 +0900 Update py Code
+Wed Oct 7 02:25:23 2015 +0900 Upload Menu Image
+Wed Oct 7 00:12:19 2015 +0900 Update py Code
+Wed Oct 7 00:11:31 2015 +0900 Update Cache File
+Tue Oct 6 23:56:25 2015 +0900 Upload Character Image
+Tue Oct 6 23:37:16 2015 +0900 Upload Rabbit Image
+Tue Oct 6 23:24:17 2015 +0900 Update py Code
+Tue Oct 6 23:23:23 2015 +0900 Update py Code
+Tue Oct 6 23:23:21 2015 +0900 Update Cache File
+Tue Oct 6 23:23:20 2015 +0900 Update Character Image
+Tue Oct 6 21:52:53 2015 +0900 Update README.md
+Tue Oct 6 21:50:48 2015 +0900 Update ConceptDATA_2주차.txt
+Tue Oct 6 21:41:29 2015 +0900 Update Cache File
+Tue Oct 6 21:41:09 2015 +0900 Update py Code
+Tue Oct 6 21:40:43 2015 +0900 Upload SpaceImage
+Tue Oct 6 21:32:22 2015 +0900 Update Cache File
+Tue Oct 6 21:32:02 2015 +0900 Update py Code
+Tue Oct 6 21:31:37 2015 +0900 Upload Planet Image
+Tue Oct 6 21:14:21 2015 +0900 Have no idea
+Tue Oct 6 21:14:19 2015 +0900 Update class_data, main
+Tue Oct 6 11:40:50 2015 +0900 Update README.md
+Tue Oct 6 11:37:26 2015 +0900 Update main.py
+Tue Oct 6 11:03:34 2015 +0900 Upload TempMenu
+Tue Oct 6 01:28:57 2015 +0900 Update main.py
+Mon Oct 5 00:52:47 2015 +0900 Upload MainMenu Image
+Sat Oct 3 22:48:17 2015 +0900 Upload Score
+Sat Oct 3 02:28:03 2015 +0900 Upload 0to9 Image
+Sat Oct 3 02:16:21 2015 +0900 Upload 0to9
+Sat Oct 3 02:15:02 2015 +0900 Update rocket.wav
+Thu Oct 1 19:48:49 2015 +0900 Rename hole-x2
+Thu Oct 1 19:47:23 2015 +0900 Update README.md
+Thu Oct 1 19:46:37 2015 +0900 Upload Scaffolding Image
+Thu Oct 1 19:21:09 2015 +0900 Update main.py
+Thu Oct 1 15:48:40 2015 +0900 Upload SoundData
+Thu Oct 1 15:36:27 2015 +0900 Update README.md
+Thu Oct 1 11:31:50 2015 +0900 Update README.md
+Thu Oct 1 11:23:46 2015 +0900 Update README.md
+Thu Oct 1 11:09:50 2015 +0900 Upload GeneralImage Folder
+Thu Oct 1 11:04:04 2015 +0900 Delete & Change Character Name
+Thu Oct 1 10:56:34 2015 +0900 Update README.md
+Thu Oct 1 10:54:06 2015 +0900 Upload CharacterImage
+Sun Sep 27 00:12:36 2015 +0900 Update main.py
+Sat Sep 26 16:39:05 2015 +0900 Update ConceptDATA.txt
+Sat Sep 26 16:31:05 2015 +0900 Update README.md
+Sat Sep 26 16:29:09 2015 +0900 Update README.md
+Sat Sep 26 16:26:37 2015 +0900 PyCharm Fix Project
+Sat Sep 26 16:24:09 2015 +0900 Upload ConceptDATA.txt
+Sat Sep 26 01:02:08 2015 +0900 Update README.md
+Sat Sep 26 01:01:47 2015 +0900 Update README.md
+Fri Sep 25 23:55:24 2015 +0900 Delete GitHub Sync Test
+Fri Sep 25 23:54:15 2015 +0900 Update GitHub Sync Test
+Fri Sep 25 23:52:21 2015 +0900 Update GitHub_Sync_Test
+Fri Sep 25 22:52:13 2015 +0900 Update README.md
+Fri Sep 25 15:08:12 2015 +0900 Project & Resource List Upload
+Fri Sep 25 15:02:49 2015 +0900 Update BackgroundImage
+Fri Sep 25 14:59:41 2015 +0900 Update BackgroundImage
+Fri Sep 25 14:47:42 2015 +0900 Merge remote-tracking branch 'origin/master'
+Fri Sep 25 14:46:47 2015 +0900 Update workspace
+Fri Sep 25 14:34:52 2015 +0900 Upload StartBackgroung Data(NoWaterMark)
+Fri Sep 25 14:31:00 2015 +0900 Overall map ImageData
+Fri Sep 25 11:29:00 2015 +0900 Update main.py
+Fri Sep 25 11:28:40 2015 +0900 Update workspace.xml
+Fri Sep 25 11:18:27 2015 +0900 Update Windows7-PC Data
+Fri Sep 25 11:17:56 2015 +0900 PyCharm Fix Project
+Fri Sep 25 02:22:08 2015 +0900 Update workspace.xml
+Fri Sep 25 02:21:01 2015 +0900 Update README.md
+Fri Sep 25 02:19:38 2015 +0900 Update README.md
+Fri Sep 25 02:17:34 2015 +0900 Update README.md
+Fri Sep 25 02:16:13 2015 +0900 Update README.md
+Fri Sep 25 02:08:58 2015 +0900 Update README.md
+Fri Sep 25 02:08:40 2015 +0900 Update README.md
+Fri Sep 25 01:51:51 2015 +0900 Project & Resource List Upload
+Fri Sep 25 01:47:47 2015 +0900 Delete README.md.bak
+Fri Sep 25 01:45:34 2015 +0900 Update README.md
+Fri Sep 25 01:43:38 2015 +0900 README 줄구분
+Fri Sep 25 01:40:22 2015 +0900 README 프로젝트 일정추가
+Fri Sep 25 01:30:11 2015 +0900 TermProject 20150925 Start!
+Fri Sep 25 01:24:50 2015 +0900 Revert "Update README.md"
+Wed Sep 23 02:52:42 2015 +0900 Update README.md
+Wed Sep 23 02:52:34 2015 +0900 Update README.md
+Wed Sep 23 02:50:37 2015 +0900 Update README.md
+Wed Sep 23 02:50:16 2015 +0900 Initial commit
