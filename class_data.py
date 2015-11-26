@@ -167,7 +167,7 @@ class Rabbit:
     JumpSpeed_MPM = (JumpSpeed_KMPH * 1000.0 / 60.0)
     JumpSpeed_MPS = (JumpSpeed_MPM / 60.0)
     JumpSpeed_PPS = (JumpSpeed_MPS * PixelPerMeter_Height)
-    MoveSpeed_KMPH = 1.5  # Km / Hour
+    MoveSpeed_KMPH = 2.0  # Km / Hour
     MoveSpeed_MPM = (MoveSpeed_KMPH * 1000.0 / 60.0)
     MoveSpeed_MPS = (MoveSpeed_MPM / 60.0)
     MoveSpeed_PPS = (MoveSpeed_MPS * PixelPerMeter_Height)
