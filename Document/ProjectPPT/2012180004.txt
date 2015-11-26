@@ -1,3 +1,11 @@
+Sun Nov 22 21:54:12 2015 +0900 Update GitLog
+Fri Nov 20 02:01:28 2015 +0900 Update README.md
+Fri Nov 20 02:00:07 2015 +0900 Update README.md
+Fri Nov 20 01:59:12 2015 +0900 Update ConceptData
+Fri Nov 20 01:38:02 2015 +0900 Update Json, py, Cache File
+Fri Nov 20 01:34:48 2015 +0900 Update py Code
+Fri Nov 20 01:34:25 2015 +0900 Upload LevelUP Image
+Fri Nov 20 01:33:44 2015 +0900 Update Cache File
 Thu Nov 19 21:19:27 2015 +0900 Update py Code
 Thu Nov 19 21:16:56 2015 +0900 Uload Sound Data
 Thu Nov 19 21:16:16 2015 +0900 Update Cache File
