@@ -45,6 +45,7 @@ Click_Sound = None
 CreatedLine_Easy = 1
 MaximumJump_Easy = 10
 CreatedLine_Middle = 2
+LatestCreatedLine = -1
 MaximumJump_Middle = 13
 CreatedLine_Hard = 3
 MaximumJump_Hard = 16
@@ -256,7 +257,7 @@ class Footrest:
     pass
 
 def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump, Game_Score):
-    global GameLine_SomeMake, GameMap_ColLocation, GameMap_Footrest
+    global GameLine_SomeMake, GameMap_ColLocation, GameMap_Footrest, LatestCreatedLine
     global CreatedLine_Easy, MaximumJump_Easy, CreatedLine_Middle, MaximumJump_Middle, CreatedLine_Hard, MaximumJump_Hard, LevelUp_Score, Level_Update
 
     if ( GameMap_Row - 1 <= GameCreated_Line):
@@ -273,6 +274,12 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
         else:
             if ( GameMap_Footrest == Jet_Footrest ):
                 GameMap_Footrest = Nomal_Footrest
+
+        if ( LatestCreatedLine == Broke_Footrest ):
+            GameMap_Footrest = Hide_Footrest
+
+        LatestCreatedLine = GameMap_Footrest
+
         #print("라인 : ", GameCreated_Line, " 몇개 만들지 : ", GameLine_SomeMake, " 어디에 만들지 : ", GameMap_ColLocation)
         if ( Game_MapCheck[GameCreated_Line] == False):
             if (GameLine_SomeMake == 2):
