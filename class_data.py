@@ -167,7 +167,7 @@ class Rabbit:
     JumpSpeed_MPM = (JumpSpeed_KMPH * 1000.0 / 60.0)
     JumpSpeed_MPS = (JumpSpeed_MPM / 60.0)
     JumpSpeed_PPS = (JumpSpeed_MPS * PixelPerMeter_Height)
-    MoveSpeed_KMPH = 1.5  # Km / Hour
+    MoveSpeed_KMPH = 2.0  # Km / Hour
     MoveSpeed_MPM = (MoveSpeed_KMPH * 1000.0 / 60.0)
     MoveSpeed_MPS = (MoveSpeed_MPM / 60.0)
     MoveSpeed_PPS = (MoveSpeed_MPS * PixelPerMeter_Height)
@@ -322,7 +322,7 @@ def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit
         for j in range(GameMap_Row):   # 세로
                 if(Game_Map[j][i] != Delete_Footrest ):
                     if( Rabbit_X >= ((i - 3)*20) + 25 and Rabbit_X <= ((i - 2)*20) + 110):
-                        if( Rabbit_Y >= ((j - 2)*30) + 46 +30 and Rabbit_Y <= ((j-1)*30) + 46 + 30 and Rabbit_UpDownDirection == "Down" and Rabbit_Jet == False):
+                        if( Rabbit_Y >= ((j - 2)*30) + 46 +35 and Rabbit_Y <= ((j-1)*30) + 46 + 35 and Rabbit_UpDownDirection == "Down" and Rabbit_Jet == False):
                             Game_Map, Game_Score = Footrest_Fade(i, j, Game_Map, Game_Score)
                             if(Game_Map[j][i] == Nomal_Footrest or Game_Map[j][i] == Pink_Footrest or Game_Map[j][i] == Move_Footrest
                                or Game_Map[j][i] == Hide_Footrest or Game_Map[j][i] == Jet_Footrest ):

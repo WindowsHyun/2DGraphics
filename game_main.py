@@ -154,6 +154,10 @@ def draw():
     GameLoad_BackGround._SubDraw(BackgroundSub_Y, Canvas_Width, Canvas_Height)
     GameLoad_Menu._DrawPlanet()
 
+    for i in range(GameMap_Col):
+        for j in range(GameMap_Row):
+            Load_Footrest.Draw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
+
     if ( Rabbit_Jet == False ):
         if (Rabbit_Direction == "Left" ):
                 Load_Rabbit._DrawLeft(Rabbit_Frame, Rabbit_X, Rabbit_Y)
@@ -162,10 +166,6 @@ def draw():
     else:
         Load_RabbitJet.Draw(2,Rabbit_X, Rabbit_Y)
         GameRabbit_Jet()
-
-    for i in range(GameMap_Col):
-        for j in range(GameMap_Row):
-            Load_Footrest.Draw(Game_Map[j][i],(GameMap_Col) * i, GameMap_Row * j)
 
     if LevelUpShow_Count <= 0:
         GameLoad_Menu._DrawLevelUP()
