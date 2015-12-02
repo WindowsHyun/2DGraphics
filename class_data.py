@@ -534,6 +534,7 @@ def PushGameOver_Data(GAME_Scenes, Game_Score, DrawTime_Data):
     return Get_Scenes, Get_Score, Get_Time
 
 """
+메시지 표시 내용
 Styles:
 0 : OK
 1 : OK | Cancel
