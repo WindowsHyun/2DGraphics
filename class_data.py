@@ -41,6 +41,8 @@ Jump_Sound = None
 Jet_Sound = None
 FootrestBreak_Sound = None
 Click_Sound = None
+BlackFootrest_Start = None
+BlackFootrest_Num = 0
 ###########################################################################################################################################################################
 CreatedLine_Easy = 1
 MaximumJump_Easy = 10
@@ -257,7 +259,7 @@ class Footrest:
     pass
 
 def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME_Scenes, RabbitMaximum_Jump, Game_Score):
-    global GameLine_SomeMake, GameMap_ColLocation, GameMap_Footrest, LatestCreatedLine
+    global GameLine_SomeMake, GameMap_ColLocation, GameMap_Footrest, LatestCreatedLine, BlackFootrest_Start, BlackFootrest_Num
     global CreatedLine_Easy, MaximumJump_Easy, CreatedLine_Middle, MaximumJump_Middle, CreatedLine_Hard, MaximumJump_Hard, LevelUp_Score, Level_Update
 
     if ( GameMap_Row - 1 <= GameCreated_Line):
@@ -267,8 +269,15 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
         GameMap_ColLocation = random.randint(3, 19)
         GameMap_Footrest = random.randint(1, 12)
         if ( GameMap_Footrest == Pink_Footrest or GameMap_Footrest == Red_Footrest  or GameMap_Footrest == Broke2_Footrest or GameMap_Footrest == Broke3_Footrest
-             or GameMap_Footrest == Broke4_Footrest or GameMap_Footrest == Black_Footrest or GameMap_Footrest == Black2_Footrest or GameMap_Footrest == Black3_Footrest ):
+             or GameMap_Footrest == Broke4_Footrest or GameMap_Footrest == Black2_Footrest or GameMap_Footrest == Black3_Footrest ):
             GameMap_Footrest = Nomal_Footrest
+
+        if ( GameMap_Footrest == Black_Footrest and random.randint(1, 5) == 2):
+            GameMap_Footrest = Black_Footrest
+        else:
+            if ( GameMap_Footrest == Black_Footrest ):
+                GameMap_Footrest = Nomal_Footrest
+
         if ( GameMap_Footrest == Jet_Footrest and random.randint(1, 50) == 2):
             GameMap_Footrest = Jet_Footrest
         else:
@@ -279,6 +288,17 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
             GameMap_Footrest = Hide_Footrest
 
         LatestCreatedLine = GameMap_Footrest
+
+        if ( CreatedLine_Easy >= 3 or CreatedLine_Middle >= 3 or CreatedLine_Hard >= 3):
+            if( GameMap_Footrest == Broke_Footrest):
+                GameMap_Footrest = Hide_Footrest
+
+        if ( BlackFootrest_Start == True ):
+            GameMap_Footrest = Hide_Footrest
+            BlackFootrest_Num += 1
+            if ( BlackFootrest_Num >= 50 ):
+                BlackFootrest_Start = False
+                BlackFootrest_Num = 0
 
         #print("라인 : ", GameCreated_Line, " 몇개 만들지 : ", GameLine_SomeMake, " 어디에 만들지 : ", GameMap_ColLocation)
         if ( Game_MapCheck[GameCreated_Line] == False):
@@ -324,7 +344,7 @@ def Create_Footrest(GameMap_Row, GameCreated_Line, Game_MapCheck, Game_Map, GAME
     pass
 
 def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit_UpDownDirection, RabbitJump_LimitCount, Game_Map, Rabbit_Jet, Game_Score ):
-    global Jump_Sound
+    global Jump_Sound, BlackFootrest_Start, BlackFootrest_Num
     for i in range(GameMap_Col):   # 가로
         for j in range(GameMap_Row):   # 세로
                 if(Game_Map[j][i] != Delete_Footrest ):
@@ -332,10 +352,15 @@ def CollisionCheck_Footrest(GameMap_Col, GameMap_Row, Rabbit_X, Rabbit_Y, Rabbit
                         if( Rabbit_Y >= ((j - 2)*30) + 46 +35 and Rabbit_Y <= ((j-1)*30) + 46 + 35 and Rabbit_UpDownDirection == "Down" and Rabbit_Jet == False):
                             Game_Map, Game_Score = Footrest_Fade(i, j, Game_Map, Game_Score)
                             if(Game_Map[j][i] == Nomal_Footrest or Game_Map[j][i] == Pink_Footrest or Game_Map[j][i] == Move_Footrest
-                               or Game_Map[j][i] == Hide_Footrest or Game_Map[j][i] == Jet_Footrest ):
+                               or Game_Map[j][i] == Hide_Footrest or Game_Map[j][i] == Jet_Footrest or Game_Map[j][i] == Black_Footrest ):
                                 Rabbit_UpDownDirection = "Up"
                                 Jump_Sound.play()
                                 RabbitJump_LimitCount = 0
+
+                                if ( Game_Map[j][i] == Black_Footrest ):
+                                    BlackFootrest_Start = True
+                                    BlackFootrest_Num = 0
+
                                 if ( GAME_CurrentMenu == "Game_Easy"):
                                     Game_Score += 10
                                 elif ( GAME_CurrentMenu == "Game_Middle"):
