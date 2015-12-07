@@ -79,7 +79,8 @@ def handle_events():
         if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
             Rabbit_Direction = "Right"
         if event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
-            Rabbit_Jet = True
+            #Rabbit_Jet = True
+            pass
     pass
 
 def enter():
@@ -112,7 +113,7 @@ def enter():
         GameOver_Sound.set_volume(100)
     if Stage_Sound == None:
         Stage_Sound = load_wav('ResourceData\\SoundData\\Stage.ogg')
-        Stage_Sound.set_volume(30)
+        Stage_Sound.set_volume(80)
     Stage_Sound.repeat_play()
     pass
 
