@@ -15,7 +15,8 @@
 + [1차 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/ProjectPPT/KwonChangHyun_1%EC%B0%A8%EB%B0%9C%ED%91%9C.pptx?raw=true) / [1차 발표 영상](https://www.youtube.com/watch?v=wmc25937s1s)
 + [2차 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/ProjectPPT/KwonChangHyun_2%EC%B0%A8%EB%B0%9C%ED%91%9C.pptx?raw=true) / [2차 발표 영상](https://youtu.be/9CV9dXPFsC0)
 + [3차 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/b9627407e56c46c6a0ffc0531442e25db1219758/Document/ProjectPPT/2015_2dgp_3%EC%B0%A8%EB%B0%9C%ED%91%9C%EA%B0%80%EC%9D%B4%EB%93%9C.pptx?raw=true) / [3차 발표 영상](https://www.youtube.com/watch?v=GPo1HAbMvxE)
-
++ [마지막 발표 PPT](https://github.com/WindowsHyun/2DGraphics/blob/master/Document/ProjectPPT/KwonChangHyun_%EB%A7%88%EC%A7%80%EB%A7%89%EB%B0%9C%ED%91%9C.pptx?raw=true) / [3차 발표 영상](https://www.youtube.com/watch?v=F1hiT1XhvlM)
++ 
 ============
 ###프로젝트 일정.
 + 1주차 (09/23) 전체적인 맵 틀 및 게임 스토리 구성
@@ -109,10 +110,12 @@
   > 1. 게임 시연중 오류가 있는지 확인.
   > 1. 게임 시연이 가능할정도로 게임 완성하기.
 + 10주차 (11/25) 전체적인 완성도 + 디버깅 + 오류검사
+
   > 1. 게임에서 절대 깨지 못할 발판 생성 방지
   > 1. 일부 함정 발판 생성
   > 1. 치트 삭제
 + 11주차 (12/02) 프로젝트 최종 발표를 위한 정리.
+
   > 1. install 가이드에 따라 exe 파일 제작 및 설치파일 제작
   > 1. 발표 영상 작성 및 마지막 발표 ppt 제작
   > 1. Github 최종 정리
